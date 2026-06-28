@@ -1,5 +1,7 @@
 # 🎯 Ultra Grill Me (Socratic Interrogation Agent Skill)
 
+[English](./README.md) | [한국어](./README.ko.md) | [简体中文](./README.zh.md)
+
 `ultra-grill-me` is a validation-only Agent Skill designed to stress-test your plans, designs, product ideas, GTM strategies, and personal decisions through Socratic, one-question-at-a-time interrogation before you jump into code implementation or execution.
 
 This is a "preventative validation skill" to remove failure modes early, NOT an immediate generation utility.
