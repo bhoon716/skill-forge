@@ -1,7 +1,6 @@
 ---
 name: ultra-grill-me
-description: Use when the user wants a plan, design, product idea, architecture decision, implementation plan, business strategy, writing direction, research question, learning plan, personal decision, or Agent Skill design stress-tested through Socratic, one-question-at-a-time interrogation with options (including "other recommendations") and session logging. Do not use for simple factual Q&A, brainstorming lists, text formatting, or immediate code/plan generation.
-description-ko: 사용자가 계획, 제품 아이디어, 기술 설계, 아키텍처 결정, 구현 계획, 사업 전략, 글쓰기 방향, 연구 질문, 학습 계획, 개인 의사결정, 또는 Skill 설계를 한 번에 하나의 질문으로 압박 검증해서 중요한 모호성이 남지 않을 때까지 명확화하고 싶을 때 사용한다. 단순 사실 Q&A, 브레인스토밍 목록, 요약, 문장 교정, 즉시 실행 요청, 가벼운 설명에는 사용하지 않는다.
+description: 사용자가 계획, 제품 아이디어, 기술 설계, 아키텍처 결정, 구현 계획, 사업 전략, 글쓰기 방향, 연구 질문, 학습 계획, 개인 의사결정, 또는 Skill 설계를 한 번에 하나의 질문으로 압박 검증해서 중요한 모호성이 남지 않을 때까지 명확화하고 싶을 때 사용한다. 단순 사실 Q&A, 브레인스토밍 목록, 요약, 문장 교정, 즉시 실행 요청, 가벼운 설명에는 사용하지 않는다.
 ---
 
 # Ultra Grill Me
