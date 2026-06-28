@@ -1,6 +1,6 @@
 {
   "name": "@bhoon716/skill-forge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Agent Skill Authoring & Distribution CLI Workspace",
   "main": "bin/cli.js",
   "bin": {
