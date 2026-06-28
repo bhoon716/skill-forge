@@ -1,88 +1,66 @@
-# 기술 설계 검증
+# Technical Design Verification
 
-## 이 reference를 사용할 때
+## When to use this reference
 
-- 구현 방식이 맞는지 검증해달라는 요청
-- API 설계를 질문으로 검토해달라는 요청
-- 데이터 모델이 괜찮은지 grill 해달라는 요청
-- 시스템 설계의 빈틈을 찾아달라는 요청
-- 기술 tradeoff를 검증해달라는 요청
+- Verifying API design, data models, or system workflows
+- Evaluating concrete code implementation plans
+- Highlighting system bottlenecks, data consistency, or latency tradeoffs
+- Checking developer-level integration plans before code generation
 
-## 이 reference를 사용하지 않을 때
+## When not to use this reference
 
-- 아키텍처 수준의 큰 결정 → `architecture-decision-grill.md` 사용
-- 구현 순서와 일정 리스크 → `implementation-plan-grill.md` 사용
-- 기술 개념을 설명해달라는 요청
-- 코드를 바로 작성해달라는 요청
+- High-level platform architecture decisions (e.g., monolith vs. MSA) → Use `architecture-decision-grill.md`
+- Product roadmap or business logic critique → Use `product-idea-grill.md`
+- Generating raw boilerplates directly
 
-## 질문 우선순위
+## Question Priority
 
-1. 기능 요구사항 — 이 설계가 충족해야 하는 기능은 정확히 뭔가?
-2. 비기능 요구사항 — 성능, 가용성, 확장성, 보안 기준이 있는가?
-3. 현재 시스템 제약 — 기존 시스템과의 호환성, 기술 스택 제약이 있는가?
-4. 데이터 흐름 — 데이터가 어디서 생성되고, 어디를 거쳐, 어디에 저장되는가?
-5. API 경계 — 내부/외부 인터페이스가 명확한가?
-6. 성능 병목 — 예상 부하에서 어디가 먼저 터지는가?
-7. 장애 모드 — 이 설계가 실패하면 어떤 일이 벌어지는가?
-8. 보안 / 권한 — 인증, 인가, 데이터 보호가 충분한가?
-9. 마이그레이션 — 기존 데이터나 시스템에서 어떻게 전환하는가?
-10. 테스트 전략 — 이 설계를 어떻게 테스트하는가?
+1. **Non-functional Requirements** — What are the performance, scale, and latency targets?
+2. **Data Model & Schema** — Are table relations, indexing, and data life cycles defined?
+3. **API Contracts** — Are input/output schemas, error codes, and validation rules explicit?
+4. **Consistency & Concurrency** — How do we handle race conditions, transaction rollbacks, or sync offsets?
+5. **Security & Auth** — Are encryption, RBAC, and input sanitization handled?
+6. **Error Handling & Fault Tolerance** — What happens when internal/external dependencies fail?
+7. **Test Strategy** — How do we verify this code behaves correctly at scale?
+8. **Observability** — How do we trace, log, and alert on errors?
 
-## 강한 질문 패턴
+## Strong Question Patterns
 
-- "이 API가 초당 1000건 요청을 받으면 어디가 먼저 병목이 되나요?"
-- "이 데이터 모델에서 스키마를 변경해야 할 때 마이그레이션 비용이 얼마나 되나요?"
-- "이 서비스가 죽으면 사용자에게 어떤 일이 벌어지나요?"
-- "이 설계에서 보안 관련으로 가장 걱정되는 부분은 뭔가요?"
-- "이 설계를 자동화된 테스트로 검증할 수 있나요?"
+- "What is your target scale? (e.g., 500 TPS write, sub-100ms read latency) How does this schema support it?"
+- "What happens if the database connection drops halfway through this multi-step transaction? How do you ensure rollback?"
+- "If two users request the same resource at the same millisecond, how does your implementation prevent duplicate writes?"
+- "How do you verify this integration in tests without relying on live production APIs?"
 
-## 약한 질문 패턴
+## Weak Question Patterns
 
-- "이 설계 괜찮나요?"
-- "뭔가 빠진 거 없나요?"
-- "더 나은 방법이 있나요?"
+- "Is this database choice fast enough?"
+- "Are we going to write unit tests?"
+- "Is the code clean?"
 
-## 추천 옵션 구성 규칙
+## Recommended Option Rules
 
-- **비기능 요구사항이 없을 때**: `(추천) p99 latency < 500ms, 가용성 99.9%, 무상태(Stateless) 아키텍처로 수평 확장 가능` 옵션을 추천하고, 비실시간/느슨한 가용성 대안들로 선택지 구성
-- **테스트 전략이 없을 때**: `(추천) 핵심 유스케이스 단위 테스트 + 모의(Mock) 통합 테스트 + 핵심 경로 E2E 테스트` 옵션을 추천하고, 수동 QA 전담 대안들로 선택지 구성
-- **장장애 모드(Failure Mode) 검토가 안 됐을 때**: `(추천) 가장 의존성이 높은 외부 핵심 API/서비스가 15분간 마비되는 상황` 상황 대안을 추천하고, 대안 장애 시나리오들로 선택지 구성
+- **NFR Ambiguity**: Recommend `(Recommended) Target p99 latency < 500ms, SLA 99.9% availability, stateless scaling` and include loose hobby-scale alternatives to build the option set.
+- **Test Strategy Ambiguity**: Recommend `(Recommended) 80% coverage unit tests for core logic + Mock integration tests` and include manual-only alternatives to build the option set.
+- **Fault Tolerance Ambiguity**: Recommend `(Recommended) Circuit breaker with local fallback cache when dependency fails` and include crash-on-error alternatives to build the option set.
 
-## 모호한 답변 처리
+## Handling Vague Answers
 
-- "성능은 나중에 볼게" → "그럼 임시 기준으로 'p99 latency < 500ms, 동시 사용자 100명'을 두고 진행할까요?"로 기본값 제안
-- "보안은 일반적인 수준이면 돼" → "인증은 OAuth 2.0, 데이터 암호화는 AES-256 at rest + TLS in transit 정도면 될까요?"로 구체화
-- "잘 모르겠어" → 가장 보수적인 옵션을 기본값으로 제안
+- "Performance doesn't matter yet" → Propose safety defaults: "Let's set a baseline target of p99 latency < 500ms at 100 concurrent connections. Shall we use this as our constraint?"
+- "We'll test it later" → Emphasize unit tests: "Shall we define that any new API route requires at least 3 automated unit tests covering validation failures before merging?"
+- "It won't fail" → Force failure check: "If the authentication service fails, should the API return a cached token fallback, or drop the request immediately with a 503 error?"
 
-## 케이스별 종료 조건
+## Stopping Conditions
 
-공통 종료 조건에 더해 다음이 충족되어야 한다.
+In addition to common stopping conditions, ensure:
+- Performance targets (latency, throughput) are established.
+- Core database schema and relations are defined.
+- Error codes and validation limits are listed.
+- Fail-safe strategies for external dependency drops are outlined.
 
-- 기능 요구사항이 목록화되었다
-- 비기능 요구사항이 최소 하나 정의되었다
-- 주요 장애 모드가 최소 하나 검토되었다
-- 보안/권한 관련 리스크가 확인되었다
-- 테스트 전략이 최소한 방향이 잡혔다
-- 가장 위험한 기술 결정이 식별되었다
+## Final Synthesis Required Items
 
-## 최종 정리 필수 항목
-
-공통 최종 정리 형식에 다음을 추가한다.
-
-- 확정된 기술 방향
-- 남은 기술 리스크
-- 기능 요구사항 / 비기능 요구사항
-- 주요 tradeoff
-- 장애 모드
-- 검증해야 할 위험 지점
-- 테스트 전략
-- 구현 전 체크리스트
-
-## 실패 모드
-
-- 비기능 요구사항 없이 기능만 논의하는 경우
-- 장애 모드를 한 번도 검토하지 않는 경우
-- 보안을 "나중에"로 미루는 경우
-- 마이그레이션 비용을 무시하는 경우
-- 테스트 불가능한 설계를 그대로 두는 경우
-- 기존 시스템 제약을 확인하지 않는 경우
+Add the following to the common final synthesis format:
+- Key Data Model Schemas / Fields
+- API Spec Draft (Endpoint, Payload, Success/Error codes)
+- Error Handling & Fallback Protocols
+- Automated Test Requirements

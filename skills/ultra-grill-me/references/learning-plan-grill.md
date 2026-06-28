@@ -1,87 +1,68 @@
-# 학습 계획 검증
+# Learning Plan Verification
 
-## 이 reference를 사용할 때
+## When to use this reference
 
-- 학습 계획이 현실적인지 grill 해달라는 요청
-- 공부 로드맵을 질문으로 검증해달라는 요청
-- 스킬 습득 계획의 빈틈을 찾아달라는 요청
-- 학습 프로젝트가 적절한지 확인해달라는 요청
-- 학습 목표가 측정 가능한지 확인해달라는 요청
+- Stress-testing custom study roadmaps, skills acquisition plans, or schedules
+- Verifying target topics, practice methods, and feedback loops
+- Reviewing curriculum outlines, coding tutorials, or textbook reading roadmaps
+- Assessing learning targets, metrics, or required project boundaries
 
-## 이 reference를 사용하지 않을 때
+## When not to use this reference
 
-- 학습 자료를 추천해달라는 요청
-- 개념을 설명해달라는 요청
-- 공부 계획을 바로 작성해달라는 요청
-- 커리어 전환 같은 개인 의사결정 → `personal-decision-grill.md` 사용
+- Critique of high-level company or product strategies → Use `business-strategy-grill.md`
+- Verifying code models or API specifications → Use `technical-design-grill.md`
+- Generating raw study summaries or writing explanations of technical topics
 
-## 질문 우선순위
+## Question Priority
 
-1. 최종 목표 — 이 학습이 끝나면 무엇을 할 수 있어야 하는가?
-2. 현재 수준 — 지금 이 분야에서 어디까지 알고 있는가?
-3. 시간 제약 — 주당 몇 시간, 총 몇 주를 쓸 수 있는가?
-4. 평가 기준 — "배웠다"를 어떻게 확인할 수 있는가?
-5. 실전 프로젝트 — 배운 걸 바로 적용할 프로젝트가 있는가?
-6. 피드백 루프 — 틀린 걸 어떻게 알 수 있는가?
-7. 우선순위 — 전부 배울 수 없다면 가장 중요한 것부터 순서는?
-8. 포기할 범위 — 이번에 안 배워도 되는 건 뭔가?
-9. 유지 가능성 — 이 학습 속도를 4주 이상 유지할 수 있는가?
-10. 다음 7일 행동 — 지금 당장 시작할 수 있는 가장 구체적인 행동은?
+1. **Learning Goal** — What is the specific target skills or outcomes?
+2. **Evaluation Metric** — How do we prove the target skills have been acquired?
+3. **Time Commitment** — How many hours per week are allocated? For how many weeks?
+4. **Prerequisites & Current Level** — What background context or skills do we already have?
+5. **Topics to Cover** — What is the sequence of concepts to learn?
+6. **Practice & Implementation** — How do we apply the theory to practice?
+7. **Feedback & Loop** — How do we identify gaps and correct errors?
+8. **Diminishing Returns Point** — Are we learning irrelevant or overly deep topics?
 
-## 강한 질문 패턴
+## Strong Question Patterns
 
-- "이 학습이 끝나면 '이걸 할 수 있다'를 한 문장으로 말하면 뭔가요?"
-- "주당 몇 시간 쓸 수 있나요? 그 시간이 정말 비어 있나요?"
-- "'배웠다'를 어떻게 확인할 건가요? 시험? 프로젝트? 다른 사람에게 설명?"
-- "이 로드맵을 4주 동안 유지할 수 있나요? 비슷한 계획을 전에 세운 적 있나요?"
-- "이 중에서 안 배워도 목표 달성에 큰 영향이 없는 건 뭔가요?"
+- "What is your main goal? (e.g., 'To build a full-stack Next.js app from scratch' vs. 'To pass an exam')"
+- "What is your validation criteria? What output will prove you acquired the skill?"
+- "How many hours per week can you consistently commit? Over-ambitious plans usually fail."
+- "How will you get feedback when you get stuck or make mistakes? Do you have a mentor, community, or test framework?"
 
-## 약한 질문 패턴
+## Weak Question Patterns
 
-- "이 계획 괜찮나요?"
-- "더 효율적으로 배울 수 있나요?"
-- "이 분야 전망이 어떤가요?"
+- "Is this study plan good?"
+- "Do you think this technology is promising?"
+- "Will you study hard?"
 
-## 추천 옵션 구성 규칙
+## Recommended Option Rules
 
-- **자가 평가 기준이 모호할 때**: `(추천) 학습한 내용을 활용해 동작하는 가장 간단한 핵심 기능의 토이 프로젝트 직접 구현 및 검증` 옵션을 추천하고, 시험 문제 풀이/강의 완강 대안들로 선택지 구성
-- **투입 가용 시간이 불분명할 때**: `(추천) 무리 없는 지속 가능한 주 5시간, 총 4주 완수 계획` 옵션을 추천하고, 전일제 공부/불규칙한 틈새 시간 공부 대안들로 선택지 구성
-- **피드백 루프(오류 교정)가 없을 때**: `(추천) 매주 배운 개념을 한 페이지 문서로 재구성해 타인에게 설명하고 질문 받기` 옵션을 추천하고, 혼자서 연습문제 복습 대안들로 선택지 구성
+- **Goal Metric Ambiguity**: Recommend `(Recommended) Complete a small, functional toy project demonstrating the core skill` and include finishing a lecture/passing a test to build the option set.
+- **Time Commitment Ambiguity**: Recommend `(Recommended) A realistic, sustainable commitment of 5 hours per week for 4 weeks` and include full-time/irregular options to build the option set.
+- **Feedback Loop Ambiguity**: Recommend `(Recommended) Summarize concepts into a 1-page guide and explain it to others to find gaps` and include solo review to build the option set.
 
-## 모호한 답변 처리
+## Handling Vague Answers
 
-- "전부 다 배우고 싶어" → "4주 안에 가장 중요한 것 3개만 고르면 뭔가요?"로 좁히기
-- "시간은 되는 대로" → "주 5시간을 기본값으로 둘까요? 아니면 더 쓸 수 있나요?"로 기본값 제안
-- "배우면 알게 되겠지" → "목표를 '이 기술로 X를 만들 수 있다'로 임시 정의할까요?"로 구체화
+- "I want to learn everything about AI" → Narrow down: "Within 4 weeks, what is the single sub-topic or model architecture you must understand first?"
+- "I'll study in my free time" → Quantify: "Let's set a concrete target of '30 minutes every morning before work'. Shall we use this as our study schedule?"
+- "I'll just search Google if I get stuck" → Map loop: "Shall we set up a rule to spend maximum 30 minutes searching, and if still stuck, ask a specific question in a community?"
 
-## 케이스별 종료 조건
+## Stopping Conditions
 
-공통 종료 조건에 더해 다음이 충족되어야 한다.
+In addition to common stopping conditions, ensure:
+- The target skill/outcome is clearly defined.
+- A functional project target (evaluation metric) is established.
+- The time budget (weekly hours, total weeks) is quantified.
+- The concept learning sequence is mapped.
+- An error-correction feedback loop is defined.
 
-- 학습 목표가 "X를 할 수 있다" 형태로 정의되었다
-- 현재 수준이 파악되었다
-- 시간 제약이 현실적으로 설정되었다
-- 평가 기준이 최소 하나 있다
-- 우선순위가 정해져 있다
-- 다음 7일 계획이 구체적이다
+## Final Synthesis Required Items
 
-## 최종 정리 필수 항목
-
-공통 최종 정리 형식에 다음을 추가한다.
-
-- 학습 목표
-- 현재 수준 기준
-- 우선순위
-- 제외할 범위
-- 실전 프로젝트
-- 피드백 루프
-- 다음 7일 계획
-
-## 실패 모드
-
-- 학습 목표를 "잘 알기"처럼 모호하게 두는 경우
-- 현재 수준을 파악하지 않는 경우
-- 시간 제약을 무시하고 비현실적인 계획을 세우는 경우
-- 평가 기준 없이 진행하는 경우
-- 실전 프로젝트 없이 이론만 나열하는 경우
-- 포기할 범위를 정하지 않아 전부 하려는 경우
+Add the following to the common final synthesis format:
+- Clear Learning Goals
+- Output Verification Project
+- Time Budget Constraint
+- Weekly Learning Roadmap (Outline)
+- Feedback & Error Correction Plan

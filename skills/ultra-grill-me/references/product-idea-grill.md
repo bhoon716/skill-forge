@@ -1,87 +1,67 @@
-# 제품 아이디어 검증
+# Product Idea Verification
 
-## 이 reference를 사용할 때
+## When to use this reference
 
-- 제품 아이디어가 만들 가치가 있는지 검증해달라는 요청
-- SaaS 아이디어의 빈틈을 찾아달라는 요청
-- 기능을 만들기 전에 질문으로 검증해달라는 요청
-- MVP 범위가 적절한지 확인해달라는 요청
-- 제품 가설을 pressure-test 해달라는 요청
+- Surfacing loopholes in a product/feature idea
+- Stress-testing user problem statements or assumptions
+- Verifying the Minimum Viable Product (MVP) scope
+- Evaluating user personas, pain points, or differentiation strategies
 
-## 이 reference를 사용하지 않을 때
+## When not to use this reference
 
-- SaaS 아이디어를 추천해달라는 요청
-- 제품 기획서를 바로 작성해달라는 요청
-- 제품 관련 개념을 설명해달라는 요청
-- 가격이나 GTM 전략만 따로 검증하는 요청 → `business-strategy-grill.md` 사용
+- The request is for pure code generation
+- General brainstorming of new ideas (e.g., "Give me 10 ideas")
+- Verifying technical architecture → Use `technical-design-grill.md`
+- Verifying business monetization/GTM → Use `business-strategy-grill.md`
 
-## 질문 우선순위
+## Question Priority
 
-1. 대상 사용자 — 이 제품의 1차 사용자는 누구인가?
-2. 해결하려는 문제 — 그 사용자의 어떤 문제를 해결하는가?
-3. 문제의 빈도와 강도 — 이 문제가 얼마나 자주, 얼마나 아프게 발생하는가?
-4. 기존 대안 — 사용자가 지금 이 문제를 어떻게 해결하고 있는가?
-5. 차별화 — 기존 대안 대비 어떤 점이 다른가?
-6. 지불 의사 — 누가 돈을 내는가? 얼마까지 낼 의사가 있는가?
-7. 성공 지표 — 이 제품이 성공했다는 걸 어떻게 알 수 있는가?
-8. MVP 범위 — 가장 작은 첫 버전에는 무엇이 들어가고 무엇이 빠지는가?
-9. 유통 / GTM — 1차 사용자에게 어떻게 도달하는가?
-10. 가장 작은 검증 실험 — 만들기 전에 가설을 검증할 수 있는 가장 작은 실험은?
+1. **Target User** — Who has this problem most severely?
+2. **Core Problem** — What is the specific pain point? Why does it matter?
+3. **Alternative Solutions** — How are they solving this problem today?
+4. **Core Value Proposition** — Why would they switch from their current solution?
+5. **MVP Scope** — What is the absolute minimum feature set to prove value?
+6. **Success Metric** — How do we measure if they actually find it valuable?
+7. **Risks & Assumptions** — What must be true for this to succeed?
+8. ** Diminishing Returns Point** — Are we building unnecessary bloat?
 
-## 강한 질문 패턴
+## Strong Question Patterns
 
-- "이 제품이 없으면 대상 사용자가 지금 어떻게 해결하고 있나요?"
-- "이 문제가 주 1회 이상 발생하나요, 아니면 가끔 한 번씩인가요?"
-- "돈을 내는 사람과 실제로 쓰는 사람이 같은가요?"
-- "기존 대안이 '충분히 좋은' 수준이라면 사용자가 전환할 이유가 뭔가요?"
-- "만들기 전에 이 가설을 72시간 안에 검증할 수 있는 실험이 있나요?"
+- "Who is the single target user who suffers from this problem daily? Please define by role, scale, and context."
+- "What is their current workaround? If they use Excel or pen-and-paper, why is that no longer sufficient?"
+- "What is the single feature that, if removed, makes this product completely useless? That should be your MVP."
+- "How will you measure initial retention? (e.g., 30% of signed-up users returning on Day 7)"
 
-## 약한 질문 패턴
+## Weak Question Patterns
 
-- "이 아이디어 좋은 것 같나요?"
-- "시장이 큰가요?"
-- "경쟁사가 있나요?"
+- "Is this a good idea?"
+- "Do you think people will buy this?"
+- "What features do you want to add in the future?"
 
-## 추천 옵션 구성 규칙
+## Recommended Option Rules
 
-- **대상 사용자가 불분명할 때**: `(추천) 가장 자주 이 문제를 겪는 구체적인 직군 및 기업 규모` 옵션을 추천하고, 넓은 타겟 범위의 대안들을 포함하여 선택지 구성
-- **성공 지표가 없을 때**: `(추천) 첫 달 유료 활성 사용자 수(Retention)` 또는 `(추천) 사전 예약 지불 의사 확인 수` 구조 옵션을 추천하고, 방문자 수/가입자 수 대안들로 선택지 구성
-- **MVP 범위가 넓을 때**: `(추천) 사용자가 기존 대안 대신 이걸 쓸 핵심 기능 딱 1개` 옵션을 추천하고, 확장형 기능 대안들을 포함하여 선택지 구성
+- **Target User Ambiguity**: Recommend `(Recommended) A highly specific niche user group experiencing this pain point daily` and include broad demographic alternatives to build the option set.
+- **Problem Ambiguity**: Recommend `(Recommended) A specific, quantifiable loss of time or money` and include general frustration alternatives to build the option set.
+- **MVP Scope Ambiguity**: Recommend `(Recommended) Exactly one core feature that solves the primary bottleneck` and include feature-rich alternatives to build the option set.
 
-## 모호한 답변 처리
+## Handling Vague Answers
 
-- "모든 사람이 쓸 수 있어" → "가장 먼저 돈을 낼 사용자 한 그룹만 고르면 누구인가요?"로 좁히기
-- "문제가 있으니까 만드는 거지" → "그 문제가 주 1회 이상 발생하는지, 발생할 때 시간/돈이 얼마나 드는지 알고 계신가요?"로 구체화
-- "잘 모르겠어" → 가장 비슷한 기존 제품을 기본값으로 제안
+- "Everyone is my target user" → Narrow it down: "If you only had $100 for marketing, which single, specific group of 100 people would you target first?"
+- "It will have AI search, chat, dashboard, and notifications" → Force priority: "If you could only build one of these features before launch, which one is it?"
+- "Success is when it goes viral" → Quantify: "Let's set a concrete initial target, such as '10 active users using it twice a week'. Shall we use this as our temporary baseline?"
 
-## 케이스별 종료 조건
+## Stopping Conditions
 
-공통 종료 조건에 더해 다음이 충족되어야 한다.
+In addition to common stopping conditions, ensure:
+- A specific, narrow target user is defined.
+- The primary pain point is articulated in terms of time/money loss.
+- The MVP is stripped down to 1-2 core features.
+- A quantifiable success metric is established.
 
-- 대상 사용자가 구체적으로 정의되었다
-- 해결하려는 문제가 빈도와 강도를 포함해 설명되었다
-- 기존 대안이 파악되었다
-- 성공 지표가 최소 하나 있다
-- MVP 범위에서 포함/제외가 구분되었다
-- 가장 작은 검증 실험이 정해졌다
+## Final Synthesis Required Items
 
-## 최종 정리 필수 항목
-
-공통 최종 정리 형식에 다음을 추가한다.
-
-- 명확해진 제품 가설
-- 타겟 사용자
-- 해결할 문제
-- 기존 대안
-- 가장 큰 리스크
-- 검증해야 할 핵심 가정
-- 가장 작은 다음 검증 실험
-
-## 실패 모드
-
-- 대상 사용자를 "모든 사람"으로 두고 넘어가는 경우
-- 문제의 빈도와 강도를 확인하지 않는 경우
-- 기존 대안을 무시하고 차별화를 검증하지 않는 경우
-- MVP 범위를 좁히지 않고 전체 제품을 논의하는 경우
-- 검증 실험 없이 바로 개발 계획으로 넘어가는 경우
-- 지불 의사를 확인하지 않는 경우
+Add the following to the common final synthesis format:
+- Refined Target User Profile
+- Core Problem Statement
+- MVP Scope Boundaries (In/Out)
+- Primary Success Metric

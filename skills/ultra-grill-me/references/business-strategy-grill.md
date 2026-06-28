@@ -1,88 +1,70 @@
-# 사업 전략 검증
+# Business Strategy Verification
 
-## 이 reference를 사용할 때
+## When to use this reference
 
-- 사업 전략의 빈틈을 찾아달라는 요청
-- GTM 전략을 질문으로 검증해달라는 요청
-- 가격/패키징 전략이 적절한지 grill 해달라는 요청
-- ICP(Ideal Customer Profile)가 명확한지 확인해달라는 요청
-- 수익화 전략을 pressure-test 해달라는 요청
-- 시장 선택이나 유통 채널을 검증해달라는 요청
+- Stress-testing monetization models or pricing packaging
+- Validating GTM (Go-To-Market) strategies
+- Verifying target customer segments or ICP (Ideal Customer Profile)
+- Critiquing distribution channels or sales cycle assumptions
 
-## 이 reference를 사용하지 않을 때
+## When not to use this reference
 
-- 제품 아이디어 자체를 검증하는 경우 → `product-idea-grill.md` 사용
-- 기술 설계를 검증하는 경우 → `technical-design-grill.md` 사용
-- 사업 전략 개념을 설명해달라는 요청
-- 사업 계획서를 바로 작성해달라는 요청
+- Reviewing early-stage product features or MVP scope → Use `product-idea-grill.md`
+- Highlighting system architecture or code designs → Use `technical-design-grill.md`
+- Generating marketing pitch decks or corporate landing pages
 
-## 질문 우선순위
+## Question Priority
 
-1. ICP — 이상적인 고객은 구체적으로 누구인가?
-2. 구매자와 사용자 — 돈을 내는 사람과 쓰는 사람이 같은가?
-3. 예산 출처 — 구매자의 예산은 어디서 나오는가?
-4. 경쟁 대안 — 고객이 지금 이 문제를 어떻게 해결하고 있는가?
-5. 시장 세그먼트 — 어떤 시장 세그먼트를 먼저 공략하는가?
-6. 유통 채널 — 고객에게 어떻게 도달하는가?
-7. 가격 / 패키징 — 가격 구조와 패키징이 ICP에 맞는가?
-8. 세일즈 사이클 — 첫 구매까지 얼마나 걸리는가?
-9. retention driver — 고객이 계속 쓰는 이유는 뭔가?
-10. 핵심 검증 지표 — 이 전략이 작동하는지 어떤 숫자로 확인하는가?
+1. **ICP (Ideal Customer Profile)** — Who is the single most valuable customer group?
+2. **Buyer vs. User** — Are the person paying and the person using the same?
+3. **Budget Source** — Where does the buyer's budget come from?
+4. **Competitors & Alternatives** — How are they solving this problem today?
+5. **Market Segment** — Which market segment do we attack first?
+6. **Distribution Channel (GTM)** — How do we reach this customer profile?
+7. **Pricing / Packaging** — Does pricing structure fit the ICP's budget rules?
+8. **Sales Cycle** — How long does it take from first contact to payment?
+9. **Retention Driver** — Why does the customer stay and pay next month?
+10. **Key Metric (KPI)** — What single metric proves this business model works?
 
-## 강한 질문 패턴
+## Strong Question Patterns
 
-- "ICP를 한 문장으로 말하면 누구인가요? 직군, 규모, 상황까지 포함해서요."
-- "돈을 내는 사람이 팀 리더인가요, 경영진인가요, 개인인가요? 각각 예산 승인 과정이 다를 텐데요."
-- "지금 경쟁 대안이 '충분히 좋은' 상태라면 고객이 전환할 이유가 뭔가요?"
-- "첫 유료 고객 10명을 어떤 채널로 확보할 건가요?"
-- "고객이 3개월 뒤에도 계속 쓸 이유가 뭔가요?"
+- "Who is the ideal customer who will pay for this immediately? Define by industry, size, and role."
+- "Are you selling to developers but charging the CTO? How does the developer justify this cost to the CTO?"
+- "What is the alternative they use today? Why would they switch if their current method is 'good enough'?"
+- "How will you acquire your first 10 paying customers without expensive ads?"
 
-## 약한 질문 패턴
+## Weak Question Patterns
 
-- "시장이 큰가요?"
-- "가격이 적당한가요?"
-- "마케팅은 어떻게 할 건가요?"
+- "Is the market big?"
+- "Is the pricing fair?"
+- "How will you market this?"
 
-## 추천 옵션 구성 규칙
+## Recommended Option Rules
 
-- **ICP(타겟 고객)가 불분명할 때**: `(추천) 이 문제로 인해 가장 큰 금전적/시간적 손실을 겪고 있으며 즉시 결제할 수 있는 구체적인 한 그룹` 옵션을 추천하고, 광범위한 대안들로 선택지 구성
-- **가격 정책이 미정일 때**: `(추천) 직접적인 경쟁 대안(기존 대안)의 비용 대비 80~120% 범위 내 가격 책정` 옵션을 추천하고, 완전 무료/과도한 고가 책정 대안들로 선택지 구성
-- **유통 채널(GTM)이 불분명할 때**: `(추천) 타겟 고객(ICP)들이 이미 밀집해 활동하고 있는 기존 커뮤니티나 B2B 플랫폼 채널 우선 진입` 옵션을 추천하고, 매스 마케팅/전단 광고 등 대안들로 선택지 구성
+- **ICP Ambiguity**: Recommend `(Recommended) A niche target user group experiencing immediate quantifiable loss of time or money` and include broad general demographics to build the option set.
+- **Monetization Ambiguity**: Recommend `(Recommended) Price based on direct competitor pricing (80~120% range) matching existing budgets` and include free/overpriced models to build the option set.
+- **GTM Ambiguity**: Recommend `(Recommended) Prioritize channels where target ICPs already gather (existing platforms/communities)` and include mass-marketing alternatives to build the option set.
 
-## 모호한 답변 처리
+## Handling Vague Answers
 
-- "모든 기업이 고객이 될 수 있어" → "가장 먼저 돈을 낼 기업을 산업, 규모, 직군으로 좁히면 어떤 그룹인가요?"로 좁히기
-- "가격은 나중에 정할게" → "경쟁 대안 가격을 기준으로 월 $X를 임시 기본값으로 둘까요?"로 기본값 제안
-- "입소문으로 퍼질 거야" → "입소문의 시작점이 되는 첫 10명의 사용자를 어디서 확보할 건가요?"로 구체화
+- "Everyone can use our service" → Narrow down: "If you could only pitch to 100 companies this week, which specific industry/size would you target?"
+- "We'll set the price later" → Force default: "Let's establish a temporary price of $X per month based on competitor Y to test assumptions. Deal?"
+- "We'll grow by word of mouth" → Force initial step: "Where will the first 10 active customers who start the word-of-mouth loop come from?"
 
-## 케이스별 종료 조건
+## Stopping Conditions
 
-공통 종료 조건에 더해 다음이 충족되어야 한다.
+In addition to common stopping conditions, ensure:
+- Target customer profile (ICP) is explicitly defined.
+- The distinction between buyer and user is mapped.
+- Direct and indirect competitor alternatives are analyzed.
+- At least one customer acquisition channel is verified.
+- Initial pricing model is proposed.
 
-- ICP가 구체적으로 정의되었다
-- 구매자와 사용자가 구분되었다
-- 경쟁 대안이 파악되었다
-- 유통 채널이 최소 하나 정해졌다
-- 가격/패키징 방향이 잡혔다
-- 핵심 검증 지표가 최소 하나 있다
+## Final Synthesis Required Items
 
-## 최종 정리 필수 항목
-
-공통 최종 정리 형식에 다음을 추가한다.
-
-- 명확해진 전략 가설
-- ICP
-- 구매자 / 사용자 구분
-- 가장 큰 go-to-market 리스크
-- 가격 / 유통 관련 가정
-- retention driver
-- 검증해야 할 지표
-
-## 실패 모드
-
-- ICP를 "모든 기업"으로 두고 넘어가는 경우
-- 구매자와 사용자를 구분하지 않는 경우
-- 경쟁 대안을 무시하는 경우
-- 유통 채널 없이 "입소문"에만 의존하는 경우
-- 가격을 정하지 않고 전략을 논의하는 경우
-- retention을 고려하지 않는 경우
+Add the following to the common final synthesis format:
+- Refined ICP Profile
+- Buyer vs. User Breakdown
+- Primary GTM Acquisition Channel
+- Initial Pricing & Packaging Model
+- Key Business Monetization Risks
