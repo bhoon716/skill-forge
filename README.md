@@ -1,14 +1,23 @@
-# skill-forge (Agent Skill Workspace)
+# 🛠️ skill-forge (Agent Skill Workspace)
 
-[한국어](./README.ko.md)
+<p align="center">
+  <img src="https://img.shields.io/badge/node-%3E%3D16.0.0-blue.svg" alt="Node Version">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+  <img src="https://img.shields.io/badge/format-SKILL.md-orange.svg" alt="Format Compatibility">
+  <img src="https://img.shields.io/badge/agent-Codex%20%7C%20Gemini%20%7C%20Claude-red.svg" alt="Supported Agents">
+</p>
 
-A dedicated workspace to build, test, and distribute sharp, reusable AI Agent Skills.
+[English](./README.md) | [한국어](./README.ko.md)
+
+---
+
+**A dedicated, professional workspace to craft, test, and distribute sharp, reusable AI Agent Skills.**
 
 `skill-forge` provides high-quality, structured skill packages compatible with Codex, Gemini, Claude Code, Cursor, and any agent supporting the `SKILL.md` format.
 
 ---
 
-## 1. Directory Structure
+## 📂 1. Directory Structure
 
 ```txt
 skill-forge/
@@ -36,53 +45,61 @@ skill-forge/
 
 ---
 
-## 2. Released Skills
+## 🏆 2. Released Skills
 
 | Skill Name | Purpose & Pitch | Status |
 | :--- | :--- | :--- |
-| **`ultra-grill-me`** | A Socratic questioning agent engine that challenges your plans, system designs, GTM strategies, and personal choices to remove ambiguity before coding. | **Released (v1.0.0)** |
+| **`ultra-grill-me`** | A Socratic questioning agent engine that challenges your plans, system designs, GTM strategies, and personal choices to remove ambiguity before coding. | **Released (v1.0.0) 🎯** |
 
 ---
 
-## 3. Skill Installer CLI Usage (`npx skill-forge`)
+## 🚀 3. Skill Installer CLI Usage (`npx skill-forge`)
 
 A built-in installer tool that automatically maps localized skill source files and deploys them to target agent configuration directories.
 
-### Key Features
-- **Auto Localization Mapping**: Specifying `--lang ko` copies `SKILL.ko.md` as `SKILL.md` and `references/*.ko.md` as `references/*.md` to ensure correct agent consumption.
-- **Agent Path Routing**: Specify your exact developer tool via `--agent` to resolve target directories.
+> [!TIP]
+> **Localization Mapping Algorithm**:
+> Specifying `--lang ko` copies `SKILL.ko.md` as `SKILL.md` and `references/*.ko.md` as `references/*.md` into the target folder, while ignoring other untargeted translation files (e.g. `zh`, `en` defaults) to keep the project clean.
 
-### Command Line Interface
+### 💡 CLI Usage Examples
 ```bash
 # 1. Install Korean version locally to Codex/Gemini directory (Default)
-npx skill-forge add ultra-grill-me --lang ko
+$ npx skill-forge add ultra-grill-me --lang ko
 
 # 2. Install Korean version locally to Claude Code directory
-npx skill-forge add ultra-grill-me --lang ko --agent claude
+$ npx skill-forge add ultra-grill-me --lang ko --agent claude
 
 # 3. Install English version locally to Cursor directory
-npx skill-forge add ultra-grill-me --lang en --agent cursor
+$ npx skill-forge add ultra-grill-me --lang en --agent cursor
 
 # 4. Install globally for all workspaces (English default)
-npx skill-forge add ultra-grill-me --lang en --agent global
+$ npx skill-forge add ultra-grill-me --lang en --agent global
 
 # 5. Install all skills in the forge workspace at once in Korean
-npx skill-forge install-all --lang ko --agent codex
+$ npx skill-forge install-all --lang ko --agent codex
 ```
 
-### Options List
+### ⚙️ Options List
 - `-l, --lang <en|ko|zh>`: Set target language translation (Default: `en`)
 - `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: Map destination tool path (Default: `codex`)
 - `--dry-run`: Simulate mappings and file copy plans without modification
 
 ---
 
-## 4. Contributing Rules
+## ✍️ 4. Contributing Rules
 
-1. **Single Responsibility**: Each skill must address exactly one repeatable bottleneck described in `docs/authoring-guide.md`.
-2. **Translation Suffixes**: Always keep suffix pairs (e.g., `SKILL.ko.md` and `SKILL.md`) intact to support the installer parser.
-3. **Regression Proof**: Run `evals/check_evals.py` to assert F1 precision and process adherence metrics before merging changes.
+> [!IMPORTANT]
+> **Keep these three core principles when contributing to this repository:**
+>
+> 1. 🎯 **Single Responsibility Principle**:
+>    Each skill must address exactly one repeatable bottleneck described in `docs/authoring-guide.md`.
+> 2. 🌐 **Translation Suffixes**:
+>    Always keep suffix pairs (e.g., `SKILL.ko.md` and `SKILL.md`) intact to support the installer parser.
+> 3. 🧪 **Regression Verification**:
+>    Run `evals/check_evals.py` to assert F1 precision and process adherence metrics before merging changes.
 
-## License
+---
+
+## 📄 License
 
 MIT License. Feel free to adopt this workspace schema for your team's custom AI skills hub.
