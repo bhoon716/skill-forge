@@ -11,6 +11,7 @@ const sourceSkillsDir = path.join(__dirname, '..', 'skills');
 const def_usage = () => {
   console.log(`
 Usage: npx @bhoon716/skill-forge [command] [options]
+       (or use "sfg" / "skill-forge" globally after npm install -g)
 
 If run without arguments, launches Interactive Setup Mode.
 
@@ -27,9 +28,9 @@ Options:
   -h, --help           Display help message.
 
 Examples:
-  npx @bhoon716/skill-forge list --lang ko
-  npx @bhoon716/skill-forge add ultra-grill-me --lang ko
-  npx @bhoon716/skill-forge add ultra-grill-me --lang zh --agent claude
+  sfg list --lang ko
+  sfg add ultra-grill-me --lang ko
+  sfg add ultra-grill-me --lang zh --agent claude
 `);
 };
 
@@ -65,17 +66,14 @@ const listSkillsLogic = (selectedLang = 'en') => {
   }
 
   skills.forEach(skill => {
-    // Try to find localized SKILL file
     let skillFile = path.join(sourceSkillsDir, skill, `SKILL.${selectedLang}.md`);
     if (!fs.existsSync(skillFile)) {
-      skillFile = path.join(sourceSkillsDir, skill, 'SKILL.md'); // Fallback to default
+      skillFile = path.join(sourceSkillsDir, skill, 'SKILL.md');
     }
 
     let description = 'No description provided.';
     if (fs.existsSync(skillFile)) {
       const content = fs.readFileSync(skillFile, 'utf8');
-      
-      // Parse description from frontmatter
       const descMatch = content.match(/description:\s*(.*)/);
       if (descMatch && descMatch[1]) {
         description = descMatch[1].trim();
@@ -84,7 +82,7 @@ const listSkillsLogic = (selectedLang = 'en') => {
 
     console.log(`* ${skill.padEnd(20)} - ${description}`);
   });
-  console.log('\nUse "skill-forge add <skill-name>" to install a specific skill.\n');
+  console.log('\nUse "sfg add <skill-name>" to install a specific skill.\n');
 };
 
 // Interactive Mode Prompt
@@ -115,36 +113,52 @@ const runInteractiveMode = async () => {
   const question = (query) => new Promise((resolve) => rl.question(query, resolve));
 
   try {
-    // 1. Select Skill
-    console.log('Available Skills in Forge:');
-    skills.forEach((s, idx) => console.log(`  [${idx + 1}] ${s}`));
-    console.log(`  [${skills.length + 1}] (Install All Available Skills)`);
-    
-    let skillChoiceIdx = -1;
-    while (true) {
-      const ans = await question(`\nSelect a skill to install [1-${skills.length + 1}]: `);
-      const val = parseInt(ans.trim());
-      if (val >= 1 && val <= skills.length + 1) {
-        skillChoiceIdx = val - 1;
-        break;
+    let selectedSkill = null;
+    let installAll = false;
+
+    // 1. Select Skill (Skip if only 1 skill exists)
+    if (skills.length === 1) {
+      selectedSkill = skills[0];
+      console.log(`[Auto-selected Skill] Only 1 skill found: "${selectedSkill}"`);
+    } else {
+      console.log('Available Skills in Forge:');
+      skills.forEach((s, idx) => console.log(`  [${idx + 1}] ${s}`));
+      console.log(`  [${skills.length + 1}] (Install All Available Skills)`);
+      
+      while (true) {
+        const ans = await question(`\nSelect a skill to install [1-${skills.length + 1}]: `);
+        const val = parseInt(ans.trim());
+        if (val >= 1 && val <= skills.length + 1) {
+          if (val === skills.length + 1) {
+            installAll = true;
+          } else {
+            selectedSkill = skills[val - 1];
+          }
+          break;
+        }
+        console.log('Invalid choice. Please select a valid option number.');
       }
-      console.log('Invalid choice. Please select a valid option number.');
     }
 
-    const installAll = skillChoiceIdx === skills.length;
-    const selectedSkill = installAll ? null : skills[skillChoiceIdx];
+    // 2. Select Language (Detect OS language environment)
+    const envLang = process.env.LANG || '';
+    const isKoreanEnv = envLang.toLowerCase().includes('ko') || envLang.toLowerCase().includes('korean');
+    const defaultLangCode = isKoreanEnv ? 'ko' : 'en';
+    const defaultLangLabel = isKoreanEnv ? '한국어 (ko)' : 'English (en)';
 
-    // 2. Select Language
     console.log('\nSelect localization language:');
-    console.log('  [1] English (en) - Default');
-    console.log('  [2] 한국어 (ko)');
+    console.log(`  [1] English (en) ${!isKoreanEnv ? '- Default' : ''}`);
+    console.log(`  [2] 한국어 (ko) ${isKoreanEnv ? '- Default' : ''}`);
     console.log('  [3] 简体中文 (zh)');
     
-    let selectedLang = 'en';
+    let selectedLang = defaultLangCode;
     while (true) {
-      const ans = await question('\nSelect language option [1-3, Default 1]: ');
+      const ans = await question(`\nSelect language option [1-3, Default ${isKoreanEnv ? '2' : '1'}]: `);
       const val = ans.trim();
-      if (val === '' || val === '1') {
+      if (val === '') {
+        selectedLang = defaultLangCode;
+        break;
+      } else if (val === '1') {
         selectedLang = 'en';
         break;
       } else if (val === '2') {
@@ -157,7 +171,7 @@ const runInteractiveMode = async () => {
       console.log('Invalid choice. Please select 1, 2, or 3.');
     }
 
-    // 3. Select Agent Target
+    // 3. Select Agent Target (Smart default if detected)
     const detected = detectAgents();
     console.log('\nSelect target AI Agent environment:');
     
@@ -169,18 +183,22 @@ const runInteractiveMode = async () => {
       { name: 'Global User Setting (~/.gemini/config/)', value: 'global' }
     ];
 
+    let defaultAgentIdx = 1;
     agentsList.forEach((ag, idx) => {
       const isDetected = detected.some(d => d.value === ag.value);
+      if (isDetected && detected.length === 1) {
+        defaultAgentIdx = idx + 1; // Fallback to the ONLY detected environment
+      }
       const label = isDetected ? '⭐ (Detected in Project)' : '';
       console.log(`  [${idx + 1}] ${ag.name} ${label}`);
     });
 
-    let selectedAgent = 'codex';
+    let selectedAgent = agentsList[defaultAgentIdx - 1].value;
     while (true) {
-      const ans = await question('\nSelect agent option [1-5, Default 1]: ');
+      const ans = await question(`\nSelect agent option [1-5, Default ${defaultAgentIdx}]: `);
       const val = ans.trim();
       if (val === '') {
-        selectedAgent = 'codex';
+        selectedAgent = agentsList[defaultAgentIdx - 1].value;
         break;
       }
       const idx = parseInt(val);
@@ -201,7 +219,6 @@ const runInteractiveMode = async () => {
     console.log(`   - Target Agent: ${selectedAgent}`);
     console.log('---------------------------------------------------\n');
 
-    // Run installation logic
     const targetBaseDir = getTargetBaseDir(selectedAgent);
     if (installAll) {
       console.log(`Installing all ${skills.length} skills to target path: ${targetBaseDir}...\n`);
@@ -245,11 +262,9 @@ if (args.includes('-h') || args.includes('--help')) {
   process.exit(0);
 }
 
-// If no arguments, launch Interactive Mode
 if (args.length === 0) {
   runInteractiveMode();
 } else {
-  // Command line parameters parsing mode
   const command = args[0];
   if (command !== 'add' && command !== 'install-all' && command !== 'list') {
     console.error(`Error: Unknown command "${command}"`);
@@ -270,7 +285,6 @@ if (args.length === 0) {
     }
   }
 
-  // Parse command flags
   const parseStartIdx = command === 'add' ? 2 : 1;
   for (let i = parseStartIdx; i < args.length; i++) {
     const arg = args[i];
