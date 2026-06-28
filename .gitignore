@@ -5,3 +5,10 @@
 how-to-make-skills.md
 how-to-make-skills-testable.md
 recommended-md-length.md
+
+# Agent local installation directories (build outputs)
+.agents/
+.claude/
+.cursor/
+.copilot/
+node_modules/
