@@ -74,19 +74,19 @@ A built-in installer tool that automatically maps localized skill source files a
 ### 💡 CLI Usage Examples
 ```bash
 # 1. Install Korean version locally to Codex/Gemini directory (Default)
-$ skill-forge add ultra-grill-me --lang ko
+$ skill-forge install ultra-grill-me --lang ko
 
 # 2. Install Korean version locally to Claude Code directory
-$ skill-forge add ultra-grill-me --lang ko --agent claude
+$ skill-forge install ultra-grill-me --lang ko --agent claude
 
 # 3. Install English version locally to Cursor directory
-$ skill-forge add ultra-grill-me --lang en --agent cursor
+$ skill-forge install ultra-grill-me --lang en --agent cursor
 
 # 4. Install globally for all workspaces (English default)
-$ skill-forge add ultra-grill-me --lang en --agent global
+$ skill-forge install ultra-grill-me --lang en --agent global
 
 # 5. Install all skills in the forge workspace at once in Korean
-$ skill-forge install-all --lang ko --agent codex
+$ skill-forge install all --lang ko --agent codex
 ```
 
 ### ⚙️ Options List

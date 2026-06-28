@@ -79,7 +79,7 @@ graph TD
 
 ---
 
-## 4. `npx @bhoon716/skill-forge` CLI 설치 가이드
+## 4. `skill-forge` CLI 설치 가이드
 
 저장소 공통 CLI 도구를 사용하여 원하는 에이전트 도구 환경에 지정된 언어 버전으로 즉시 이식합니다. 
 
@@ -88,16 +88,16 @@ graph TD
 
 ```bash
 # 1. Codex/Gemini에 한국어 버전으로 로컬 설치 (기본값)
-npx @bhoon716/skill-forge add ultra-grill-me --lang ko
+skill-forge install ultra-grill-me --lang ko
 
 # 2. Claude Code에 한국어 버전으로 로컬 설치
-npx @bhoon716/skill-forge add ultra-grill-me --lang ko --agent claude
+skill-forge install ultra-grill-me --lang ko --agent claude
 
 # 3. Cursor 프로젝트 로컬에 영어 버전으로 설치
-npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent cursor
+skill-forge install ultra-grill-me --lang en --agent cursor
 
 # 4. 글로벌 스킬 디렉토리에 한국어 버전 전역 설치 (모든 워크스페이스 공유)
-npx @bhoon716/skill-forge add ultra-grill-me --lang ko --agent global
+skill-forge install ultra-grill-me --lang ko --agent global
 ```
 
 ---

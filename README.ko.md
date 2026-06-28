@@ -74,19 +74,19 @@ skill-forge/
 ### 💡 명령어 실물 예시
 ```bash
 # 1. 특정 스킬을 한국어로 Codex/Gemini 프로젝트 로컬에 설치 (기본값)
-$ skill-forge add ultra-grill-me --lang ko
+$ skill-forge install ultra-grill-me --lang ko
 
 # 2. 특정 스킬을 한국어로 Claude Code 로컬 경로에 설치
-$ skill-forge add ultra-grill-me --lang ko --agent claude
+$ skill-forge install ultra-grill-me --lang ko --agent claude
 
 # 3. 특정 스킬을 영어로 Cursor 프로젝트 로컬 경로에 설치
-$ skill-forge add ultra-grill-me --lang en --agent cursor
+$ skill-forge install ultra-grill-me --lang en --agent cursor
 
 # 4. 글로벌 환경에 한국어 스킬로 전역 설치 (모든 워크스페이스 공유)
-$ skill-forge add ultra-grill-me --lang ko --agent global
+$ skill-forge install ultra-grill-me --lang ko --agent global
 
 # 5. 전체 스킬을 한국어 버전으로 한 번에 로컬 설치
-$ skill-forge install-all --lang ko --agent codex
+$ skill-forge install all --lang ko --agent codex
 ```
 
 ### ⚙️ 옵션 요약

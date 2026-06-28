@@ -59,37 +59,37 @@ skill-forge/
 
 ---
 
-## 🚀 3. CLI 快速部署工具 (`skf` 或 `npx @bhoon716/skill-forge`)
+## 🚀 3. CLI 快速部署工具 (`skill-forge` 或 `npx @bhoon716/skill-forge`)
 
 通过轻量化 CLI 可以自动根据语言选项映射，并将 Skill 复制部署到对应的 Agent 本地或全局配置路径中。
 
 > [!TIP]
-> **只需 3 个字符即可轻松运行 (`skf`)**：
-> 您可以全局安装此工具，以便使用快捷命令 `skf` 立即启动交互式安装模式。
+> **全局命令更轻松运行 (`skill-forge`)**：
+> 您可以全局安装此工具，以便直接运行 `skill-forge` 启动交互式安装模式。
 > ```bash
 > # 1. 全局安装 (仅需一次)
 > $ npm install -g @bhoon716/skill-forge
 > 
 > # 2. 快捷运行交互式安装模式
-> $ skf
+> $ skill-forge
 > ```
 
 ### 💡 命令行实例
 ```bash
 # 1. 以中文版部署到本地默认项目路径 (Codex/Gemini)
-$ skf add ultra-grill-me --lang zh
+$ skill-forge install ultra-grill-me --lang zh
 
 # 2. 以中文版部署到本地 Claude Code 路径
-$ skf add ultra-grill-me --lang zh --agent claude
+$ skill-forge install ultra-grill-me --lang zh --agent claude
 
 # 3. 以英文版部署到本地 Cursor 路径
-$ skf add ultra-grill-me --lang en --agent cursor
+$ skill-forge install ultra-grill-me --lang en --agent cursor
 
 # 4. 以中文版全局部署到用户主目录 (全局生效)
-$ skf add ultra-grill-me --lang zh --agent global
+$ skill-forge install ultra-grill-me --lang zh --agent global
 
 # 5. 一键中文部署工作空间内的所有 Skill
-$ skf install-all --lang zh --agent codex
+$ skill-forge install all --lang zh --agent codex
 ```
 
 ### ⚙️ 选项说明

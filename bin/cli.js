@@ -11,14 +11,14 @@ const sourceSkillsDir = path.join(__dirname, '..', 'skills');
 const def_usage = () => {
   console.log(`
 Usage: npx @bhoon716/skill-forge [command] [options]
-       (or use "sfg" / "skill-forge" globally after npm install -g)
+       (or use "skill-forge" globally after npm install -g)
 
 If run without arguments, launches Interactive Setup Mode.
 
 Commands:
   list                 List all available skills and their descriptions.
-  add <skill-name>     Install a specific skill from the forge workspace.
-  install-all          Install all available skills from the forge workspace.
+  install <name>       Install a specific skill from the forge workspace.
+                       Use "install all" to install all available skills.
 
 Options:
   -l, --lang <lang>    Specify localization language (e.g., en, ko, zh). (Default: en)
@@ -28,9 +28,9 @@ Options:
   -h, --help           Display help message.
 
 Examples:
-  sfg list --lang ko
-  sfg add ultra-grill-me --lang ko
-  sfg add ultra-grill-me --lang zh --agent claude
+  skill-forge list --lang ko
+  skill-forge install ultra-grill-me --lang ko
+  skill-forge install all --lang zh --agent claude
 `);
 };
 
@@ -82,7 +82,7 @@ const listSkillsLogic = (selectedLang = 'en') => {
 
     console.log(`* ${skill.padEnd(20)} - ${description}`);
   });
-  console.log('\nUse "sfg add <skill-name>" to install a specific skill.\n');
+  console.log('\nUse "skill-forge install <skill-name>" to install a specific skill.\n');
 };
 
 // Interactive Mode Prompt
@@ -144,7 +144,6 @@ const runInteractiveMode = async () => {
     const envLang = process.env.LANG || '';
     const isKoreanEnv = envLang.toLowerCase().includes('ko') || envLang.toLowerCase().includes('korean');
     const defaultLangCode = isKoreanEnv ? 'ko' : 'en';
-    const defaultLangLabel = isKoreanEnv ? '한국어 (ko)' : 'English (en)';
 
     console.log('\nSelect localization language:');
     console.log(`  [1] English (en) ${!isKoreanEnv ? '- Default' : ''}`);
@@ -187,7 +186,7 @@ const runInteractiveMode = async () => {
     agentsList.forEach((ag, idx) => {
       const isDetected = detected.some(d => d.value === ag.value);
       if (isDetected && detected.length === 1) {
-        defaultAgentIdx = idx + 1; // Fallback to the ONLY detected environment
+        defaultAgentIdx = idx + 1;
       }
       const label = isDetected ? '⭐ (Detected in Project)' : '';
       console.log(`  [${idx + 1}] ${ag.name} ${label}`);
@@ -265,9 +264,16 @@ if (args.includes('-h') || args.includes('--help')) {
 if (args.length === 0) {
   runInteractiveMode();
 } else {
-  const command = args[0];
-  if (command !== 'add' && command !== 'install-all' && command !== 'list') {
-    console.error(`Error: Unknown command "${command}"`);
+  // Command line parameters parsing mode
+  const rawCommand = args[0];
+  
+  // Normalize command for backward compatibility
+  let command = rawCommand;
+  if (rawCommand === 'add') command = 'install';
+  if (rawCommand === 'install-all') command = 'install-all';
+
+  if (command !== 'install' && command !== 'install-all' && command !== 'list') {
+    console.error(`Error: Unknown command "${rawCommand}"`);
     def_usage();
     process.exit(1);
   }
@@ -276,16 +282,21 @@ if (args.length === 0) {
   let lang = 'en';
   let agent = 'codex';
   let dryRun = false;
+  let isAllTarget = false;
 
-  if (command === 'add') {
+  if (command === 'install') {
     targetSkill = args[1];
     if (!targetSkill || targetSkill.startsWith('-')) {
-      console.error('Error: Please specify a skill name to add.');
+      console.error('Error: Please specify a skill name to install (e.g. skill-forge install ultra-grill-me).');
       process.exit(1);
+    }
+    // "install all" format compatibility
+    if (targetSkill.toLowerCase() === 'all') {
+      isAllTarget = true;
     }
   }
 
-  const parseStartIdx = command === 'add' ? 2 : 1;
+  const parseStartIdx = command === 'install' ? 2 : 1;
   for (let i = parseStartIdx; i < args.length; i++) {
     const arg = args[i];
     if (arg === '-l' || arg === '--lang') {
@@ -302,9 +313,7 @@ if (args.length === 0) {
   } else {
     const targetBaseDir = getTargetBaseDir(agent);
 
-    if (command === 'add') {
-      installSkillLogic(targetSkill, lang, agent, targetBaseDir, dryRun);
-    } else if (command === 'install-all') {
+    if (isAllTarget || command === 'install-all') {
       if (!fs.existsSync(sourceSkillsDir)) {
         console.error(`Error: Skills source directory not found at ${sourceSkillsDir}`);
         process.exit(1);
@@ -313,6 +322,8 @@ if (args.length === 0) {
         return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
       });
       skills.forEach(s => installSkillLogic(s, lang, agent, targetBaseDir, dryRun));
+    } else {
+      installSkillLogic(targetSkill, lang, agent, targetBaseDir, dryRun);
     }
   }
 }
