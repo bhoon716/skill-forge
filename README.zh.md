@@ -6,9 +6,9 @@
   <img src="https://img.shields.io/badge/format-SKILL.md-orange.svg" alt="Format Compatibility">
   <img src="https://img.shields.io/badge/agent-Codex%20%7C%20Gemini%20%7C%20Claude-red.svg" alt="Supported Agents">
 </p>
-
-[English](./README.md) | [한국어](./README.ko.md) | [简体中文](./README.zh.md)
-
+<p align="center">
+  [English](./README.md) | [한국어](./README.ko.md) | [简体中文](./README.zh.md)
+</p>
 ---
 
 **精心打磨的 AI Agent Skill 设计与智能分发工作空间。**
