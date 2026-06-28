@@ -79,7 +79,7 @@ graph TD
 
 ---
 
-## 4. `npx skill-forge` CLI 部署工具
+## 4. `npx @bhoon716/skill-forge` CLI 部署工具
 
 使用内置 CLI 将本地化翻译自动部署到对应的本地或全局 Agent 配置路径。
 
@@ -88,16 +88,16 @@ graph TD
 
 ```bash
 # 1. 部署中文版到本地默认项目路径 (Codex/Gemini)
-$ npx skill-forge add ultra-grill-me --lang zh
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang zh
 
 # 2. 部署中文版到 Claude Code 路径
-$ npx skill-forge add ultra-grill-me --lang zh --agent claude
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang zh --agent claude
 
 # 3. 部署英文版到 Cursor 路径
-$ npx skill-forge add ultra-grill-me --lang en --agent cursor
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent cursor
 
 # 4. 全局部署中文版至用户根路径
-$ npx skill-forge add ultra-grill-me --lang zh --agent global
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang zh --agent global
 ```
 
 ---

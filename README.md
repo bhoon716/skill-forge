@@ -53,7 +53,7 @@ skill-forge/
 
 ---
 
-## 🚀 3. Skill Installer CLI Usage (`npx skill-forge`)
+## 🚀 3. Skill Installer CLI Usage (`npx @bhoon716/skill-forge`)
 
 A built-in installer tool that automatically maps localized skill source files and deploys them to target agent configuration directories.
 
@@ -64,19 +64,19 @@ A built-in installer tool that automatically maps localized skill source files a
 ### 💡 CLI Usage Examples
 ```bash
 # 1. Install Korean version locally to Codex/Gemini directory (Default)
-$ npx skill-forge add ultra-grill-me --lang ko
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang ko
 
 # 2. Install Korean version locally to Claude Code directory
-$ npx skill-forge add ultra-grill-me --lang ko --agent claude
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang ko --agent claude
 
 # 3. Install English version locally to Cursor directory
-$ npx skill-forge add ultra-grill-me --lang en --agent cursor
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent cursor
 
 # 4. Install globally for all workspaces (English default)
-$ npx skill-forge add ultra-grill-me --lang en --agent global
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent global
 
 # 5. Install all skills in the forge workspace at once in Korean
-$ npx skill-forge install-all --lang ko --agent codex
+$ npx @bhoon716/skill-forge install-all --lang ko --agent codex
 ```
 
 ### ⚙️ Options List

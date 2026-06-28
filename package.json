@@ -1,5 +1,5 @@
 {
-  "name": "skill-forge",
+  "name": "@bhoon716/skill-forge",
   "version": "1.0.0",
   "description": "Agent Skill Authoring & Distribution CLI Workspace",
   "main": "bin/cli.js",

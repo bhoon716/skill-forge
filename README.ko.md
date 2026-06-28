@@ -53,7 +53,7 @@ skill-forge/
 
 ---
 
-## 🚀 3. 스킬 설치 CLI 사용법 (`npx skill-forge`)
+## 🚀 3. 스킬 설치 CLI 사용법 (`npx @bhoon716/skill-forge`)
 
 이 워크스페이스의 스킬들을 자신의 로컬 프로젝트나 전역 환경으로 손쉽게 배포할 수 있는 **다국어 지원 지향형 CLI 도구**입니다.
 
@@ -64,19 +64,19 @@ skill-forge/
 ### 💡 명령어 실물 예시
 ```bash
 # 1. 특정 스킬을 한국어로 Codex/Gemini 프로젝트 로컬에 설치 (기본값)
-$ npx skill-forge add ultra-grill-me --lang ko
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang ko
 
 # 2. 특정 스킬을 한국어로 Claude Code 로컬 경로에 설치
-$ npx skill-forge add ultra-grill-me --lang ko --agent claude
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang ko --agent claude
 
 # 3. 특정 스킬을 영어로 Cursor 프로젝트 로컬 경로에 설치
-$ npx skill-forge add ultra-grill-me --lang en --agent cursor
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent cursor
 
 # 4. 글로벌 환경에 한국어 스킬로 전역 설치 (모든 워크스페이스 공유)
-$ npx skill-forge add ultra-grill-me --lang ko --agent global
+$ npx @bhoon716/skill-forge add ultra-grill-me --lang ko --agent global
 
 # 5. 전체 스킬을 한국어 버전으로 한 번에 로컬 설치
-$ npx skill-forge install-all --lang ko --agent codex
+$ npx @bhoon716/skill-forge install-all --lang ko --agent codex
 ```
 
 ### ⚙️ 옵션 요약

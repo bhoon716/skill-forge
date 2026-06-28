@@ -79,7 +79,7 @@ Please select a number, ask for more options, or answer directly.
 
 ---
 
-## 4. `npx skill-forge` CLI Installer
+## 4. `npx @bhoon716/skill-forge` CLI Installer
 
 Use the workspace CLI to deploy the skill to your target agent directory.
 
@@ -88,16 +88,16 @@ Use the workspace CLI to deploy the skill to your target agent directory.
 
 ```bash
 # 1. Install Korean translation locally to Codex/Gemini (Default)
-npx skill-forge add ultra-grill-me --lang ko
+npx @bhoon716/skill-forge add ultra-grill-me --lang ko
 
 # 2. Install English version locally to Claude Code
-npx skill-forge add ultra-grill-me --lang en --agent claude
+npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent claude
 
 # 3. Install English version locally to Cursor
-npx skill-forge add ultra-grill-me --lang en --agent cursor
+npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent cursor
 
 # 4. Install globally for all workspaces (English default)
-npx skill-forge add ultra-grill-me --lang en --agent global
+npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent global
 ```
 
 ---
