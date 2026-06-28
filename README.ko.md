@@ -53,37 +53,37 @@ skill-forge/
 
 ---
 
-## 🚀 3. 스킬 설치 CLI 사용법 (`skf` 또는 `npx @bhoon716/skill-forge`)
+## 🚀 3. 스킬 설치 CLI 사용법 (`skill-forge` 또는 `npx @bhoon716/skill-forge`)
 
 이 워크스페이스의 스킬들을 자신의 로컬 프로젝트나 전역 환경으로 손쉽게 배포할 수 있는 **다국어 지원 지향형 CLI 도구**입니다.
 
 > [!TIP]
-> **단 3글자로 간편하게 실행하기 (`skf`)**:
-> 이 패키지를 시스템 전역에 설치하면 `npx` 입력 없이 단 3글자 `skf` 단축어로 즉시 대화형 설치 모드를 실행할 수 있습니다.
+> **글로벌 전역 명령어로 간편하게 실행하기 (`skill-forge`)**:
+> 이 패키지를 시스템 전역에 설치하면 `npx` 입력 없이 단 한 단어 `skill-forge` 명령어로 즉시 대화형 설치 모드를 실행할 수 있습니다.
 > ```bash
 > # 1. 글로벌 설치 (최초 1회)
 > $ npm install -g @bhoon716/skill-forge
 > 
-> # 2. 대화형 셋업 모드 단축 실행
-> $ skf
+> # 2. 대화형 셋업 모드 즉시 실행
+> $ skill-forge
 > ```
 
 ### 💡 명령어 실물 예시
 ```bash
 # 1. 특정 스킬을 한국어로 Codex/Gemini 프로젝트 로컬에 설치 (기본값)
-$ skf add ultra-grill-me --lang ko
+$ skill-forge add ultra-grill-me --lang ko
 
 # 2. 특정 스킬을 한국어로 Claude Code 로컬 경로에 설치
-$ skf add ultra-grill-me --lang ko --agent claude
+$ skill-forge add ultra-grill-me --lang ko --agent claude
 
 # 3. 특정 스킬을 영어로 Cursor 프로젝트 로컬 경로에 설치
-$ skf add ultra-grill-me --lang en --agent cursor
+$ skill-forge add ultra-grill-me --lang en --agent cursor
 
 # 4. 글로벌 환경에 한국어 스킬로 전역 설치 (모든 워크스페이스 공유)
-$ skf add ultra-grill-me --lang ko --agent global
+$ skill-forge add ultra-grill-me --lang ko --agent global
 
 # 5. 전체 스킬을 한국어 버전으로 한 번에 로컬 설치
-$ skf install-all --lang ko --agent codex
+$ skill-forge install-all --lang ko --agent codex
 ```
 
 ### ⚙️ 옵션 요약

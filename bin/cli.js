@@ -15,6 +15,7 @@ Usage: npx @bhoon716/skill-forge [command] [options]
 If run without arguments, launches Interactive Setup Mode.
 
 Commands:
+  list                 List all available skills and their descriptions.
   add <skill-name>     Install a specific skill from the forge workspace.
   install-all          Install all available skills from the forge workspace.
 
@@ -26,6 +27,7 @@ Options:
   -h, --help           Display help message.
 
 Examples:
+  npx @bhoon716/skill-forge list --lang ko
   npx @bhoon716/skill-forge add ultra-grill-me --lang ko
   npx @bhoon716/skill-forge add ultra-grill-me --lang zh --agent claude
 `);
@@ -40,6 +42,49 @@ const detectAgents = () => {
   if (fs.existsSync(path.join(pwd, '.cursor'))) detected.push({ name: 'cursor', value: 'cursor' });
   if (fs.existsSync(path.join(pwd, '.copilot'))) detected.push({ name: 'copilot', value: 'copilot' });
   return detected;
+};
+
+// List available skills logic
+const listSkillsLogic = (selectedLang = 'en') => {
+  if (!fs.existsSync(sourceSkillsDir)) {
+    console.error(`Error: Skills source directory not found at ${sourceSkillsDir}`);
+    process.exit(1);
+  }
+
+  const skills = fs.readdirSync(sourceSkillsDir).filter(file => {
+    return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
+  });
+
+  console.log('\n===================================================');
+  console.log(`📚 Available Skills in Forge Workspace (Lang: ${selectedLang})`);
+  console.log('===================================================\n');
+
+  if (skills.length === 0) {
+    console.log('No skills found in workspace.');
+    return;
+  }
+
+  skills.forEach(skill => {
+    // Try to find localized SKILL file
+    let skillFile = path.join(sourceSkillsDir, skill, `SKILL.${selectedLang}.md`);
+    if (!fs.existsSync(skillFile)) {
+      skillFile = path.join(sourceSkillsDir, skill, 'SKILL.md'); // Fallback to default
+    }
+
+    let description = 'No description provided.';
+    if (fs.existsSync(skillFile)) {
+      const content = fs.readFileSync(skillFile, 'utf8');
+      
+      // Parse description from frontmatter
+      const descMatch = content.match(/description:\s*(.*)/);
+      if (descMatch && descMatch[1]) {
+        description = descMatch[1].trim();
+      }
+    }
+
+    console.log(`* ${skill.padEnd(20)} - ${description}`);
+  });
+  console.log('\nUse "skill-forge add <skill-name>" to install a specific skill.\n');
 };
 
 // Interactive Mode Prompt
@@ -206,7 +251,7 @@ if (args.length === 0) {
 } else {
   // Command line parameters parsing mode
   const command = args[0];
-  if (command !== 'add' && command !== 'install-all') {
+  if (command !== 'add' && command !== 'install-all' && command !== 'list') {
     console.error(`Error: Unknown command "${command}"`);
     def_usage();
     process.exit(1);
@@ -225,7 +270,9 @@ if (args.length === 0) {
     }
   }
 
-  for (let i = (command === 'add' ? 2 : 1); i < args.length; i++) {
+  // Parse command flags
+  const parseStartIdx = command === 'add' ? 2 : 1;
+  for (let i = parseStartIdx; i < args.length; i++) {
     const arg = args[i];
     if (arg === '-l' || arg === '--lang') {
       lang = args[++i];
@@ -236,19 +283,23 @@ if (args.length === 0) {
     }
   }
 
-  const targetBaseDir = getTargetBaseDir(agent);
+  if (command === 'list') {
+    listSkillsLogic(lang);
+  } else {
+    const targetBaseDir = getTargetBaseDir(agent);
 
-  if (command === 'add') {
-    installSkillLogic(targetSkill, lang, agent, targetBaseDir, dryRun);
-  } else if (command === 'install-all') {
-    if (!fs.existsSync(sourceSkillsDir)) {
-      console.error(`Error: Skills source directory not found at ${sourceSkillsDir}`);
-      process.exit(1);
+    if (command === 'add') {
+      installSkillLogic(targetSkill, lang, agent, targetBaseDir, dryRun);
+    } else if (command === 'install-all') {
+      if (!fs.existsSync(sourceSkillsDir)) {
+        console.error(`Error: Skills source directory not found at ${sourceSkillsDir}`);
+        process.exit(1);
+      }
+      const skills = fs.readdirSync(sourceSkillsDir).filter(file => {
+        return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
+      });
+      skills.forEach(s => installSkillLogic(s, lang, agent, targetBaseDir, dryRun));
     }
-    const skills = fs.readdirSync(sourceSkillsDir).filter(file => {
-      return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
-    });
-    skills.forEach(s => installSkillLogic(s, lang, agent, targetBaseDir, dryRun));
   }
 }
 
@@ -310,7 +361,7 @@ function installSkillLogic(skillName, lang, agent, targetBaseDir, dryRun = false
         const langMatch = base.match(/\.([a-z]{2})$/);
         if (langMatch) {
           const matchedLang = langMatch[1];
-          if (matchedLang !== lang) return; // Skip other translations
+          if (matchedLang !== lang) return;
         }
 
         const mapping = fileMappings.find(m => m.srcFile === file);
