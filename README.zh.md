@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/agent-Codex%20%7C%20Gemini%20%7C%20Claude-red.svg" alt="Supported Agents">
 </p>
 <p align="center">
-  [English](./README.md) | [한국어](./README.ko.md) | [简体中文](./README.zh.md)
+  <a href="./README.md">English</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.zh.md">简体中文</a>
 </p>
 ---
 

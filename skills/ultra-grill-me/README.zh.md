@@ -1,5 +1,9 @@
 # 🎯 Ultra Grill Me (苏格拉底式压力验证 Skill)
 
+<p align="center">
+  <a href="./README.md">English</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.zh.md">简体中文</a>
+</p>
+
 `ultra-grill-me` 是一个用于在计划、设计、产品创意、商业策略或个人决策实际执行之前，通过 Socratic（苏格拉底式）一次仅问一个问题的反问压力测试，消除关键模糊性和风险的验证专用 Agent Skill。
 
 这是一种“做之前排除失败的预防性验证工具”，而**不是**代替用户直接编写或生成的工具。
