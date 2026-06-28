@@ -53,30 +53,37 @@ skill-forge/
 
 ---
 
-## 🚀 3. Skill Installer CLI Usage (`npx @bhoon716/skill-forge`)
+## 🚀 3. Skill Installer CLI Usage (`skf` or `npx @bhoon716/skill-forge`)
 
 A built-in installer tool that automatically maps localized skill source files and deploys them to target agent configuration directories.
 
 > [!TIP]
-> **Localization Mapping Algorithm**:
-> Specifying `--lang ko` copies `SKILL.ko.md` as `SKILL.md` and `references/*.ko.md` as `references/*.md` into the target folder, while ignoring other untargeted translation files (e.g. `zh`, `en` defaults) to keep the project clean.
+> **Run with simple 3 characters (`skf`)**:
+> You can install this tool globally to run the interactive mode using the simple `skf` command shortcut.
+> ```bash
+> # 1. Install globally (Once)
+> $ npm install -g @bhoon716/skill-forge
+> 
+> # 2. Run interactive setup mode instantly
+> $ skf
+> ```
 
 ### 💡 CLI Usage Examples
 ```bash
 # 1. Install Korean version locally to Codex/Gemini directory (Default)
-$ npx @bhoon716/skill-forge add ultra-grill-me --lang ko
+$ skf add ultra-grill-me --lang ko
 
 # 2. Install Korean version locally to Claude Code directory
-$ npx @bhoon716/skill-forge add ultra-grill-me --lang ko --agent claude
+$ skf add ultra-grill-me --lang ko --agent claude
 
 # 3. Install English version locally to Cursor directory
-$ npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent cursor
+$ skf add ultra-grill-me --lang en --agent cursor
 
 # 4. Install globally for all workspaces (English default)
-$ npx @bhoon716/skill-forge add ultra-grill-me --lang en --agent global
+$ skf add ultra-grill-me --lang en --agent global
 
 # 5. Install all skills in the forge workspace at once in Korean
-$ npx @bhoon716/skill-forge install-all --lang ko --agent codex
+$ skf install-all --lang ko --agent codex
 ```
 
 ### ⚙️ Options List
