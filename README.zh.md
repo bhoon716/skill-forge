@@ -9,6 +9,9 @@
 <p align="center">
   <a href="./README.md">English</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.zh.md">简体中文</a>
 </p>
+<p align="center">
+  📦 <a href="https://www.npmjs.com/package/@bhoon716/skill-forge">NPM Package</a>
+</p>
 ---
 
 **精心打磨的 AI Agent Skill 设计与智能分发工作空间。**
