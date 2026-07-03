@@ -6,6 +6,9 @@ const os = require('os');
 const readline = require('readline');
 
 const sourceSkillsDir = path.join(__dirname, '..', 'skills');
+const ignoredCopyNames = new Set(['.DS_Store']);
+
+const shouldSkipCopyEntry = (name) => ignoredCopyNames.has(name);
 
 // Helper to print usage info
 const def_usage = () => {
@@ -53,6 +56,7 @@ const listSkillsLogic = (selectedLang = 'en') => {
   }
 
   const skills = fs.readdirSync(sourceSkillsDir).filter(file => {
+    if (shouldSkipCopyEntry(file)) return false;
     return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
   });
 
@@ -97,6 +101,7 @@ const runInteractiveMode = async () => {
   }
 
   const skills = fs.readdirSync(sourceSkillsDir).filter(file => {
+    if (shouldSkipCopyEntry(file)) return false;
     return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
   });
 
@@ -319,6 +324,7 @@ if (args.length === 0) {
         process.exit(1);
       }
       const skills = fs.readdirSync(sourceSkillsDir).filter(file => {
+        if (shouldSkipCopyEntry(file)) return false;
         return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
       });
       skills.forEach(s => installSkillLogic(s, lang, agent, targetBaseDir, dryRun));
@@ -348,7 +354,7 @@ function installSkillLogic(skillName, lang, agent, targetBaseDir, dryRun = false
       if (!fs.existsSync(dest) && !dryRun) {
         fs.mkdirSync(dest, { recursive: true });
       }
-      const files = fs.readdirSync(src);
+      const files = fs.readdirSync(src).filter(file => !shouldSkipCopyEntry(file));
       const fileMappings = [];
       const filesToSkip = new Set();
 

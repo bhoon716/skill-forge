@@ -1,0 +1,37 @@
+const assert = require('assert');
+const { execFileSync } = require('child_process');
+const path = require('path');
+
+const repoRoot = path.join(__dirname, '..');
+
+function run(command, args) {
+  return execFileSync(command, args, {
+    cwd: repoRoot,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+}
+
+const listOutput = run('node', ['bin/cli.js', 'list', '--lang', 'ko']);
+assert.match(listOutput, /ultra-grill-me/);
+
+const dryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'ultra-grill-me',
+  '--lang',
+  'ko',
+  '--agent',
+  'codex',
+  '--dry-run',
+]);
+assert.match(dryRunOutput, /\[SUCCESS\] Installed "ultra-grill-me"/);
+assert.doesNotMatch(dryRunOutput, /\.DS_Store/);
+
+const evalOutput = run('python3', [
+  'skills/ultra-grill-me/evals/check_evals.py',
+  '--run-mock',
+]);
+assert.match(evalOutput, /Mock Test Result: 2\/2 cases passed/);
+
+console.log('CLI smoke tests passed');
