@@ -12,11 +12,19 @@ cp -R skills/ultra-grill-me .claude/skills/
 
 # Codex project-local
 mkdir -p .agents/skills
-cp -R skills/ultra-grill-me .agents/skills/
+cp -R skills/feature-dev .agents/skills/
 
 # Cursor project-local
 mkdir -p .cursor/skills
 cp -R skills/ultra-grill-me .cursor/skills/
+```
+
+CLI 설치를 사용할 수 있으면 직접 복사보다 아래 명령을 우선한다.
+
+```bash
+skill-forge install feature-dev --lang en --agent codex
+skill-forge install ultra-grill-me --lang ko --agent codex
+skill-forge install all --lang en --agent codex
 ```
 
 ## Safety

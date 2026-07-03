@@ -26,9 +26,27 @@
 
 ---
 
-## 2. 자동화 평가 도구 사용법 (Evals & Grading)
+## 2. 기본 검증 명령
 
-`skills/ultra-grill-me/evals/` 디렉토리에 구축된 자동화 테스트 스위트를 활용해 정량 채점을 수행한다.
+모든 스킬은 최소한 `SKILL.md` frontmatter와 이름 규칙을 검증한다.
+
+```bash
+python3 /path/to/skill-creator/scripts/quick_validate.py skills/feature-dev
+```
+
+저장소 CLI가 스킬을 발견하고 설치 매핑을 만들 수 있는지도 확인한다.
+
+```bash
+node bin/cli.js list --lang en
+node bin/cli.js install feature-dev --lang en --agent codex --dry-run
+npm test
+```
+
+## 3. 스킬별 자동화 평가 도구 (Evals & Grading)
+
+복잡한 동작 제약이 있는 스킬은 해당 스킬 폴더의 `evals/` 디렉토리에 구축된 자동화 테스트 스위트를 활용해 정량 채점을 수행한다.
+
+현재 `ultra-grill-me`는 별도 eval suite를 제공한다.
 
 ### 테스트 데이터
 - **[trigger_test_cases.json](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/evals/trigger_test_cases.json)**: Trigger 케이스 6개, Non-trigger 케이스 6개 등 총 12개의 엄격한 테스트 셋을 정의하고 있다.
@@ -43,7 +61,7 @@ python3 skills/ultra-grill-me/evals/check_evals.py --run-mock
 
 ---
 
-## 3. 수동 및 피드백 개선 루프 (Iteration Rules)
+## 4. 수동 및 피드백 개선 루프 (Iteration Rules)
 
 1. **과발동 (필요 없을 때 스킬이 켜짐)**:
    - `SKILL.md` frontmatter의 `description`과 본문의 `## 사용하지 않을 때` 섹션에 구체적인 제외 키워드와 상황(예: "simple factual Q&A")을 추가하여 예외 경계를 강화한다.
@@ -51,4 +69,3 @@ python3 skills/ultra-grill-me/evals/check_evals.py --run-mock
    - `description` 앞부분에 에이전트가 쉽게 인지할 수 있는 명시적 영어/한국어 trigger phrase(예: "stress-test", "grill", "압박 검증")를 보강한다.
 3. **절차 건너뜀 (질문을 뭉치거나 중간에 요약으로 도망침)**:
    - `## Gotchas` 또는 `## 주의사항`에 구체적인 예외 케이스(예: "사용자가 우회하려 할 때 방어 수칙")를 추가하여 에이전트의 흐름 구속력을 높인다.
-
