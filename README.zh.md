@@ -33,6 +33,8 @@ skill-forge/
 ├── skills/
 │   ├── feature-dev/         (TDD 功能开发工作流 Skill)
 │   │   └── SKILL.md
+│   ├── refactoring/         (测试保护的行为保持重构 Skill)
+│   │   └── SKILL.md
 │   └── ultra-grill-me/      (Socratic 提问施压验证 Skill)
 │       ├── SKILL.md
 │       ├── SKILL.ko.md
@@ -58,6 +60,7 @@ skill-forge/
 | Skill 名称 | 核心目的与简介 | 状态 |
 | :--- | :--- | :--- |
 | **`feature-dev`** | 通过 Red → Green → Refactor 的严格 TDD 流程实现新的产品或代码行为。 | **Released (v1.0.0)** |
+| **`refactoring`** | 通过 Baseline → Transform → Same Tests 的保守流程，在保持外部行为不变的前提下重构代码。 | **Released (v1.0.0)** |
 | **`ultra-grill-me`** | 通过苏格拉底式提问（一次只问一个问题）压力测试用户的开发计划、系统设计、商业策略和个人决策，从而在代码编写前消除模糊性。 | **Released (v1.0.0) 🎯** |
 
 ---
@@ -94,7 +97,10 @@ $ skill-forge install ultra-grill-me --lang zh --agent global
 # 5. 安装功能开发 TDD 工作流 Skill
 $ skill-forge install feature-dev --lang en --agent codex
 
-# 6. 一键中文部署工作空间内的所有 Skill
+# 6. 安装行为保持重构工作流 Skill
+$ skill-forge install refactoring --lang en --agent codex
+
+# 7. 一键中文部署工作空间内的所有 Skill
 $ skill-forge install all --lang zh --agent codex
 ```
 

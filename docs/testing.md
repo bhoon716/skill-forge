@@ -32,6 +32,7 @@
 
 ```bash
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/feature-dev
+python3 /path/to/skill-creator/scripts/quick_validate.py skills/refactoring
 ```
 
 저장소 CLI가 스킬을 발견하고 설치 매핑을 만들 수 있는지도 확인한다.
@@ -39,6 +40,7 @@ python3 /path/to/skill-creator/scripts/quick_validate.py skills/feature-dev
 ```bash
 node bin/cli.js list --lang en
 node bin/cli.js install feature-dev --lang en --agent codex --dry-run
+node bin/cli.js install refactoring --lang en --agent codex --dry-run
 npm test
 ```
 
