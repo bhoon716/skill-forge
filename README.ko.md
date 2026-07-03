@@ -99,7 +99,7 @@ skill-forge/
 
 ### 💡 명령어 실물 예시
 ```bash
-# 1. 특정 스킬을 한국어로 Codex/Gemini 프로젝트 로컬에 설치 (기본값)
+# 1. 특정 스킬을 한국어로 지원하는 모든 프로젝트 로컬 agent 경로에 설치 (기본값: global)
 $ skill-forge install ultra-grill-me --lang ko
 
 # 2. 특정 스킬을 한국어로 Claude Code 로컬 경로에 설치
@@ -108,7 +108,7 @@ $ skill-forge install ultra-grill-me --lang ko --agent claude
 # 3. 특정 스킬을 영어로 Cursor 프로젝트 로컬 경로에 설치
 $ skill-forge install ultra-grill-me --lang en --agent cursor
 
-# 4. 글로벌 환경에 한국어 스킬로 전역 설치 (모든 워크스페이스 공유)
+# 4. 지원하는 모든 프로젝트 로컬 agent 경로에 명시적으로 설치
 $ skill-forge install ultra-grill-me --lang ko --agent global
 
 # 5. 기능 개발 TDD 워크플로 스킬 설치
@@ -120,13 +120,18 @@ $ skill-forge install bugfix --lang en --agent codex
 # 7. 동작 보존 리팩토링 워크플로 스킬 설치
 $ skill-forge install refactoring --lang en --agent codex
 
-# 8. 전체 스킬을 한국어 버전으로 한 번에 로컬 설치
-$ skill-forge install all --lang ko --agent codex
+# 8. 전체 스킬을 한국어 버전으로 지원하는 모든 프로젝트 로컬 agent 경로에 한 번에 설치
+$ skill-forge install all --lang ko
 ```
 
 ### ⚙️ 옵션 요약
 - `-l, --lang <en|ko|zh>`: 설치할 다국어 번역본 코드 선택 (기본값: `en`)
-- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: 대상 도구의 설정 위치 지정 (기본값: `codex`)
+- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: 대상 도구의 설정 위치 지정 (기본값: `global`)
+  - `codex`, `gemini`: `./.agents/skills`
+  - `claude`: `./.claude/skills`
+  - `cursor`: `./.cursor/skills`
+  - `copilot`: `./.copilot/skills`
+  - `global`: 위 프로젝트 로컬 agent 경로 전체에 설치
 - `--dry-run`: 실제 복사를 수행하지 않고 파일 매핑 결과만 가상 시뮬레이션 출력
 
 ---

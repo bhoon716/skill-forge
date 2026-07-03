@@ -46,6 +46,7 @@ node bin/cli.js install feature-dev --lang en --agent codex --dry-run
 node bin/cli.js install feature-dev --lang zh --agent codex --dry-run
 node bin/cli.js install refactoring --lang en --agent codex --dry-run
 node bin/cli.js install refactoring --lang ko --agent codex --dry-run
+node bin/cli.js install bugfix --lang ko --dry-run
 npm test
 ```
 

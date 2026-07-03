@@ -99,7 +99,7 @@ A built-in installer tool that automatically maps localized skill source files a
 
 ### 💡 CLI Usage Examples
 ```bash
-# 1. Install Korean version locally to Codex/Gemini directory (Default)
+# 1. Install Korean version to all supported local agent directories (Default: global)
 $ skill-forge install ultra-grill-me --lang ko
 
 # 2. Install Korean version locally to Claude Code directory
@@ -108,7 +108,7 @@ $ skill-forge install ultra-grill-me --lang ko --agent claude
 # 3. Install English version locally to Cursor directory
 $ skill-forge install ultra-grill-me --lang en --agent cursor
 
-# 4. Install globally for all workspaces (English default)
+# 4. Install to all supported local agent directories explicitly
 $ skill-forge install ultra-grill-me --lang en --agent global
 
 # 5. Install the feature development TDD workflow
@@ -120,13 +120,18 @@ $ skill-forge install bugfix --lang en --agent codex
 # 7. Install the behavior-preserving refactoring workflow
 $ skill-forge install refactoring --lang en --agent codex
 
-# 8. Install all skills in the forge workspace at once in Korean
-$ skill-forge install all --lang ko --agent codex
+# 8. Install all skills to all supported local agent directories at once in Korean
+$ skill-forge install all --lang ko
 ```
 
 ### ⚙️ Options List
 - `-l, --lang <en|ko|zh>`: Set target language translation (Default: `en`)
-- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: Map destination tool path (Default: `codex`)
+- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: Map destination tool path (Default: `global`)
+  - `codex`, `gemini`: `./.agents/skills`
+  - `claude`: `./.claude/skills`
+  - `cursor`: `./.cursor/skills`
+  - `copilot`: `./.copilot/skills`
+  - `global`: installs to all supported local agent directories above
 - `--dry-run`: Simulate mappings and file copy plans without modification
 
 ---

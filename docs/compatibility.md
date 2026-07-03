@@ -5,18 +5,31 @@ Skill 저장 위치는 사용하는 도구에 따라 다를 수 있다.
 
 ## Example locations
 
+| Agent option | Project-local target path |
+| --- | --- |
+| `codex` | `./.agents/skills` |
+| `gemini` | `./.agents/skills` |
+| `claude` | `./.claude/skills` |
+| `cursor` | `./.cursor/skills` |
+| `copilot` | `./.copilot/skills` |
+| `global` | all supported project-local target paths above |
+
 ```bash
 # Claude Code project-local
 mkdir -p .claude/skills
 cp -R skills/bugfix .claude/skills/
 
-# Codex project-local
+# Codex / Gemini project-local
 mkdir -p .agents/skills
 cp -R skills/feature-dev .agents/skills/
 
 # Cursor project-local
 mkdir -p .cursor/skills
 cp -R skills/refactoring .cursor/skills/
+
+# GitHub Copilot project-local
+mkdir -p .copilot/skills
+cp -R skills/ultra-grill-me .copilot/skills/
 ```
 
 CLI 설치를 사용할 수 있으면 직접 복사보다 아래 명령을 우선한다.
@@ -26,7 +39,7 @@ skill-forge install bugfix --lang en --agent codex
 skill-forge install feature-dev --lang en --agent codex
 skill-forge install refactoring --lang en --agent codex
 skill-forge install ultra-grill-me --lang ko --agent codex
-skill-forge install all --lang en --agent codex
+skill-forge install all --lang en
 ```
 
 ## Safety

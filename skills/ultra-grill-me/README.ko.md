@@ -87,7 +87,7 @@ graph TD
 > `--lang ko` 옵션을 주면, 소스 폴더 내의 `SKILL.ko.md`가 타겟 경로에 `SKILL.md`로 변환되어 이식됩니다. references 내 한국어 마크다운들도 접미사를 떼고 깨끗하게 덮어쓰여 연동됩니다.
 
 ```bash
-# 1. Codex/Gemini에 한국어 버전으로 로컬 설치 (기본값)
+# 1. 지원하는 모든 프로젝트 로컬 agent 경로에 한국어 버전 설치 (기본값: global)
 skill-forge install ultra-grill-me --lang ko
 
 # 2. Claude Code에 한국어 버전으로 로컬 설치
@@ -96,7 +96,7 @@ skill-forge install ultra-grill-me --lang ko --agent claude
 # 3. Cursor 프로젝트 로컬에 영어 버전으로 설치
 skill-forge install ultra-grill-me --lang en --agent cursor
 
-# 4. 글로벌 스킬 디렉토리에 한국어 버전 전역 설치 (모든 워크스페이스 공유)
+# 4. 지원하는 모든 프로젝트 로컬 agent 경로에 명시적으로 설치
 skill-forge install ultra-grill-me --lang ko --agent global
 ```
 

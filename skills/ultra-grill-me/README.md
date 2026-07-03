@@ -87,7 +87,7 @@ Use the workspace CLI to deploy the skill to your target agent directory.
 > Setting `--lang ko` automatically translates `SKILL.ko.md` into `SKILL.md` in the destination folder, mapping all dependencies seamlessly.
 
 ```bash
-# 1. Install Korean translation locally to Codex/Gemini (Default)
+# 1. Install Korean translation to all supported local agent directories (Default: global)
 skill-forge install ultra-grill-me --lang ko
 
 # 2. Install English version locally to Claude Code
@@ -96,7 +96,7 @@ skill-forge install ultra-grill-me --lang en --agent claude
 # 3. Install English version locally to Cursor
 skill-forge install ultra-grill-me --lang en --agent cursor
 
-# 4. Install globally for all workspaces (English default)
+# 4. Install to all supported local agent directories explicitly
 skill-forge install ultra-grill-me --lang en --agent global
 ```
 

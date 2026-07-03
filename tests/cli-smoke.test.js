@@ -58,6 +58,21 @@ const bugfixKoDryRunOutput = run('node', [
 assert.match(bugfixKoDryRunOutput, /Copy: SKILL\.ko\.md -> SKILL\.md/);
 assert.match(bugfixKoDryRunOutput, /Copy: README\.ko\.md -> README\.md/);
 
+const defaultGlobalDryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'bugfix',
+  '--lang',
+  'ko',
+  '--dry-run',
+]);
+assert.match(defaultGlobalDryRunOutput, /Target Agent: global/);
+assert.match(defaultGlobalDryRunOutput, /\.agents\/skills\/bugfix/);
+assert.match(defaultGlobalDryRunOutput, /\.claude\/skills\/bugfix/);
+assert.match(defaultGlobalDryRunOutput, /\.cursor\/skills\/bugfix/);
+assert.match(defaultGlobalDryRunOutput, /\.copilot\/skills\/bugfix/);
+assert.doesNotMatch(defaultGlobalDryRunOutput, /\.gemini\/config\/skills/);
+
 const featureDevZhDryRunOutput = run('node', [
   'bin/cli.js',
   'install',

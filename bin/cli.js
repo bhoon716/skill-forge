@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const os = require('os');
 const readline = require('readline');
 
 const sourceSkillsDir = path.join(__dirname, '..', 'skills');
@@ -25,7 +24,7 @@ Commands:
 
 Options:
   -l, --lang <lang>    Specify localization language (e.g., en, ko, zh). (Default: en)
-  -a, --agent <agent>  Target AI Agent environment. (Default: codex)
+  -a, --agent <agent>  Target AI Agent environment. (Default: global)
                        Supported: codex, gemini, claude, cursor, copilot, global
   --dry-run            Simulate copying without actually modifying files.
   -h, --help           Display help message.
@@ -36,8 +35,19 @@ Examples:
   skill-forge install bugfix --lang en
   skill-forge install feature-dev --lang en
   skill-forge install refactoring --lang en
+  skill-forge install all --lang ko
   skill-forge install all --lang zh --agent claude
 `);
+};
+
+const getLocalAgentTargets = () => {
+  const pwd = process.cwd();
+  return [
+    { agent: 'codex', label: 'Codex / Gemini', baseDir: path.join(pwd, '.agents', 'skills') },
+    { agent: 'claude', label: 'Claude Code', baseDir: path.join(pwd, '.claude', 'skills') },
+    { agent: 'cursor', label: 'Cursor', baseDir: path.join(pwd, '.cursor', 'skills') },
+    { agent: 'copilot', label: 'GitHub Copilot', baseDir: path.join(pwd, '.copilot', 'skills') },
+  ];
 };
 
 // Autodetect agent paths in current working directory
@@ -183,19 +193,16 @@ const runInteractiveMode = async () => {
     console.log('\nSelect target AI Agent environment:');
     
     const agentsList = [
+      { name: 'Global (./.agents, ./.claude, ./.cursor, ./.copilot)', value: 'global' },
       { name: 'Codex / Gemini (./.agents/)', value: 'codex' },
       { name: 'Claude Code (./.claude/)', value: 'claude' },
       { name: 'Cursor (./.cursor/)', value: 'cursor' },
-      { name: 'Github Copilot (./.copilot/)', value: 'copilot' },
-      { name: 'Global User Setting (~/.gemini/config/)', value: 'global' }
+      { name: 'Github Copilot (./.copilot/)', value: 'copilot' }
     ];
 
     let defaultAgentIdx = 1;
     agentsList.forEach((ag, idx) => {
       const isDetected = detected.some(d => d.value === ag.value);
-      if (isDetected && detected.length === 1) {
-        defaultAgentIdx = idx + 1;
-      }
       const label = isDetected ? '⭐ (Detected in Project)' : '';
       console.log(`  [${idx + 1}] ${ag.name} ${label}`);
     });
@@ -226,12 +233,12 @@ const runInteractiveMode = async () => {
     console.log(`   - Target Agent: ${selectedAgent}`);
     console.log('---------------------------------------------------\n');
 
-    const targetBaseDir = getTargetBaseDir(selectedAgent);
+    const targetBaseDirs = getTargetBaseDirs(selectedAgent);
     if (installAll) {
-      console.log(`Installing all ${skills.length} skills to target path: ${targetBaseDir}...\n`);
-      skills.forEach(s => installSkillLogic(s, selectedLang, selectedAgent, targetBaseDir));
+      console.log(`Installing all ${skills.length} skills to ${targetBaseDirs.length} target path(s)...\n`);
+      skills.forEach(s => installSkillLogic(s, selectedLang, selectedAgent, targetBaseDirs));
     } else {
-      installSkillLogic(selectedSkill, selectedLang, selectedAgent, targetBaseDir);
+      installSkillLogic(selectedSkill, selectedLang, selectedAgent, targetBaseDirs);
     }
 
   } catch (err) {
@@ -241,20 +248,20 @@ const runInteractiveMode = async () => {
   }
 };
 
-const getTargetBaseDir = (selectedAgent) => {
+const getTargetBaseDirs = (selectedAgent) => {
   const pwd = process.cwd();
   switch (selectedAgent.toLowerCase()) {
     case 'codex':
     case 'gemini':
-      return path.join(pwd, '.agents', 'skills');
+      return [{ agent: selectedAgent.toLowerCase(), label: 'Codex / Gemini', baseDir: path.join(pwd, '.agents', 'skills') }];
     case 'claude':
-      return path.join(pwd, '.claude', 'skills');
+      return [{ agent: 'claude', label: 'Claude Code', baseDir: path.join(pwd, '.claude', 'skills') }];
     case 'cursor':
-      return path.join(pwd, '.cursor', 'skills');
+      return [{ agent: 'cursor', label: 'Cursor', baseDir: path.join(pwd, '.cursor', 'skills') }];
     case 'copilot':
-      return path.join(pwd, '.copilot', 'skills');
+      return [{ agent: 'copilot', label: 'GitHub Copilot', baseDir: path.join(pwd, '.copilot', 'skills') }];
     case 'global':
-      return path.join(os.homedir(), '.gemini', 'config', 'skills');
+      return getLocalAgentTargets();
     default:
       console.error(`Error: Unsupported agent type "${selectedAgent}".`);
       process.exit(1);
@@ -288,7 +295,7 @@ if (args.length === 0) {
 
   let targetSkill = null;
   let lang = 'en';
-  let agent = 'codex';
+  let agent = 'global';
   let dryRun = false;
   let isAllTarget = false;
 
@@ -319,7 +326,7 @@ if (args.length === 0) {
   if (command === 'list') {
     listSkillsLogic(lang);
   } else {
-    const targetBaseDir = getTargetBaseDir(agent);
+    const targetBaseDirs = getTargetBaseDirs(agent);
 
     if (isAllTarget || command === 'install-all') {
       if (!fs.existsSync(sourceSkillsDir)) {
@@ -330,16 +337,15 @@ if (args.length === 0) {
         if (shouldSkipCopyEntry(file)) return false;
         return fs.statSync(path.join(sourceSkillsDir, file)).isDirectory();
       });
-      skills.forEach(s => installSkillLogic(s, lang, agent, targetBaseDir, dryRun));
+      skills.forEach(s => installSkillLogic(s, lang, agent, targetBaseDirs, dryRun));
     } else {
-      installSkillLogic(targetSkill, lang, agent, targetBaseDir, dryRun);
+      installSkillLogic(targetSkill, lang, agent, targetBaseDirs, dryRun);
     }
   }
 }
 
-function installSkillLogic(skillName, lang, agent, targetBaseDir, dryRun = false) {
+function installSkillLogic(skillName, lang, agent, targetBaseDirs, dryRun = false) {
   const sourceDir = path.join(sourceSkillsDir, skillName);
-  const destDir = path.join(targetBaseDir, skillName);
 
   if (!fs.existsSync(sourceDir)) {
     console.error(`Error: Skill "${skillName}" does not exist in path: ${sourceDir}`);
@@ -415,6 +421,13 @@ function installSkillLogic(skillName, lang, agent, targetBaseDir, dryRun = false
     }
   }
 
-  copyRecursive(sourceDir, destDir);
-  console.log(`[SUCCESS] Installed "${skillName}" to: ${destDir}\n`);
+  targetBaseDirs.forEach(target => {
+    const destDir = path.join(target.baseDir, skillName);
+    if (targetBaseDirs.length > 1) {
+      console.log(`  Target: ${target.label} -> ${destDir}`);
+    }
+    copyRecursive(sourceDir, destDir);
+    console.log(`[SUCCESS] Installed "${skillName}" to: ${destDir}`);
+  });
+  console.log('');
 }

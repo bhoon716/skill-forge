@@ -87,7 +87,7 @@ graph TD
 > 在执行 CLI 时指定 `--lang zh`，源目录下的 `SKILL.zh.md` 会自动以 `SKILL.md` 的名称安装到指定 Agent 路径中。
 
 ```bash
-# 1. 部署中文版到本地默认项目路径 (Codex/Gemini)
+# 1. 部署中文版到所有支持的本地 Agent 项目路径 (默认值: global)
 $ skill-forge install ultra-grill-me --lang zh
 
 # 2. 部署中文版到 Claude Code 路径
@@ -96,7 +96,7 @@ $ skill-forge install ultra-grill-me --lang zh --agent claude
 # 3. 部署英文版到 Cursor 路径
 $ skill-forge install ultra-grill-me --lang en --agent cursor
 
-# 4. 全局部署中文版至用户根路径
+# 4. 显式部署到所有支持的本地 Agent 项目路径
 $ skill-forge install ultra-grill-me --lang zh --agent global
 ```
 

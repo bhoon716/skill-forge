@@ -100,7 +100,7 @@ skill-forge/
 
 ### 💡 命令行实例
 ```bash
-# 1. 以中文版部署到本地默认项目路径 (Codex/Gemini)
+# 1. 以中文版部署到所有支持的本地 Agent 项目路径 (默认值: global)
 $ skill-forge install ultra-grill-me --lang zh
 
 # 2. 以中文版部署到本地 Claude Code 路径
@@ -109,7 +109,7 @@ $ skill-forge install ultra-grill-me --lang zh --agent claude
 # 3. 以英文版部署到本地 Cursor 路径
 $ skill-forge install ultra-grill-me --lang en --agent cursor
 
-# 4. 以中文版全局部署到用户主目录 (全局生效)
+# 4. 显式部署到所有支持的本地 Agent 项目路径
 $ skill-forge install ultra-grill-me --lang zh --agent global
 
 # 5. 安装功能开发 TDD 工作流 Skill
@@ -121,13 +121,18 @@ $ skill-forge install bugfix --lang en --agent codex
 # 7. 安装行为保持重构工作流 Skill
 $ skill-forge install refactoring --lang en --agent codex
 
-# 8. 一键中文部署工作空间内的所有 Skill
-$ skill-forge install all --lang zh --agent codex
+# 8. 一键中文部署工作空间内的所有 Skill 到全部支持的本地 Agent 路径
+$ skill-forge install all --lang zh
 ```
 
 ### ⚙️ 选项说明
 - `-l, --lang <en|ko|zh>`: 选择部署的翻译语系 (默认值: `en`)
-- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: 目标工具的环境路径映射 (默认值: `codex`)
+- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: 目标工具的环境路径映射 (默认值: `global`)
+  - `codex`, `gemini`: `./.agents/skills`
+  - `claude`: `./.claude/skills`
+  - `cursor`: `./.cursor/skills`
+  - `copilot`: `./.copilot/skills`
+  - `global`: 安装到以上全部支持的本地 Agent 路径
 - `--dry-run`: 仅模拟复制映射过程，不实际写入文件
 
 ---
