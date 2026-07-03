@@ -31,16 +31,33 @@ skill-forge/
 │   └── cli.js               (스킬 설치 및 번역용 CLI 도구)
 ├── skills/
 │   ├── bugfix/              (회귀 테스트 기반 버그 수정 워크플로 스킬)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   ├── feature-dev/         (TDD 기능 개발 워크플로 스킬)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   ├── refactoring/         (테스트 보호 기반 동작 보존 리팩토링 스킬)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   └── ultra-grill-me/      (Socratic 압박 검증 스킬)
 │       ├── SKILL.md
 │       ├── SKILL.ko.md
+│       ├── SKILL.zh.md
 │       ├── README.md
 │       ├── README.ko.md
+│       ├── README.zh.md
 │       ├── references/      (도메인별 세부 질문 리스트)
 │       ├── examples/        (Trigger 테스트 케이스)
 │       └── evals/           (품질 Grader 채점기)

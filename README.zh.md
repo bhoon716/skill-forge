@@ -32,11 +32,26 @@ skill-forge/
 │   └── cli.js               (Skill 部署与本地化 CLI 工具)
 ├── skills/
 │   ├── bugfix/              (回归测试驱动的错误修复工作流 Skill)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   ├── feature-dev/         (TDD 功能开发工作流 Skill)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   ├── refactoring/         (测试保护的行为保持重构 Skill)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   └── ultra-grill-me/      (Socratic 提问施压验证 Skill)
 │       ├── SKILL.md
 │       ├── SKILL.ko.md

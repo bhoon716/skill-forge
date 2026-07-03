@@ -43,6 +43,33 @@ const bugfixDryRunOutput = run('node', [
 ]);
 assert.match(bugfixDryRunOutput, /\[SUCCESS\] Installed "bugfix"/);
 assert.doesNotMatch(bugfixDryRunOutput, /\.DS_Store/);
+assert.match(bugfixDryRunOutput, /Copy: SKILL.md -> SKILL.md/);
+
+const bugfixKoDryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'bugfix',
+  '--lang',
+  'ko',
+  '--agent',
+  'codex',
+  '--dry-run',
+]);
+assert.match(bugfixKoDryRunOutput, /Copy: SKILL\.ko\.md -> SKILL\.md/);
+assert.match(bugfixKoDryRunOutput, /Copy: README\.ko\.md -> README\.md/);
+
+const featureDevZhDryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'feature-dev',
+  '--lang',
+  'zh',
+  '--agent',
+  'codex',
+  '--dry-run',
+]);
+assert.match(featureDevZhDryRunOutput, /Copy: SKILL\.zh\.md -> SKILL\.md/);
+assert.match(featureDevZhDryRunOutput, /Copy: README\.zh\.md -> README\.md/);
 
 const refactoringDryRunOutput = run('node', [
   'bin/cli.js',
@@ -56,6 +83,19 @@ const refactoringDryRunOutput = run('node', [
 ]);
 assert.match(refactoringDryRunOutput, /\[SUCCESS\] Installed "refactoring"/);
 assert.doesNotMatch(refactoringDryRunOutput, /\.DS_Store/);
+
+const refactoringKoDryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'refactoring',
+  '--lang',
+  'ko',
+  '--agent',
+  'codex',
+  '--dry-run',
+]);
+assert.match(refactoringKoDryRunOutput, /Copy: SKILL\.ko\.md -> SKILL\.md/);
+assert.match(refactoringKoDryRunOutput, /Copy: README\.ko\.md -> README\.md/);
 
 const evalOutput = run('python3', [
   'skills/ultra-grill-me/evals/check_evals.py',

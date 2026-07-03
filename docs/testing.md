@@ -41,8 +41,11 @@ python3 /path/to/skill-creator/scripts/quick_validate.py skills/refactoring
 ```bash
 node bin/cli.js list --lang en
 node bin/cli.js install bugfix --lang en --agent codex --dry-run
+node bin/cli.js install bugfix --lang ko --agent codex --dry-run
 node bin/cli.js install feature-dev --lang en --agent codex --dry-run
+node bin/cli.js install feature-dev --lang zh --agent codex --dry-run
 node bin/cli.js install refactoring --lang en --agent codex --dry-run
+node bin/cli.js install refactoring --lang ko --agent codex --dry-run
 npm test
 ```
 

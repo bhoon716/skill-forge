@@ -31,16 +31,33 @@ skill-forge/
 │   └── cli.js               (Built-in skill localization & installer CLI)
 ├── skills/
 │   ├── bugfix/              (Regression-test-driven bug fixing workflow skill)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   ├── feature-dev/         (TDD feature development workflow skill)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   ├── refactoring/         (Test-protected behavior-preserving refactoring skill)
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   └── README.zh.md
 │   └── ultra-grill-me/      (Socratic plan verification skill)
 │       ├── SKILL.md
 │       ├── SKILL.ko.md
+│       ├── SKILL.zh.md
 │       ├── README.md
 │       ├── README.ko.md
+│       ├── README.zh.md
 │       ├── references/      (Domain taxonomy markdown sheets)
 │       ├── examples/        (Trigger evaluation suites)
 │       └── evals/           (Deterministic process graders)
