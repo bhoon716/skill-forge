@@ -94,5 +94,45 @@
     "expected_skill_use": false,
     "expected_reference": null,
     "description": "런타임 코드 디버깅 및 트러블슈팅 요청 시 스킬이 오발동되지 않는지 테스트"
+  },
+  {
+    "id": "trigger-007-casual-pressure",
+    "category": "trigger",
+    "prompt": "내가 AI 공부 로드맵 서비스 만들려고 하는데, 출시 전에 빈틈없이 파헤쳐줘.",
+    "expected_skill_use": true,
+    "expected_reference": "references/product-idea-grill.md",
+    "description": "casual pressure-test phrasing ('하려고 하는데 파헤쳐줘')에서도 스킬이 발동하는지 테스트"
+  },
+  {
+    "id": "trigger-008-bypass-natural",
+    "category": "trigger",
+    "prompt": "질문은 해도 되니까, 이 발표 자료를 반대신문하듯 털어줘.",
+    "expected_skill_use": true,
+    "expected_reference": "references/writing-direction-grill.md",
+    "description": "자연어로 된 압박 검증 요청이 trigger로 인식되는지 테스트"
+  },
+  {
+    "id": "edge-001-vague-plan",
+    "category": "edge",
+    "prompt": "이 계획이 괜찮은지 봐줘.",
+    "expected_skill_use": true,
+    "expected_reference": "references/implementation-plan-grill.md",
+    "description": "모호하지만 계획 검증 의도는 있는 경계 입력이 trigger 되는지 테스트"
+  },
+  {
+    "id": "non-trigger-007-definition",
+    "category": "non-trigger",
+    "prompt": "ultra-grill-me가 뭐야?",
+    "expected_skill_use": false,
+    "expected_reference": null,
+    "description": "스킬 자체에 대한 단순 정의 질문이 오발동되지 않는지 테스트"
+  },
+  {
+    "id": "non-trigger-008-short-rewrite",
+    "category": "non-trigger",
+    "prompt": "이 문장을 한 줄로 더 짧게 바꿔줘.",
+    "expected_skill_use": false,
+    "expected_reference": null,
+    "description": "단순 압축/문장 수정 요청 시 스킬이 오발동되지 않는지 테스트"
   }
 ]

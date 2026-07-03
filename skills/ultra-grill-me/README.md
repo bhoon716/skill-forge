@@ -105,7 +105,8 @@ skill-forge install ultra-grill-me --lang en --agent global
 ## 5. Logs & Evaluators
 
 ### Session Logs
-- Every session generates active log outputs under `logs/` (e.g., `logs/session_YYYYMMDD_HHMMSS.md`) recording all Q&As, assumptions, and decisions to track historical changes.
+- Every session generates active log outputs under the installed skill root's `logs/` directory (the folder adjacent to the active `SKILL.md`, e.g. `.../ultra-grill-me/logs/session_YYYYMMDD_HHMMSS.md`) recording blocked decisions, provided options, raw answers, interpreted results, assumptions, and decisions to track historical changes.
+- Do not write logs into the authoring repo unless the authoring repo is the active installed skill root.
 
 ### Automated Testing (Evals)
 - Assert questioning structures and process adherence using the python test suite:
@@ -115,7 +116,15 @@ skill-forge install ultra-grill-me --lang en --agent global
 
 ---
 
-## 6. Gotchas & Safety Rules
+## 6. Project-level AGENTS Hint (Optional)
+
+If you want stronger activation inside a downstream project, add a small `AGENTS.md` note like:
+
+> If the user asks to "grill", "stress-test", "파헤쳐줘", "빈틈없이 검증해줘", or otherwise validate a plan/idea before execution, use `ultra-grill-me` first. Do not skip directly to implementation.
+
+---
+
+## 7. Gotchas & Safety Rules
 
 > [!WARNING]
 > - **Adversarial Bypass Defense**: The agent will reject bypass commands (e.g., "skip questions and write the code now") and insist on resolving the single blocked decision.

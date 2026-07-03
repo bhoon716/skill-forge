@@ -1,6 +1,6 @@
 ---
 name: ultra-grill-me
-description: Use when the user wants a plan, design, product idea, architecture decision, implementation plan, business strategy, writing direction, research question, learning plan, personal decision, or Agent Skill design stress-tested through Socratic, one-question-at-a-time interrogation with options (including "other recommendations") and session logging. Do not use for simple factual Q&A, brainstorming lists, text formatting, or immediate code/plan generation.
+description: Use when the user wants a plan, design, product idea, architecture decision, implementation plan, business strategy, writing direction, research question, learning plan, personal decision, or Agent Skill design stress-tested through Socratic, one-question-at-a-time interrogation with options (including "other recommendations") and session logging. Also trigger on casual pressure-test phrasing like "X 하려고 하는데 파헤쳐줘", "빈틈없이 검증해줘", "질문으로 털어줘", "반대신문하듯 봐줘", or "압박 검증해줘". Do not use for simple factual Q&A, brainstorming lists, text formatting, direct summaries, direct rewrites, or immediate code/plan generation.
 ---
 
 # Ultra Grill Me
@@ -18,6 +18,7 @@ Use this skill when the user asks to:
 - Find hidden assumptions or risks in a proposal
 - Challenge a technical design or architecture decision through questions
 - Keep asking questions until nothing critical remains unresolved
+- Use casual natural language that still clearly means "grill this before execution" (for example: "~~하려고 하는데 파헤쳐줘", "빈틈없이 검증해줘", "질문으로 검증해줘")
 
 ## When not to use
 
@@ -26,13 +27,14 @@ Do not use this skill when:
 - The user requests a brainstorming list of ideas (e.g., "Recommend 5 SaaS ideas")
 - The user requests immediate execution or code generation
 - The user wants a simple text rewrite or formatting adjustment
+- The user only wants a definition, translation, short summary, or plain rewrite without validation
 
 ## Workflow
 
 ### Session Start
 1. Determine if the user's request fits the scope of this skill.
 2. If not, handle it with a standard conversational response without activating the skill.
-3. If it fits, create a session log file under `logs/` following the format in `logs/template.md`. All grill sessions must be logged.
+3. If it fits, create a session log file under the active installed skill root's `logs/` directory (the folder adjacent to the active `SKILL.md`), following the format in `logs/template.md`. Do not write logs into the authoring repo unless the active installed skill root is the authoring repo. All grill sessions must be logged.
 4. Select the matching domain-specific reference from the [References](#references) section.
 5. If the case is clear, load only that single reference. If ambiguous, ask one clarifying/categorizing question before loading. Do not load all references at once.
 
@@ -47,7 +49,7 @@ Do not use this skill when:
 11. **Wait for Answer**: Wait for the user's response. Do not ask a second question.
 12. **Update Internal State**: Update the following states upon receiving the user's answer:
     - Resolved Decisions / Assumptions / Risks / Contradictions / Rejected Options
-13. **Log Turn**: Append the question, blocked decision, user's answer, and output state to the session log file.
+13. **Log Turn**: Append the question, blocked decision, provided options, user's answer, and output state to the session log file. Preserve the raw answer and the interpreted result separately.
 14. **Check Stopping Conditions**: Check if the stopping conditions are met. If not, loop back to Step 6. If met, proceed to Session End.
 
 ### Session End
@@ -108,11 +110,29 @@ Every turn must follow this exact output structure:
 Please select a number, ask for more options, or answer directly.
 ```
 
+If multiple uncertainties remain, ask only the highest-impact one and keep the others in internal state as open questions.
+
 ## Handling Vague Answers
 
 Do not accept vague answers (e.g. "not sure", "both", "decide later"). 
 - Propose a concrete default option and ask the user to accept, reject, or modify it.
 - If it cannot be resolved, record it under `Assumptions` in the internal state and log.
+
+## Logging Schema
+
+Each session log entry should preserve these fields explicitly:
+
+- Blocked Decision
+- Provided Options
+- User Answer
+- Result
+- Newly Resolved Decisions
+- Assumptions
+- Risks
+- Contradictions
+- Rejected Options
+
+Do not compress the answer into a single opaque label if that loses the user's original choice. Keep the raw answer and the interpreted result separately.
 
 ## Stopping Conditions
 

@@ -105,7 +105,8 @@ $ skill-forge install ultra-grill-me --lang zh --agent global
 ## 5. 日志与评测
 
 ### 会话日志
-- 本 Skill 的所有盘问历程将自动存储至 `logs/` 目录中（例如 `logs/session_YYYYMMDD_HHMMSS.md`），记录所有问答对和已确定的假设，以便跟踪进度。
+- 本 Skill 的所有盘问历程将自动存储至当前已安装 Skill 根目录下的 `logs/` 目录（与生效的 `SKILL.md` 同级，例如 `.../ultra-grill-me/logs/session_YYYYMMDD_HHMMSS.md`），记录卡点决定、提供的选项、原始回答、解释结果和已确定的假设，以便跟踪进度。
+- 不要把日志写进作者仓库，除非作者仓库本身就是当前已安装 Skill 根目录。
 
 ### 自动化评测 (Evals)
 - 我们可以通过运行测试评测 Grader 来确保提问格式没有退化：
@@ -115,7 +116,15 @@ $ skill-forge install ultra-grill-me --lang zh --agent global
 
 ---
 
-## 6. 注意事项与安全防范
+## 6. 项目级 AGENTS 提示（可选）
+
+如果你希望在下游项目中更强地激活这个 Skill，可以在项目根目录的 `AGENTS.md` 里加入一个简短提示：
+
+> 如果用户在执行前要求对计划/创意进行 “grill”、“stress-test”、“파헤쳐줘”、“빈틈없이 검증해줘”等验证，就先使用 `ultra-grill-me`，不要直接跳到实现。
+
+---
+
+## 7. 注意事项与安全防范
 
 > [!WARNING]
 > - **防范流程绕过 (Adversarial Bypass)**：本 Skill 拒绝一切试图通过“跳过提问直接写计划/代码”的越轨指令，确保压力测试流程的安全性。

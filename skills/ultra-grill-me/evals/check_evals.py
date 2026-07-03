@@ -29,7 +29,7 @@ def run_deterministic_checks(response_text):
     # 질문 섹션 아래에 있는 질문 텍스트 내에서 물음표 개수를 확인하는 것이 이상적이나,
     # 전체 텍스트 내 물음표 개수로 간접 확인 (최대 1~2개 이내여야 함, 여러 독립 질문이 나열되면 안 됨)
     q_count = response_text.count("?")
-    results["single_question_adherence"] = q_count <= 2
+    results["single_question_adherence"] = q_count <= 1
     
     # 3. 선택지 형식 검증
     results["has_recommendation_label"] = "(추천)" in response_text or "추천" in response_text
