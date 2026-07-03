@@ -79,6 +79,7 @@ skill-forge/
 | **`feature-dev`** | A strict TDD workflow skill for adding new product or code behavior through Red → Green → Refactor. | **Released (v1.0.0)** |
 | **`refactoring`** | A conservative workflow skill for behavior-preserving refactors through Baseline → Transform → Same Tests. | **Released (v1.0.0)** |
 | **`ultra-grill-me`** | A Socratic questioning agent engine that challenges your plans, system designs, GTM strategies, and personal choices to remove ambiguity before coding. | **Released (v1.0.0) 🎯** |
+| **`xquik-api-research`** | A source-backed workflow for turning Xquik X data into research briefs, product signals, and monitoring plans. | **Released (v1.0.0)** |
 
 ---
 
