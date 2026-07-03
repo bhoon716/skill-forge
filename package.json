@@ -4,7 +4,7 @@
   "description": "Agent Skill Authoring & Distribution CLI Workspace",
   "main": "bin/cli.js",
   "bin": {
-    "skill-forge": "./bin/cli.js"
+    "skill-forge": "bin/cli.js"
   },
   "scripts": {
     "test": "node tests/cli-smoke.test.js"
