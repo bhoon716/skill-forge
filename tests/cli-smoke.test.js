@@ -14,6 +14,7 @@ function run(command, args) {
 
 const listOutput = run('node', ['bin/cli.js', 'list', '--lang', 'ko']);
 assert.match(listOutput, /ultra-grill-me/);
+assert.match(listOutput, /bugfix/);
 assert.match(listOutput, /feature-dev/);
 assert.match(listOutput, /refactoring/);
 
@@ -29,6 +30,19 @@ const dryRunOutput = run('node', [
 ]);
 assert.match(dryRunOutput, /\[SUCCESS\] Installed "ultra-grill-me"/);
 assert.doesNotMatch(dryRunOutput, /\.DS_Store/);
+
+const bugfixDryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'bugfix',
+  '--lang',
+  'en',
+  '--agent',
+  'codex',
+  '--dry-run',
+]);
+assert.match(bugfixDryRunOutput, /\[SUCCESS\] Installed "bugfix"/);
+assert.doesNotMatch(bugfixDryRunOutput, /\.DS_Store/);
 
 const refactoringDryRunOutput = run('node', [
   'bin/cli.js',

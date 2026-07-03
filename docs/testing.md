@@ -31,6 +31,7 @@
 모든 스킬은 최소한 `SKILL.md` frontmatter와 이름 규칙을 검증한다.
 
 ```bash
+python3 /path/to/skill-creator/scripts/quick_validate.py skills/bugfix
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/feature-dev
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/refactoring
 ```
@@ -39,6 +40,7 @@ python3 /path/to/skill-creator/scripts/quick_validate.py skills/refactoring
 
 ```bash
 node bin/cli.js list --lang en
+node bin/cli.js install bugfix --lang en --agent codex --dry-run
 node bin/cli.js install feature-dev --lang en --agent codex --dry-run
 node bin/cli.js install refactoring --lang en --agent codex --dry-run
 npm test

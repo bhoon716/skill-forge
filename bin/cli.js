@@ -33,6 +33,7 @@ Options:
 Examples:
   skill-forge list --lang ko
   skill-forge install ultra-grill-me --lang ko
+  skill-forge install bugfix --lang en
   skill-forge install feature-dev --lang en
   skill-forge install refactoring --lang en
   skill-forge install all --lang zh --agent claude
@@ -294,7 +295,7 @@ if (args.length === 0) {
   if (command === 'install') {
     targetSkill = args[1];
     if (!targetSkill || targetSkill.startsWith('-')) {
-      console.error('Error: Please specify a skill name to install (e.g. skill-forge install refactoring).');
+      console.error('Error: Please specify a skill name to install (e.g. skill-forge install bugfix).');
       process.exit(1);
     }
     // "install all" format compatibility

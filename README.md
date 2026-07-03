@@ -30,6 +30,8 @@ skill-forge/
 ├── bin/
 │   └── cli.js               (Built-in skill localization & installer CLI)
 ├── skills/
+│   ├── bugfix/              (Regression-test-driven bug fixing workflow skill)
+│   │   └── SKILL.md
 │   ├── feature-dev/         (TDD feature development workflow skill)
 │   │   └── SKILL.md
 │   ├── refactoring/         (Test-protected behavior-preserving refactoring skill)
@@ -56,6 +58,7 @@ skill-forge/
 
 | Skill Name | Purpose & Pitch | Status |
 | :--- | :--- | :--- |
+| **`bugfix`** | A regression-test-driven workflow skill for fixing broken or regressed behavior through Reproduce → Root Cause → Regression Test → Minimal Fix → Verify. | **Released (v1.0.0)** |
 | **`feature-dev`** | A strict TDD workflow skill for adding new product or code behavior through Red → Green → Refactor. | **Released (v1.0.0)** |
 | **`refactoring`** | A conservative workflow skill for behavior-preserving refactors through Baseline → Transform → Same Tests. | **Released (v1.0.0)** |
 | **`ultra-grill-me`** | A Socratic questioning agent engine that challenges your plans, system designs, GTM strategies, and personal choices to remove ambiguity before coding. | **Released (v1.0.0) 🎯** |
@@ -94,10 +97,13 @@ $ skill-forge install ultra-grill-me --lang en --agent global
 # 5. Install the feature development TDD workflow
 $ skill-forge install feature-dev --lang en --agent codex
 
-# 6. Install the behavior-preserving refactoring workflow
+# 6. Install the regression-test-driven bug fixing workflow
+$ skill-forge install bugfix --lang en --agent codex
+
+# 7. Install the behavior-preserving refactoring workflow
 $ skill-forge install refactoring --lang en --agent codex
 
-# 7. Install all skills in the forge workspace at once in Korean
+# 8. Install all skills in the forge workspace at once in Korean
 $ skill-forge install all --lang ko --agent codex
 ```
 

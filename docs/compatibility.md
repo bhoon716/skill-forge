@@ -8,7 +8,7 @@ Skill 저장 위치는 사용하는 도구에 따라 다를 수 있다.
 ```bash
 # Claude Code project-local
 mkdir -p .claude/skills
-cp -R skills/ultra-grill-me .claude/skills/
+cp -R skills/bugfix .claude/skills/
 
 # Codex project-local
 mkdir -p .agents/skills
@@ -22,6 +22,7 @@ cp -R skills/refactoring .cursor/skills/
 CLI 설치를 사용할 수 있으면 직접 복사보다 아래 명령을 우선한다.
 
 ```bash
+skill-forge install bugfix --lang en --agent codex
 skill-forge install feature-dev --lang en --agent codex
 skill-forge install refactoring --lang en --agent codex
 skill-forge install ultra-grill-me --lang ko --agent codex
