@@ -46,6 +46,14 @@ skill-forge/
 │   │   ├── README.ko.md
 │   │   ├── README.zh.md
 │   │   └── references/      (架构方法、ADR 与审查检查表)
+│   ├── deep-code-review/    (基于证据的多视角代码审查 Skill)
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   ├── README.zh.md
+│   │   └── references/      (Lens 路由、审查视角、验证与合成)
 │   ├── feature-dev/         (TDD 功能开发工作流 Skill)
 │   │   ├── SKILL.md
 │   │   ├── SKILL.ko.md
@@ -86,6 +94,7 @@ skill-forge/
 | :--- | :--- | :--- |
 | **`bugfix`** | 通过 Reproduce → Root Cause → Regression Test → Minimal Fix → Verify 的流程修复错误、失败或回归行为。 | **Released (v1.0.0)** |
 | **`architecture`** | 基于证据比较架构方案，并产出 ADR、架构审查、系统视图和渐进式迁移计划。 | **Released (v1.0.0)** |
+| **`deep-code-review`** | 通过独立专家审查、finding 验证、根因去重和证据化 verdict 执行只读代码审查。 | **Released (v1.0.0)** |
 | **`feature-dev`** | 通过 Red → Green → Refactor 的严格 TDD 流程实现新的产品或代码行为。 | **Released (v1.0.0)** |
 | **`refactoring`** | 通过 Baseline → Transform → Same Tests 的保守流程，在保持外部行为不变的前提下重构代码。 | **Released (v1.0.0)** |
 | **`ultra-grill-me`** | 通过苏格拉底式提问（一次只问一个问题）压力测试用户的开发计划、系统设计、商业策略和个人决策，从而在代码编写前消除模糊性。 | **Released (v1.0.0) 🎯** |
@@ -127,13 +136,16 @@ $ skill-forge install feature-dev --lang en --agent codex
 # 6. 安装架构决策与审查工作流 Skill
 $ skill-forge install architecture --lang zh --agent codex
 
-# 7. 安装回归测试驱动的错误修复工作流 Skill
+# 7. 安装深度代码审查工作流 Skill
+$ skill-forge install deep-code-review --lang zh --agent codex
+
+# 8. 安装回归测试驱动的错误修复工作流 Skill
 $ skill-forge install bugfix --lang en --agent codex
 
-# 8. 安装行为保持重构工作流 Skill
+# 9. 安装行为保持重构工作流 Skill
 $ skill-forge install refactoring --lang en --agent codex
 
-# 9. 一键中文部署工作空间内的所有 Skill 到全部支持的本地 Agent 路径
+# 10. 一键中文部署工作空间内的所有 Skill 到全部支持的本地 Agent 路径
 $ skill-forge install all --lang zh
 ```
 

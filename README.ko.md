@@ -45,6 +45,14 @@ skill-forge/
 │   │   ├── README.ko.md
 │   │   ├── README.zh.md
 │   │   └── references/      (아키텍처 방법론, ADR, 리뷰 체크리스트)
+│   ├── deep-code-review/    (증거 기반 다중 관점 코드 리뷰 스킬)
+│   │   ├── SKILL.md
+│   │   ├── SKILL.ko.md
+│   │   ├── SKILL.zh.md
+│   │   ├── README.md
+│   │   ├── README.ko.md
+│   │   ├── README.zh.md
+│   │   └── references/      (lens routing, 리뷰 관점, 검증, 합성 자료)
 │   ├── feature-dev/         (TDD 기능 개발 워크플로 스킬)
 │   │   ├── SKILL.md
 │   │   ├── SKILL.ko.md
@@ -85,6 +93,7 @@ skill-forge/
 | :--- | :--- | :--- |
 | **`bugfix`** | Reproduce → Root Cause → Regression Test → Minimal Fix → Verify 루프로 깨졌거나 회귀된 동작을 수정하게 하는 버그 수정 스킬 | **Released (v1.0.0)** |
 | **`architecture`** | 아키텍처 대안을 증거 기반으로 비교하고 ADR, 아키텍처 리뷰, 시스템 뷰, 점진적 migration 계획을 작성하게 하는 스킬 | **Released (v1.0.0)** |
+| **`deep-code-review`** | 독립 전문 reviewer, finding 검증, root cause 중복 제거, 증거 기반 verdict를 수행하는 읽기 전용 코드 리뷰 오케스트레이터 | **Released (v1.0.0)** |
 | **`feature-dev`** | 새 기능이나 제품 동작을 Red → Green → Refactor 기반 TDD 절차로 구현하게 하는 기능 개발 스킬 | **Released (v1.0.0)** |
 | **`refactoring`** | Baseline → Transform → Same Tests 루프로 외부 동작을 보존하며 코드를 정리하게 하는 리팩토링 스킬 | **Released (v1.0.0)** |
 | **`ultra-grill-me`** | 사용자의 기획, 아키텍처 ADR, 개인 고민 등을 Socratic 역질문으로 털어 빈틈과 리스크를 정교하게 깎아내는 검증 엔진 스킬 | **Released (v1.0.0) 🎯** |
@@ -126,13 +135,16 @@ $ skill-forge install feature-dev --lang en --agent codex
 # 6. 아키텍처 결정 및 리뷰 워크플로 스킬 설치
 $ skill-forge install architecture --lang ko --agent codex
 
-# 7. 회귀 테스트 기반 버그 수정 워크플로 스킬 설치
+# 7. 딥 코드 리뷰 워크플로 스킬 설치
+$ skill-forge install deep-code-review --lang ko --agent codex
+
+# 8. 회귀 테스트 기반 버그 수정 워크플로 스킬 설치
 $ skill-forge install bugfix --lang en --agent codex
 
-# 8. 동작 보존 리팩토링 워크플로 스킬 설치
+# 9. 동작 보존 리팩토링 워크플로 스킬 설치
 $ skill-forge install refactoring --lang en --agent codex
 
-# 9. 전체 스킬을 한국어 버전으로 지원하는 모든 프로젝트 로컬 agent 경로에 한 번에 설치
+# 10. 전체 스킬을 한국어 버전으로 지원하는 모든 프로젝트 로컬 agent 경로에 한 번에 설치
 $ skill-forge install all --lang ko
 ```
 

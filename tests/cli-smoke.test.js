@@ -1,5 +1,6 @@
 const assert = require('assert');
 const { execFileSync } = require('child_process');
+const fs = require('fs');
 const path = require('path');
 
 const repoRoot = path.join(__dirname, '..');
@@ -15,9 +16,17 @@ function run(command, args) {
 const listOutput = run('node', ['bin/cli.js', 'list', '--lang', 'ko']);
 assert.match(listOutput, /ultra-grill-me/);
 assert.match(listOutput, /architecture/);
+assert.match(listOutput, /deep-code-review/);
 assert.match(listOutput, /bugfix/);
 assert.match(listOutput, /feature-dev/);
 assert.match(listOutput, /refactoring/);
+
+const deepCodeReviewSkill = fs.readFileSync(
+  path.join(repoRoot, 'skills', 'deep-code-review', 'SKILL.md'),
+  'utf8',
+);
+assert.match(deepCodeReviewSkill, /\.agents\/reviews\/deep-code-review\/\<review-id\>\.md/);
+assert.match(deepCodeReviewSkill, /only permitted write is the final synthesized report/);
 
 const dryRunOutput = run('node', [
   'bin/cli.js',
@@ -45,6 +54,20 @@ const bugfixDryRunOutput = run('node', [
 assert.match(bugfixDryRunOutput, /\[SUCCESS\] Installed "bugfix"/);
 assert.doesNotMatch(bugfixDryRunOutput, /\.DS_Store/);
 assert.match(bugfixDryRunOutput, /Copy: SKILL.md -> SKILL.md/);
+
+const deepCodeReviewDryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'deep-code-review',
+  '--lang',
+  'en',
+  '--agent',
+  'codex',
+  '--dry-run',
+]);
+assert.match(deepCodeReviewDryRunOutput, /\[SUCCESS\] Installed "deep-code-review"/);
+assert.match(deepCodeReviewDryRunOutput, /Copy: finding-verification\.md -> finding-verification\.md/);
+assert.doesNotMatch(deepCodeReviewDryRunOutput, /examples|evals|scripts/);
 
 const bugfixKoDryRunOutput = run('node', [
   'bin/cli.js',
