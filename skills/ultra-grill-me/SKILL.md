@@ -1,6 +1,6 @@
 ---
 name: ultra-grill-me
-description: Use when the user wants a plan, design, product idea, architecture decision, implementation plan, business strategy, writing direction, research question, learning plan, personal decision, or Agent Skill design stress-tested through Socratic, one-question-at-a-time interrogation with options (including "other recommendations") and session logging. Also trigger on casual pressure-test phrasing like "X 하려고 하는데 파헤쳐줘", "빈틈없이 검증해줘", "질문으로 털어줘", "반대신문하듯 봐줘", or "압박 검증해줘". Do not use for simple factual Q&A, brainstorming lists, text formatting, direct summaries, direct rewrites, or immediate code/plan generation.
+description: Use when the user wants to grill, stress-test, pressure-test, or otherwise validate a plan, design, product idea, architecture decision, implementation plan, business strategy, writing direction, research question, learning plan, personal decision, or Agent Skill design through Socratic, one-question-at-a-time interrogation with options and session logging. Also trigger on casual pre-execution phrasing like "X 하려고 하는데 파헤쳐줘", "빈틈없이 검증해줘", "질문으로 털어줘", "반대신문하듯 봐줘", "압박 검증해줘", or vague validation asks such as "이거 괜찮아?". Do not use for simple factual Q&A, brainstorming lists, text formatting, direct summaries, direct rewrites, or immediate code/plan generation.
 ---
 
 # Ultra Grill Me
@@ -19,6 +19,13 @@ Use this skill when the user asks to:
 - Challenge a technical design or architecture decision through questions
 - Keep asking questions until nothing critical remains unresolved
 - Use casual natural language that still clearly means "grill this before execution" (for example: "~~하려고 하는데 파헤쳐줘", "빈틈없이 검증해줘", "질문으로 검증해줘")
+- Ask vague validation questions about a plan, idea, or decision before execution (for example: "Is this okay?" or "Should I proceed?")
+
+## Trigger Bias
+
+- If the request is about validating something before execution, prefer triggering over answering directly.
+- If the request is ambiguous but still smells like pre-execution validation, ask one categorizing question instead of treating it as a normal Q&A.
+- Stay off only when the user is clearly asking for pure information, brainstorming, rewriting, summarization, or direct execution.
 
 ## When not to use
 
@@ -28,6 +35,7 @@ Do not use this skill when:
 - The user requests immediate execution or code generation
 - The user wants a simple text rewrite or formatting adjustment
 - The user only wants a definition, translation, short summary, or plain rewrite without validation
+- The user has already asked for direct implementation, code generation, or final output instead of validation
 
 ## Workflow
 
@@ -37,6 +45,7 @@ Do not use this skill when:
 3. If it fits, create a session log file under the active installed skill root's `logs/` directory (the folder adjacent to the active `SKILL.md`), following the format in `logs/template.md`. Do not write logs into the authoring repo unless the active installed skill root is the authoring repo. All grill sessions must be logged.
 4. Select the matching domain-specific reference from the [References](#references) section.
 5. If the case is clear, load only that single reference. If ambiguous, ask one clarifying/categorizing question before loading. Do not load all references at once.
+   - When the request is vaguely validation-shaped, keep the bias toward this skill and classify it instead of deferring to a generic answer.
 
 ### Every Turn (Loop)
 6. **Current Understanding**: Summarize the current state of the plan/idea in exactly one sentence. Display this to the user.
@@ -111,6 +120,13 @@ Please select a number, ask for more options, or answer directly.
 ```
 
 If multiple uncertainties remain, ask only the highest-impact one and keep the others in internal state as open questions.
+
+## Gotchas
+
+- Do not collapse into a solution, summary, or recommendation list before the validation loop starts.
+- If the user tries to skip the questions, keep the single-question loop intact and continue pressing on the highest-impact unknown.
+- For broad asks like "look over this," convert them into the most specific blocking decision rather than answering generally.
+- Do not load more than one reference file per session start.
 
 ## Handling Vague Answers
 

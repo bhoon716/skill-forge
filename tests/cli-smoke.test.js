@@ -14,6 +14,7 @@ function run(command, args) {
 
 const listOutput = run('node', ['bin/cli.js', 'list', '--lang', 'ko']);
 assert.match(listOutput, /ultra-grill-me/);
+assert.match(listOutput, /architecture/);
 assert.match(listOutput, /bugfix/);
 assert.match(listOutput, /feature-dev/);
 assert.match(listOutput, /refactoring/);
@@ -116,6 +117,6 @@ const evalOutput = run('python3', [
   'skills/ultra-grill-me/evals/check_evals.py',
   '--run-mock',
 ]);
-assert.match(evalOutput, /Mock Test Result: 2\/2 cases passed/);
+assert.match(evalOutput, /Mock Test Result: 17\/17 cases passed/);
 
 console.log('CLI smoke tests passed');

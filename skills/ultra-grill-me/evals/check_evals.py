@@ -74,6 +74,29 @@ def grade_session(case_id, response_text, expected_trigger):
     print(f"-> OVERALL RESULT: {overall_status}")
     return overall_status == "PASS"
 
+def build_mock_response(expected_trigger):
+    if expected_trigger:
+        return """
+**현재 이해**: 실행 전 검증이 필요한 상태입니다.
+
+**막힌 결정**: 다음 단계로 넘어가기 전에 가장 중요한 불확실성이 아직 하나 남아 있습니다.
+
+**질문**: 이 검증에서 가장 먼저 확정해야 할 단일 항목은 무엇인가요?
+
+**왜 중요한지**: 이 답에 따라 다음 질문의 우선순위와 이후 판단 기준이 달라집니다.
+
+**선택지**:
+1. (추천) 목표와 성공 기준을 먼저 고정하기 — 이후 범위와 tradeoff가 정해짐
+2. 사용자 또는 이해관계자를 먼저 좁히기 — 질문 방향이 구체화됨
+3. 다른 옵션 더 추천받기
+4. 직접 답변
+
+번호를 선택하거나, 다른 옵션을 요청하거나, 직접 답해 주세요.
+"""
+    return """
+이 요청은 단순 정보 설명에 가깝기 때문에, 별도의 Socratic 검증 루프를 시작하지 않습니다.
+"""
+
 if __name__ == "__main__":
     print("=" * 60)
     print("  Ultra Grill Me - Skill Evaluator & Grader  ")
@@ -86,41 +109,15 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--run-mock":
         print("\n[Mock Run] 모의 응답 데이터로 자동화 Grader 테스트를 실행합니다...\n")
         
-        mock_trigger_response = """
-**현재 이해**: 개발자용 할일 관리 앱 아이디어를 검증하고 싶은 상태입니다.
-
-**막힌 결정**: 대상 사용자의 범위가 너무 넓어, 구체적인 킬러 기능과 성공 지표를 정의할 수 없습니다.
-
-**질문**: 이 앱을 사용할 1차 타겟 개발자는 누구인가요?
-
-**왜 중요한지**: 개발자마다 업무 스타일(프리랜서, 대기업 사원, 1인 개발자)이 다르므로 타겟을 좁혀야 합니다.
-
-**선택지**:
-1. (추천) 1인 개발자 또는 인디 해커 — 여러 프로젝트 관리 집중
-2. 5인 이하 소규모 스타트업의 풀스택 개발자
-3. 다른 옵션 더 추천받기
-4. 직접 답변
-
-번호를 선택하거나 직접 답해 주세요.
-"""
-        mock_non_trigger_response = """
-PRD(Product Requirement Document)는 기획자가 작성하는 비즈니스 기능 요구사항 명세서이고,
-Technical Design은 엔지니어가 작성하는 시스템 아키텍처 및 구현 설계서입니다.
-"""
-        
         cases = load_test_cases()
         success_count = 0
-        total_cases = 2
-        
-        # 1. Trigger 케이스 모의 채점
-        t_case = cases[0] # trigger-001-product-idea
-        t_pass = grade_session(t_case["id"], mock_trigger_response, t_case["expected_skill_use"])
-        if t_pass: success_count += 1
-            
-        # 2. Non-trigger 케이스 모의 채점
-        nt_case = cases[6] # non-trigger-001-factual-qa
-        nt_pass = grade_session(nt_case["id"], mock_non_trigger_response, nt_case["expected_skill_use"])
-        if nt_pass: success_count += 1
+        total_cases = len(cases)
+
+        for case in cases:
+            mock_response = build_mock_response(case["expected_skill_use"])
+            passed = grade_session(case["id"], mock_response, case["expected_skill_use"])
+            if passed:
+                success_count += 1
             
         print("\n" + "=" * 60)
         print(f"Mock Test Result: {success_count}/{total_cases} cases passed ({success_count/total_cases*100:.1f}%)")

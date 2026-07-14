@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture"
+  short_description: "Design and review software architectures"
+  default_prompt: "Use $architecture to analyze the system architecture, compare viable alternatives, and produce decision-ready architecture artifacts."

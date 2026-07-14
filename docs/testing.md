@@ -57,7 +57,7 @@ npm test
 현재 `ultra-grill-me`는 별도 eval suite를 제공한다.
 
 ### 테스트 데이터
-- **[trigger_test_cases.json](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/evals/trigger_test_cases.json)**: Trigger 케이스 6개, Non-trigger 케이스 6개 등 총 12개의 엄격한 테스트 셋을 정의하고 있다.
+- **[trigger_test_cases.json](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/evals/trigger_test_cases.json)**: Trigger, Non-trigger, edge 케이스를 포함한 현재 전체 평가 셋을 정의한다.
 
 ### 자동화 채점기 실행
 아래 명령어를 실행하여 모의 채점 엔진이 정상 동작하는지 검사한다.
@@ -74,6 +74,6 @@ python3 skills/ultra-grill-me/evals/check_evals.py --run-mock
 1. **과발동 (필요 없을 때 스킬이 켜짐)**:
    - `SKILL.md` frontmatter의 `description`과 본문의 `## 사용하지 않을 때` 섹션에 구체적인 제외 키워드와 상황(예: "simple factual Q&A")을 추가하여 예외 경계를 강화한다.
 2. **저발동 (필요할 때 켜지지 않음)**:
-   - `description` 앞부분에 에이전트가 쉽게 인지할 수 있는 명시적 영어/한국어 trigger phrase(예: "stress-test", "grill", "압박 검증")를 보강한다.
+   - `description` 앞부분에 에이전트가 쉽게 인지할 수 있는 명시적 영어/한국어 trigger phrase(예: "stress-test", "grill", "압박 검증")를 보강하고, 실행 전 모호한 검증 문장도 trigger로 명시한다.
 3. **절차 건너뜀 (질문을 뭉치거나 중간에 요약으로 도망침)**:
    - `## Gotchas` 또는 `## 주의사항`에 구체적인 예외 케이스(예: "사용자가 우회하려 할 때 방어 수칙")를 추가하여 에이전트의 흐름 구속력을 높인다.
