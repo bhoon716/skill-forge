@@ -1,179 +1,130 @@
-# 🛠️ skill-forge (에이전트 스킬 공방)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/bhoon716/skill-forge/main/docs/assets/skill-forge-hero.png" alt="skill-forge — AI 에이전트 스킬을 만들고 어디서나 배포하세요." width="960">
+</p>
+
+# skill-forge
 
 <p align="center">
-  <img src="https://img.shields.io/badge/node-%3E%3D16.0.0-blue.svg" alt="Node Version">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/badge/format-SKILL.md-orange.svg" alt="Format Compatibility">
-  <img src="https://img.shields.io/badge/agent-Codex%20%7C%20Gemini%20%7C%20Claude-red.svg" alt="Supported Agents">
+  재사용 가능한 AI 에이전트 스킬을 작성하고 검증하고 배포하는 다국어 워크스페이스
 </p>
+
 <p align="center">
-  <a href="./README.md">English</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.zh.md">简体中文</a>
+  <a href="https://www.npmjs.com/package/@bhoon716/skill-forge"><img src="https://img.shields.io/npm/v/%40bhoon716%2Fskill-forge" alt="npm 버전"></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D16-blue" alt="Node.js 16 이상">
+  <img src="https://img.shields.io/badge/format-SKILL.md-orange" alt="SKILL.md 형식">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT 라이선스">
 </p>
+
 <p align="center">
-  📦 <a href="https://www.npmjs.com/package/@bhoon716/skill-forge">NPM Package</a>
+  <a href="./README.md">English</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.zh.md">简体中文</a>
 </p>
----
 
-**정성껏 깎아낸 AI 에이전트 스킬(Agent Skill)들을 한데 모으고 스마트하게 배포하는 작업공간입니다.**
+`skill-forge`는 집중된 작업 절차를 이식 가능한 `SKILL.md` 패키지로 관리하고, 올바른 언어 파일을 Codex, Gemini, Claude Code, Cursor, GitHub Copilot 프로젝트에 설치합니다. 각 스킬은 핵심 지침을 간결하게 유지하면서 reference, example, eval, script, agent metadata를 함께 제공할 수 있습니다.
 
-`skill-forge`는 Codex, Gemini, Claude Code, Cursor 등 `SKILL.md` 포펙을 호환하는 모든 자율형 코딩 에이전트 환경에 스크립트 하나로 즉시 이식 가능한 고품질 스킬 패키지를 제작합니다.
+## 왜 skill-forge인가
 
----
+- **한 소스로 여러 에이전트 지원:** 같은 스킬을 각 에이전트의 프로젝트 로컬 스킬 폴더에 설치합니다.
+- **내장 다국어 지원:** 영어·한국어·중국어 간체 파일을 한곳에서 함께 관리합니다.
+- **증거 기반 워크플로:** 검증 지침, deterministic eval, 재사용 가능한 예시를 스킬과 함께 배포합니다.
+- **검토 가능한 설치:** `--dry-run`으로 실제 복사 전에 모든 파일 매핑을 확인합니다.
+- **단순한 패키지 구조:** 각 스킬은 `SKILL.md`를 중심으로 한 일반 디렉터리입니다.
 
-## 📂 1. 저장소 구조
+## 빠른 시작
 
-```txt
-skill-forge/
-├── README.md
-├── README.ko.md             (본 대문 문서)
-├── package.json             (CLI 패키지 설정)
-├── bin/
-│   └── cli.js               (스킬 설치 및 번역용 CLI 도구)
-├── skills/
-│   ├── bugfix/              (회귀 테스트 기반 버그 수정 워크플로 스킬)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   └── README.zh.md
-│   ├── architecture/        (증거 기반 아키텍처 결정 및 리뷰 스킬)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   ├── README.zh.md
-│   │   └── references/      (아키텍처 방법론, ADR, 리뷰 체크리스트)
-│   ├── deep-code-review/    (증거 기반 다중 관점 코드 리뷰 스킬)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   ├── README.zh.md
-│   │   └── references/      (lens routing, 리뷰 관점, 검증, 합성 자료)
-│   ├── feature-dev/         (TDD 기능 개발 워크플로 스킬)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   └── README.zh.md
-│   ├── refactoring/         (테스트 보호 기반 동작 보존 리팩토링 스킬)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   └── README.zh.md
-│   └── ultra-grill-me/      (Socratic 압박 검증 스킬)
-│       ├── SKILL.md
-│       ├── SKILL.ko.md
-│       ├── SKILL.zh.md
-│       ├── README.md
-│       ├── README.ko.md
-│       ├── README.zh.md
-│       ├── references/      (도메인별 세부 질문 리스트)
-│       ├── examples/        (Trigger 테스트 케이스)
-│       └── evals/           (품질 Grader 채점기)
-├── templates/
-│   └── skill-template/      (새로운 스킬 제작용 템플릿)
-└── docs/
-    ├── authoring-guide.md   (스킬 작성 표준 매뉴얼)
-    ├── naming.md            (명명 규칙)
-    └── testing.md           (테스트 및 검증 가이드)
-```
+설치 없이 `npx`로 바로 실행할 수 있습니다.
 
----
-
-## 🏆 2. 릴리즈 스킬 목록
-
-| 스킬 명칭 | 목적 및 한 줄 설명 | 상태 |
-| :--- | :--- | :--- |
-| **`bugfix`** | Reproduce → Root Cause → Regression Test → Minimal Fix → Verify 루프로 깨졌거나 회귀된 동작을 수정하게 하는 버그 수정 스킬 | **Released (v1.0.0)** |
-| **`architecture`** | 아키텍처 대안을 증거 기반으로 비교하고 ADR, 아키텍처 리뷰, 시스템 뷰, 점진적 migration 계획을 작성하게 하는 스킬 | **Released (v1.0.0)** |
-| **`deep-code-review`** | 독립 전문 reviewer, finding 검증, root cause 중복 제거, 증거 기반 verdict를 수행하는 읽기 전용 코드 리뷰 오케스트레이터 | **Released (v1.0.0)** |
-| **`feature-dev`** | 새 기능이나 제품 동작을 Red → Green → Refactor 기반 TDD 절차로 구현하게 하는 기능 개발 스킬 | **Released (v1.0.0)** |
-| **`refactoring`** | Baseline → Transform → Same Tests 루프로 외부 동작을 보존하며 코드를 정리하게 하는 리팩토링 스킬 | **Released (v1.0.0)** |
-| **`ultra-grill-me`** | 사용자의 기획, 아키텍처 ADR, 개인 고민 등을 Socratic 역질문으로 털어 빈틈과 리스크를 정교하게 깎아내는 검증 엔진 스킬 | **Released (v1.0.0) 🎯** |
-
----
-
-## 🚀 3. 스킬 설치 CLI 사용법 (`skill-forge` 또는 `npx @bhoon716/skill-forge`)
-
-이 워크스페이스의 스킬들을 자신의 로컬 프로젝트나 전역 환경으로 손쉽게 배포할 수 있는 **다국어 지원 지향형 CLI 도구**입니다.
-
-> [!TIP]
-> **글로벌 전역 명령어로 간편하게 실행하기 (`skill-forge`)**:
-> 이 패키지를 시스템 전역에 설치하면 `npx` 입력 없이 단 한 단어 `skill-forge` 명령어로 즉시 대화형 설치 모드를 실행할 수 있습니다.
-> ```bash
-> # 1. 글로벌 설치 (최초 1회)
-> $ npm install -g @bhoon716/skill-forge
-> 
-> # 2. 대화형 셋업 모드 즉시 실행
-> $ skill-forge
-> ```
-
-### 💡 명령어 실물 예시
 ```bash
-# 1. 특정 스킬을 한국어로 지원하는 모든 프로젝트 로컬 agent 경로에 설치 (기본값: global)
-$ skill-forge install ultra-grill-me --lang ko
+# 제공 스킬 목록 확인
+npx @bhoon716/skill-forge list --lang ko
 
-# 2. 특정 스킬을 한국어로 Claude Code 로컬 경로에 설치
-$ skill-forge install ultra-grill-me --lang ko --agent claude
+# Codex 또는 Gemini 프로젝트에 단일 스킬 설치
+npx @bhoon716/skill-forge install bugfix --lang ko --agent codex
 
-# 3. 특정 스킬을 영어로 Cursor 프로젝트 로컬 경로에 설치
-$ skill-forge install ultra-grill-me --lang en --agent cursor
-
-# 4. 지원하는 모든 프로젝트 로컬 agent 경로에 명시적으로 설치
-$ skill-forge install ultra-grill-me --lang ko --agent global
-
-# 5. 기능 개발 TDD 워크플로 스킬 설치
-$ skill-forge install feature-dev --lang en --agent codex
-
-# 6. 아키텍처 결정 및 리뷰 워크플로 스킬 설치
-$ skill-forge install architecture --lang ko --agent codex
-
-# 7. 딥 코드 리뷰 워크플로 스킬 설치
-$ skill-forge install deep-code-review --lang ko --agent codex
-
-# 8. 회귀 테스트 기반 버그 수정 워크플로 스킬 설치
-$ skill-forge install bugfix --lang en --agent codex
-
-# 9. 동작 보존 리팩토링 워크플로 스킬 설치
-$ skill-forge install refactoring --lang en --agent codex
-
-# 10. 전체 스킬을 한국어 버전으로 지원하는 모든 프로젝트 로컬 agent 경로에 한 번에 설치
-$ skill-forge install all --lang ko
+# 모든 스킬을 한국어로 지원 대상 전체에 설치
+npx @bhoon716/skill-forge install all --lang ko
 ```
 
-### ⚙️ 옵션 요약
-- `-l, --lang <en|ko|zh>`: 설치할 다국어 번역본 코드 선택 (기본값: `en`)
-- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: 대상 도구의 설정 위치 지정 (기본값: `global`)
-  - `codex`, `gemini`: `./.agents/skills`
-  - `claude`: `./.claude/skills`
-  - `cursor`: `./.cursor/skills`
-  - `copilot`: `./.copilot/skills`
-  - `global`: 위 프로젝트 로컬 agent 경로 전체에 설치
-- `--dry-run`: 실제 복사를 수행하지 않고 파일 매핑 결과만 가상 시뮬레이션 출력
+CLI를 전역으로 설치할 수도 있습니다.
 
----
+```bash
+npm install -g @bhoon716/skill-forge
+skill-forge
+```
 
-## ✍️ 4. 기여 및 유지보수 규칙
+인자 없이 `skill-forge`를 실행하면 대화형 설치 프로그램이 열립니다.
 
-> [!IMPORTANT]
-> **이 저장소에 기여할 때 지켜야 할 3대 원칙:**
->
-> 1. 🎯 **단일 책임의 법칙 (Single Responsibility)**:
->    새로운 스킬을 설계할 때는 오직 하나의 좁고 반복적인 작업에만 특화되도록 `docs/authoring-guide.md`에 맞춰 깎아냅니다.
-> 2. 🌐 **다국어 확장성 (Localization Suffices)**:
->    스킬 본문과 레퍼런스 문서는 반드시 언어별 접미사 파일(`.ko.md`, `.md` [디폴트 영어], `.zh.md`)을 병행 작성하여 번역 매핑이 깨지지 않도록 유지합니다.
-> 3. 🧪 **회귀 테스트 수행 (Regression Testing)**:
->    수정 시에는 `evals/check_evals.py` 채점기를 돌려 F1 Score 및 Process Adherence가 깨지지 않는지 검증한 뒤 릴리즈합니다.
+## 제공 스킬
 
----
+| 스킬 | 역할 |
+| --- | --- |
+| [`architecture`](./skills/architecture/) | 아키텍처 대안을 비교하고 tradeoff를 기록해 ADR, 리뷰, 시스템 뷰, migration 계획을 만듭니다. |
+| [`bugfix`](./skills/bugfix/) | 실패를 재현하거나 증거를 확보하고 root cause를 찾아 최소 안전 수정 후 위험에 비례해 검증합니다. |
+| [`deep-code-review`](./skills/deep-code-review/) | 독립적인 review lens를 조율하고 candidate finding을 검증하고 root cause 중복을 제거해 확인된 문제만 보고합니다. |
+| [`feature-dev`](./skills/feature-dev/) | 엄격한 Red → Green → Refactor 절차로 새로운 동작을 구현합니다. |
+| [`performance-testing`](./skills/performance-testing/) | 통제된 조건에서 baseline과 candidate 성능을 측정하고 회귀와 tradeoff의 원인을 분석해 증거 기반 로그와 결론을 남깁니다. |
+| [`refactoring`](./skills/refactoring/) | Baseline → Transform → Same Tests 절차로 관찰 가능한 동작을 보존하며 내부 구조를 개선합니다. |
+| [`ultra-grill-me`](./skills/ultra-grill-me/) | 계획·설계·전략·연구 질문·의사결정을 한 번에 하나의 소크라테스식 질문으로 압박 검증합니다. |
 
-## 📄 라이선스
+## 설치 대상
 
-MIT License. 자유롭게 가져다 사용하거나 팀 내부의 전용 AI 스킬 공유 허브로 활용하시기 바랍니다.
+| `--agent` | 설치 위치 |
+| --- | --- |
+| `codex`, `gemini` | `./.agents/skills` |
+| `claude` | `./.claude/skills` |
+| `cursor` | `./.cursor/skills` |
+| `copilot` | `./.copilot/skills` |
+| `global` | 위 위치 전체 |
+
+지원 언어 코드는 `en`, `ko`, `zh`이며 기본값은 영어입니다. `--dry-run`을 사용하면 파일을 바꾸지 않고 source-to-destination 매핑을 확인할 수 있습니다.
+
+```bash
+skill-forge install architecture --lang ko --agent claude --dry-run
+```
+
+## 저장소 구조
+
+```text
+skill-forge/
+├── bin/                     # 설치 CLI
+├── docs/                    # 작성·호환성·명명·테스트 가이드
+│   └── assets/              # 문서 및 브랜딩 자산
+├── skills/                  # 배포되는 다국어 스킬 패키지
+│   └── <skill-name>/
+│       ├── SKILL.md         # 기본 영어본
+│       ├── SKILL.ko.md      # 한국어
+│       ├── SKILL.zh.md      # 중국어 간체
+│       ├── README*.md       # 사용자용 문서
+│       └── references/      # 선택적 참고 자료
+├── templates/               # 새 스킬 시작용 템플릿
+└── tests/                   # CLI smoke test
+```
+
+워크플로에 따라 일부 스킬은 `agents/`, `examples/`, `evals/`, `logs/`, `scripts/`도 포함합니다.
+
+## 스킬 작성 원칙
+
+1. 하나의 좁고 반복 가능한 작업과 trigger 경계를 정의합니다.
+2. frontmatter의 `description`에 라우팅 기준을 작성합니다.
+3. `SKILL.md`에는 모델이 놓치기 쉬운 절차와 판단 규칙만 남깁니다.
+4. 상세 자료는 `references/`, 재사용 검증 사례는 `examples/` 또는 `evals/`로 분리합니다.
+5. installer가 올바르게 매핑하도록 언어별 suffix pair를 유지합니다.
+6. 배포 전에 스킬 검증과 저장소 테스트를 실행합니다.
+
+[작성 가이드](./docs/authoring-guide.md), [명명 규칙](./docs/naming.md), [호환성 안내](./docs/compatibility.md), [테스트 가이드](./docs/testing.md)를 참고하세요.
+
+## 검증
+
+```bash
+# CLI 동작 검증
+npm test
+
+# 전체 영어 설치 매핑 미리보기
+node bin/cli.js install all --lang en --agent codex --dry-run
+
+# Ultra Grill 평가기 실행
+python3 skills/ultra-grill-me/evals/check_evals.py --run-mock
+```
+
+## 라이선스
+
+[MIT](./LICENSE)

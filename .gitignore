@@ -1,14 +1,12 @@
 # OS generated files
 .DS_Store
 
-# Temporary guidelines / reference sheets (Ignore as requested)
-how-to-make-skills.md
-how-to-make-skills-testable.md
-recommended-md-length.md
-
 # Agent local installation directories (build outputs)
 .agents/
 .claude/
 .cursor/
 .copilot/
 node_modules/
+
+# Runtime outputs created by installed skills
+skills/*/logs/session_*.md

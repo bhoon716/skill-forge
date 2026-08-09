@@ -6,7 +6,7 @@
 
 `bugfix` is a coding-agent skill for fixing broken, incorrect, failing, flaky, or regressed behavior with evidence.
 
-The core loop is **Reproduce → Root Cause → Regression Test → Minimal Fix → Verify**.
+The core loop is **Reproduce or Establish Evidence → Root Cause → Minimal Fix → Verify**. Verification is required; a new regression test is added when it provides durable protection at proportionate cost.
 
 ## Use this skill for
 
@@ -27,14 +27,13 @@ The core loop is **Reproduce → Root Cause → Regression Test → Minimal Fix 
 ## Workflow
 
 1. Capture the exact symptom.
-2. Reproduce the failure or identify an existing failing test.
+2. Reproduce the failure or establish a credible evidence trail.
 3. Define expected behavior versus actual behavior.
 4. Localize the root cause before editing.
-5. Add or update a regression test when feasible.
-6. Confirm the regression test fails for the expected reason.
-7. Apply the smallest safe fix.
-8. Re-run the regression test and original failing scenario.
-9. Run related verification and report uncertainty honestly.
+5. Choose the most direct verification method; add a regression test when it is stable, valuable, and proportionate.
+6. Apply the smallest safe fix.
+7. Verify the original failure and relevant surrounding behavior.
+8. Report evidence, limitations, and uncertainty honestly.
 
 ## Install
 
@@ -48,4 +47,4 @@ skill-forge install bugfix --lang zh --agent codex
 
 Add this to a downstream `AGENTS.md` when useful:
 
-> When the user asks to fix broken, failing, flaky, or regressed behavior, use `bugfix`. Reproduce the failure, identify the root cause, add or update a regression test when feasible, make the smallest fix, and verify the original failure is resolved.
+> When the user asks to fix broken, failing, flaky, or regressed behavior, use `bugfix`. Reproduce the failure or establish evidence, identify the root cause, make the smallest fix, and verify the original failure. Add a regression test when it provides durable protection at proportionate cost.

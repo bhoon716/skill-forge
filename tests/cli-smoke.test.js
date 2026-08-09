@@ -19,6 +19,7 @@ assert.match(listOutput, /architecture/);
 assert.match(listOutput, /deep-code-review/);
 assert.match(listOutput, /bugfix/);
 assert.match(listOutput, /feature-dev/);
+assert.match(listOutput, /performance-testing/);
 assert.match(listOutput, /refactoring/);
 
 const deepCodeReviewSkill = fs.readFileSync(
@@ -27,6 +28,15 @@ const deepCodeReviewSkill = fs.readFileSync(
 );
 assert.match(deepCodeReviewSkill, /\.agents\/reviews\/deep-code-review\/\<review-id\>\.md/);
 assert.match(deepCodeReviewSkill, /only permitted write is the final synthesized report/);
+
+const performanceTestingSkill = fs.readFileSync(
+  path.join(repoRoot, 'skills', 'performance-testing', 'SKILL.md'),
+  'utf8',
+);
+assert.match(performanceTestingSkill, /do not immediately discard it, switch implementations, or roll it back/i);
+assert.match(performanceTestingSkill, /performance-log-template\.md/);
+assert.match(performanceTestingSkill, /regression-analysis\.md/);
+assert.match(performanceTestingSkill, /Do not write runtime logs inside the installed skill directory/);
 
 const dryRunOutput = run('node', [
   'bin/cli.js',
@@ -135,6 +145,22 @@ const refactoringKoDryRunOutput = run('node', [
 ]);
 assert.match(refactoringKoDryRunOutput, /Copy: SKILL\.ko\.md -> SKILL\.md/);
 assert.match(refactoringKoDryRunOutput, /Copy: README\.ko\.md -> README\.md/);
+
+const performanceTestingKoDryRunOutput = run('node', [
+  'bin/cli.js',
+  'install',
+  'performance-testing',
+  '--lang',
+  'ko',
+  '--agent',
+  'codex',
+  '--dry-run',
+]);
+assert.match(performanceTestingKoDryRunOutput, /\[SUCCESS\] Installed "performance-testing"/);
+assert.match(performanceTestingKoDryRunOutput, /Copy: SKILL\.ko\.md -> SKILL\.md/);
+assert.match(performanceTestingKoDryRunOutput, /Copy: performance-log-template\.ko\.md -> performance-log-template\.md/);
+assert.match(performanceTestingKoDryRunOutput, /Copy: regression-analysis\.ko\.md -> regression-analysis\.md/);
+assert.doesNotMatch(performanceTestingKoDryRunOutput, /SKILL\.zh\.md|README\.zh\.md/);
 
 const evalOutput = run('python3', [
   'skills/ultra-grill-me/evals/check_evals.py',

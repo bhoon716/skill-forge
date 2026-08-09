@@ -38,16 +38,16 @@ The skill imports one of the 10 domain references based on user intent to delive
 
 | Domain Area | Target Reference File | Key Questioning Principles |
 | :--- | :--- | :--- |
-| **Product / SaaS Idea** | [product-idea-grill.md](file:///skills/ultra-grill-me/references/product-idea-grill.md) | Persona narrowing, pain-point quantification, MVP scope cuts |
-| **Technical Design** | [technical-design-grill.md](file:///skills/ultra-grill-me/references/technical-design-grill.md) | Non-functional requirements (NFRs), concurrency, data rollbacks |
-| **Architecture Decision** | [architecture-decision-grill.md](file:///skills/ultra-grill-me/references/architecture-decision-grill.md) | Tradeoffs, comparing alternatives (must include status quo), reversibility |
-| **Implementation Plan** | [implementation-plan-grill.md](file:///skills/ultra-grill-me/references/implementation-plan-grill.md) | Definition of Done (DoD), path scheduling, milestones, rollback protocols |
-| **Business Strategy** | [business-strategy-grill.md](file:///skills/ultra-grill-me/references/business-strategy-grill.md) | Buyer vs. User split, GTM channel focus, unit pricing packaging |
-| **Writing / Narrative** | [writing-direction-grill.md](file:///skills/ultra-grill-me/references/writing-direction-grill.md) | Reader knowledge level definition, core message, explicit call-to-actions (CTAs) |
-| **Research Hypothesis** | [research-question-grill.md](file:///skills/ultra-grill-me/references/research-question-grill.md) | Control group baseline settings, dependent variables, statistical margins |
-| **Learning Plan** | [learning-plan-grill.md](file:///skills/ultra-grill-me/references/learning-plan-grill.md) | Output verification project targets, weekly time budgets, mentors feedback |
-| **Personal Decision** | [personal-decision-grill.md](file:///skills/ultra-grill-me/references/personal-decision-grill.md) | Hard constraints definition, opportunity cost, mini 1-week experiments |
-| **Agent Skill Design** | [skill-design-grill.md](file:///skills/ultra-grill-me/references/skill-design-grill.md) | Scope bounding, triggers vs. non-trigger scenarios, process validation |
+| **Product / SaaS Idea** | [product-idea-grill.md](references/product-idea-grill.md) | Persona narrowing, pain-point quantification, MVP scope cuts |
+| **Technical Design** | [technical-design-grill.md](references/technical-design-grill.md) | Non-functional requirements (NFRs), concurrency, data rollbacks |
+| **Architecture Decision** | [architecture-decision-grill.md](references/architecture-decision-grill.md) | Tradeoffs, comparing alternatives (must include status quo), reversibility |
+| **Implementation Plan** | [implementation-plan-grill.md](references/implementation-plan-grill.md) | Definition of Done (DoD), path scheduling, milestones, rollback protocols |
+| **Business Strategy** | [business-strategy-grill.md](references/business-strategy-grill.md) | Buyer vs. User split, GTM channel focus, unit pricing packaging |
+| **Writing / Narrative** | [writing-direction-grill.md](references/writing-direction-grill.md) | Reader knowledge level definition, core message, explicit call-to-actions (CTAs) |
+| **Research Hypothesis** | [research-question-grill.md](references/research-question-grill.md) | Control group baseline settings, dependent variables, statistical margins |
+| **Learning Plan** | [learning-plan-grill.md](references/learning-plan-grill.md) | Output verification project targets, weekly time budgets, mentors feedback |
+| **Personal Decision** | [personal-decision-grill.md](references/personal-decision-grill.md) | Hard constraints definition, opportunity cost, mini 1-week experiments |
+| **Agent Skill Design** | [skill-design-grill.md](references/skill-design-grill.md) | Scope bounding, triggers vs. non-trigger scenarios, process validation |
 
 ---
 
@@ -107,6 +107,7 @@ skill-forge install ultra-grill-me --lang en --agent global
 ### Session Logs
 - Every session generates active log outputs under the installed skill root's `logs/` directory (the folder adjacent to the active `SKILL.md`, e.g. `.../ultra-grill-me/logs/session_YYYYMMDD_HHMMSS.md`) recording blocked decisions, provided options, raw answers, interpreted results, assumptions, and decisions to track historical changes.
 - Do not write logs into the authoring repo unless the authoring repo is the active installed skill root.
+- Curated sample outputs live under `examples/session-logs/`; `logs/` contains only the reusable runtime template in the source package.
 
 ### Automated Testing (Evals)
 - Assert questioning structures and process adherence using the python test suite:

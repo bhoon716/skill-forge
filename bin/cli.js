@@ -34,6 +34,7 @@ Examples:
   skill-forge install ultra-grill-me --lang ko
   skill-forge install bugfix --lang en
   skill-forge install feature-dev --lang en
+  skill-forge install performance-testing --lang en
   skill-forge install refactoring --lang en
   skill-forge install all --lang ko
   skill-forge install all --lang zh --agent claude

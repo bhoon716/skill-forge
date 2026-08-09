@@ -1,0 +1,4 @@
+interface:
+  display_name: "Performance Testing"
+  short_description: "Measure, explain, and compare runtime performance"
+  default_prompt: "Use $performance-testing to measure this performance change, investigate its cause, and record a reproducible before-and-after report."

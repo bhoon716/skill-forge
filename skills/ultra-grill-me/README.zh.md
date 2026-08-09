@@ -39,16 +39,16 @@ graph TD
 
 | 验证领域 | 目标参考文件 | 核心盘问原理与重点 |
 | :--- | :--- | :--- |
-| **产品 / SaaS 创意** | [product-idea-grill.md](file:///skills/ultra-grill-me/references/product-idea-grill.md) | ICP 窄化、用户痛点定量化、核心 1 个功能 MVP 边界裁切 |
-| **开发实现设计** | [technical-design-grill.md](file:///skills/ultra-grill-me/references/technical-design-grill.md) | 性能等非功能性需求（NFRs）、并发/一致性、数据回滚机制 |
-| **架构决定 (ADR)** | [architecture-decision-grill.md](file:///skills/ultra-grill-me/references/architecture-decision-grill.md) | 权衡（Tradeoffs）、对比备选（须含现状）、决定可逆性与代价 |
-| **开发计划与里程碑** | [implementation-plan-grill.md](file:///skills/ultra-grill-me/references/implementation-plan-grill.md) | 完成定义（DoD）、任务拆解（<3天）、外部依赖风险、回滚方案 |
-| **商业策略 / GTM** | [business-strategy-grill.md](file:///skills/ultra-grill-me/references/business-strategy-grill.md) | 买方与卖方分离、ICP 首批获客渠道、定价与包装匹配 |
-| **写作叙事 / 定位** | [writing-direction-grill.md](file:///skills/ultra-grill-me/references/writing-direction-grill.md) | 读者知识背景对齐、单一核心传递价值、清晰的 CTA 行动 |
-| **研究问题 / 假说** | [research-question-grill.md](file:///skills/ultra-grill-me/references/research-question-grill.md) | 控制变量独立性、对比基线（Baseline）、统计学显着阈值 |
-| **学习计划 / 路线图** | [learning-plan-grill.md](file:///skills/ultra-grill-me/references/learning-plan-grill.md) | 可自我检验的小型玩具项目指标、每周可用时间极限、反馈源 |
-| **个人决策分析** | [personal-decision-grill.md](file:///skills/ultra-grill-me/references/personal-decision-grill.md) | 个人非妥协条件、机会成本、最坏情况的微型实验体验 |
-| **Agent Skill 设计** | [skill-design-grill.md](file:///skills/ultra-grill-me/references/skill-design-grill.md) | 职责收窄、触发（Trigger）与误触发场景边界、测试 Grader 逻辑 |
+| **产品 / SaaS 创意** | [product-idea-grill.md](references/product-idea-grill.md) | ICP 窄化、用户痛点定量化、核心 1 个功能 MVP 边界裁切 |
+| **开发实现设计** | [technical-design-grill.md](references/technical-design-grill.md) | 性能等非功能性需求（NFRs）、并发/一致性、数据回滚机制 |
+| **架构决定 (ADR)** | [architecture-decision-grill.md](references/architecture-decision-grill.md) | 权衡（Tradeoffs）、对比备选（须含现状）、决定可逆性与代价 |
+| **开发计划与里程碑** | [implementation-plan-grill.md](references/implementation-plan-grill.md) | 完成定义（DoD）、任务拆解（<3天）、外部依赖风险、回滚方案 |
+| **商业策略 / GTM** | [business-strategy-grill.md](references/business-strategy-grill.md) | 买方与卖方分离、ICP 首批获客渠道、定价与包装匹配 |
+| **写作叙事 / 定位** | [writing-direction-grill.md](references/writing-direction-grill.md) | 读者知识背景对齐、单一核心传递价值、清晰的 CTA 行动 |
+| **研究问题 / 假说** | [research-question-grill.md](references/research-question-grill.md) | 控制变量独立性、对比基线（Baseline）、统计学显着阈值 |
+| **学习计划 / 路线图** | [learning-plan-grill.md](references/learning-plan-grill.md) | 可自我检验的小型玩具项目指标、每周可用时间极限、反馈源 |
+| **个人决策分析** | [personal-decision-grill.md](references/personal-decision-grill.md) | 个人非妥协条件、机会成本、最坏情况的微型实验体验 |
+| **Agent Skill 设计** | [skill-design-grill.md](references/skill-design-grill.md) | 职责收窄、触发（Trigger）与误触发场景边界、测试 Grader 逻辑 |
 
 ---
 
@@ -107,6 +107,7 @@ $ skill-forge install ultra-grill-me --lang zh --agent global
 ### 会话日志
 - 本 Skill 的所有盘问历程将自动存储至当前已安装 Skill 根目录下的 `logs/` 目录（与生效的 `SKILL.md` 同级，例如 `.../ultra-grill-me/logs/session_YYYYMMDD_HHMMSS.md`），记录卡点决定、提供的选项、原始回答、解释结果和已确定的假设，以便跟踪进度。
 - 不要把日志写进作者仓库，除非作者仓库本身就是当前已安装 Skill 根目录。
+- 精选的运行示例放在 `examples/session-logs/`；源 package 的 `logs/` 只保留可复用的 runtime template。
 
 ### 自动化评测 (Evals)
 - 我们可以通过运行测试评测 Grader 来确保提问格式没有退化：

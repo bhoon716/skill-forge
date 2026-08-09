@@ -33,6 +33,7 @@
 ```bash
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/bugfix
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/feature-dev
+python3 /path/to/skill-creator/scripts/quick_validate.py skills/performance-testing
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/refactoring
 ```
 
@@ -44,6 +45,7 @@ node bin/cli.js install bugfix --lang en --agent codex --dry-run
 node bin/cli.js install bugfix --lang ko --agent codex --dry-run
 node bin/cli.js install feature-dev --lang en --agent codex --dry-run
 node bin/cli.js install feature-dev --lang zh --agent codex --dry-run
+node bin/cli.js install performance-testing --lang ko --agent codex --dry-run
 node bin/cli.js install refactoring --lang en --agent codex --dry-run
 node bin/cli.js install refactoring --lang ko --agent codex --dry-run
 node bin/cli.js install bugfix --lang ko --dry-run
@@ -57,7 +59,7 @@ npm test
 현재 `ultra-grill-me`는 별도 eval suite를 제공한다.
 
 ### 테스트 데이터
-- **[trigger_test_cases.json](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/evals/trigger_test_cases.json)**: Trigger, Non-trigger, edge 케이스를 포함한 현재 전체 평가 셋을 정의한다.
+- **[trigger_test_cases.json](../skills/ultra-grill-me/evals/trigger_test_cases.json)**: Trigger, Non-trigger, edge 케이스를 포함한 현재 전체 평가 셋을 정의한다.
 
 ### 자동화 채점기 실행
 아래 명령어를 실행하여 모의 채점 엔진이 정상 동작하는지 검사한다.

@@ -132,25 +132,25 @@ description: 사용자가 계획, 제품 아이디어, 기술 설계, 아키텍�
 이 스킬은 사용자의 요청 도메인에 따라 특화된 10개의 reference 마크다운 문서를 읽어 질문의 전문성을 높인다. 사용자의 요청 성격에 맞추어 다음 reference 파일 중 **정확히 필요한 하나만** 로드하여 참고한다.
 
 - **제품/SaaS 아이디어, 기능 기획, 사용자 페르소나, MVP 범위 검증 시**:
-  - [product-idea-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/product-idea-grill.md) 로드
+  - [product-idea-grill.md](references/product-idea-grill.md) 로드
 - **구현 방식, API 명세, 데이터 모델 설계, 기술적 tradeoff 검토 시**:
-  - [technical-design-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/technical-design-grill.md) 로드
+  - [technical-design-grill.md](references/technical-design-grill.md) 로드
 - **플랫폼/인프라 선택, 모놀리스 vs MSA, 장기 아키텍처 방향성 결정 시**:
-  - [architecture-decision-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/architecture-decision-grill.md) 로드
+  - [architecture-decision-grill.md](references/architecture-decision-grill.md) 로드
 - **실행 순서, 마일스톤 분해, 개발 의존성, 딜리버리 일정 리스크 검토 시**:
-  - [implementation-plan-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/implementation-plan-grill.md) 로드
+  - [implementation-plan-grill.md](references/implementation-plan-grill.md) 로드
 - **ICP 정의, GTM 전략, 가격 구조, 수익화 모델, 유통 경로 검증 시**:
-  - [business-strategy-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/business-strategy-grill.md) 로드
+  - [business-strategy-grill.md](references/business-strategy-grill.md) 로드
 - **글의 내러티브, 포지셔닝 메시지, 발표 자료, 콘텐츠 논조 검토 시**:
-  - [writing-direction-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/writing-direction-grill.md) 로드
+  - [writing-direction-grill.md](references/writing-direction-grill.md) 로드
 - **연구 가설 정의, 변수 제어, 분석 계획, 데이터 검증 설계 시**:
-  - [research-question-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/research-question-grill.md) 로드
+  - [research-question-grill.md](references/research-question-grill.md) 로드
 - **학습 로드맵, 공부 계획, 신규 기술 스택 습득 및 프로젝트 설계 시**:
-  - [learning-plan-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/learning-plan-grill.md) 로드
+  - [learning-plan-grill.md](references/learning-plan-grill.md) 로드
 - **이직, 커리어 진로, 고가 제품 구매 등 개인의 복잡한 의사결정 검토 시**:
-  - [personal-decision-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/personal-decision-grill.md) 로드
+  - [personal-decision-grill.md](references/personal-decision-grill.md) 로드
 - **Agent Skill 설계, trigger/non-trigger 조건, 워크플로, eval 설계 검토 시**:
-  - [skill-design-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/skill-design-grill.md) 로드
+  - [skill-design-grill.md](references/skill-design-grill.md) 로드
 
 의도나 도메인이 불분명한 경우, reference를 읽기 전에 어떤 도메인의 질문인지 확인하는 질문을 하나만 먼저 수행한다.
 

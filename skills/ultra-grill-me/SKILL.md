@@ -70,25 +70,25 @@ Do not use this skill when:
 This skill dynamically loads one of the 10 domain-specific reference files to enhance questioning quality. Load **only the single matching reference file**.
 
 - **Product/SaaS Idea, MVP Scope, Target User validation**:
-  - Load [product-idea-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/product-idea-grill.md)
+  - Load [product-idea-grill.md](references/product-idea-grill.md)
 - **Implementation Design, API Specs, Data Model, Technical Tradeoffs**:
-  - Load [technical-design-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/technical-design-grill.md)
+  - Load [technical-design-grill.md](references/technical-design-grill.md)
 - **Architecture Choices, Platforms, Infra, Long-term Tech Direction**:
-  - Load [architecture-decision-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/architecture-decision-grill.md)
+  - Load [architecture-decision-grill.md](references/architecture-decision-grill.md)
 - **Execution Order, Milestones, Dependencies, Delivery Risks**:
-  - Load [implementation-plan-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/implementation-plan-grill.md)
+  - Load [implementation-plan-grill.md](references/implementation-plan-grill.md)
 - **ICP definition, GTM strategy, Pricing model, Distribution channels**:
-  - Load [business-strategy-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/business-strategy-grill.md)
+  - Load [business-strategy-grill.md](references/business-strategy-grill.md)
 - **Writing Narrative, Positioning, Presentation flow, Content tone**:
-  - Load [writing-direction-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/writing-direction-grill.md)
+  - Load [writing-direction-grill.md](references/writing-direction-grill.md)
 - **Research Question, Variable control, Analysis design, Hypothesis validation**:
-  - Load [research-question-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/research-question-grill.md)
+  - Load [research-question-grill.md](references/research-question-grill.md)
 - **Learning Roadmap, Study plan, Tech stack acquisition & project design**:
-  - Load [learning-plan-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/learning-plan-grill.md)
+  - Load [learning-plan-grill.md](references/learning-plan-grill.md)
 - **Career choices, Purchases, Complex personal decision making**:
-  - Load [personal-decision-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/personal-decision-grill.md)
+  - Load [personal-decision-grill.md](references/personal-decision-grill.md)
 - **Agent Skill Design, triggers, workflow, evals configuration**:
-  - Load [skill-design-grill.md](file:///Users/bhoon/Project/skill-forge/skills/ultra-grill-me/references/skill-design-grill.md)
+  - Load [skill-design-grill.md](references/skill-design-grill.md)
 
 ---
 

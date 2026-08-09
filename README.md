@@ -1,179 +1,130 @@
-# 🛠️ skill-forge (Agent Skill Workspace)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/bhoon716/skill-forge/main/docs/assets/skill-forge-hero.png" alt="skill-forge — Forge AI Agent Skills. Deploy Everywhere." width="960">
+</p>
+
+# skill-forge
 
 <p align="center">
-  <img src="https://img.shields.io/badge/node-%3E%3D16.0.0-blue.svg" alt="Node Version">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/badge/format-SKILL.md-orange.svg" alt="Format Compatibility">
-  <img src="https://img.shields.io/badge/agent-Codex%20%7C%20Gemini%20%7C%20Claude-red.svg" alt="Supported Agents">
+  A multilingual workspace for authoring, validating, and distributing reusable AI agent skills.
 </p>
+
 <p align="center">
-  <a href="./README.md">English</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.zh.md">简体中文</a>
+  <a href="https://www.npmjs.com/package/@bhoon716/skill-forge"><img src="https://img.shields.io/npm/v/%40bhoon716%2Fskill-forge" alt="npm version"></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D16-blue" alt="Node.js 16 or newer">
+  <img src="https://img.shields.io/badge/format-SKILL.md-orange" alt="SKILL.md format">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
 </p>
+
 <p align="center">
-  📦 <a href="https://www.npmjs.com/package/@bhoon716/skill-forge">NPM Package</a>
+  <a href="./README.md">English</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.zh.md">简体中文</a>
 </p>
----
 
-**A dedicated, professional workspace to craft, test, and distribute sharp, reusable AI Agent Skills.**
+`skill-forge` packages focused workflows as portable `SKILL.md` bundles and installs the correct localized files into Codex, Gemini, Claude Code, Cursor, and GitHub Copilot projects. Each skill can include references, examples, evals, scripts, and agent metadata while keeping its core instructions focused.
 
-`skill-forge` provides high-quality, structured skill packages compatible with Codex, Gemini, Claude Code, Cursor, and any agent supporting the `SKILL.md` format.
+## Why skill-forge
 
----
+- **One source, multiple agents:** install the same skill into each agent's project-local skill directory.
+- **Built-in localization:** maintain English, Korean, and Simplified Chinese variants alongside one another.
+- **Evidence-backed workflows:** ship validation guidance, deterministic evals, and reusable examples with the skill.
+- **Reviewable distribution:** preview every installation with `--dry-run` before copying files.
+- **Simple package model:** a skill remains an ordinary directory centered on `SKILL.md`.
 
-## 📂 1. Directory Structure
+## Quick start
 
-```txt
-skill-forge/
-├── README.md                (This dashboard guide)
-├── README.ko.md             (Korean dashboard guide)
-├── package.json             (CLI package configuration)
-├── bin/
-│   └── cli.js               (Built-in skill localization & installer CLI)
-├── skills/
-│   ├── bugfix/              (Regression-test-driven bug fixing workflow skill)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   └── README.zh.md
-│   ├── architecture/        (Evidence-based architecture decision and review skill)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   ├── README.zh.md
-│   │   └── references/      (Architecture methods, ADR, and review checklists)
-│   ├── deep-code-review/    (Evidence-backed multi-perspective code review skill)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   ├── README.zh.md
-│   │   └── references/      (Lens routing, review lenses, verification, and synthesis)
-│   ├── feature-dev/         (TDD feature development workflow skill)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   └── README.zh.md
-│   ├── refactoring/         (Test-protected behavior-preserving refactoring skill)
-│   │   ├── SKILL.md
-│   │   ├── SKILL.ko.md
-│   │   ├── SKILL.zh.md
-│   │   ├── README.md
-│   │   ├── README.ko.md
-│   │   └── README.zh.md
-│   └── ultra-grill-me/      (Socratic plan verification skill)
-│       ├── SKILL.md
-│       ├── SKILL.ko.md
-│       ├── SKILL.zh.md
-│       ├── README.md
-│       ├── README.ko.md
-│       ├── README.zh.md
-│       ├── references/      (Domain taxonomy markdown sheets)
-│       ├── examples/        (Trigger evaluation suites)
-│       └── evals/           (Deterministic process graders)
-├── templates/
-│   └── skill-template/      (Boilerplate templates to build new skills)
-└── docs/
-    ├── authoring-guide.md   (Standard authoring manual)
-    ├── naming.md            (Naming conventions)
-    └── testing.md           (Verification & evals guide)
-```
+Run directly with `npx`:
 
----
-
-## 🏆 2. Released Skills
-
-| Skill Name | Purpose & Pitch | Status |
-| :--- | :--- | :--- |
-| **`bugfix`** | A regression-test-driven workflow skill for fixing broken or regressed behavior through Reproduce → Root Cause → Regression Test → Minimal Fix → Verify. | **Released (v1.0.0)** |
-| **`architecture`** | An evidence-based workflow for comparing architecture alternatives and producing ADRs, architecture reviews, system views, and incremental migration plans. | **Released (v1.0.0)** |
-| **`deep-code-review`** | A read-only orchestrator for independent specialist reviews, finding verification, root-cause deduplication, and evidence-backed code-review verdicts. | **Released (v1.0.0)** |
-| **`feature-dev`** | A strict TDD workflow skill for adding new product or code behavior through Red → Green → Refactor. | **Released (v1.0.0)** |
-| **`refactoring`** | A conservative workflow skill for behavior-preserving refactors through Baseline → Transform → Same Tests. | **Released (v1.0.0)** |
-| **`ultra-grill-me`** | A Socratic questioning agent engine that challenges your plans, system designs, GTM strategies, and personal choices to remove ambiguity before coding. | **Released (v1.0.0) 🎯** |
-
----
-
-## 🚀 3. Skill Installer CLI Usage (`skill-forge` or `npx @bhoon716/skill-forge`)
-
-A built-in installer tool that automatically maps localized skill source files and deploys them to target agent configuration directories.
-
-> [!TIP]
-> **Run with global command (`skill-forge`)**:
-> You can install this tool globally to run the interactive mode using the simple `skill-forge` command.
-> ```bash
-> # 1. Install globally (Once)
-> $ npm install -g @bhoon716/skill-forge
-> 
-> # 2. Run interactive setup mode instantly
-> $ skill-forge
-> ```
-
-### 💡 CLI Usage Examples
 ```bash
-# 1. Install Korean version to all supported local agent directories (Default: global)
-$ skill-forge install ultra-grill-me --lang ko
+# List available skills
+npx @bhoon716/skill-forge list --lang en
 
-# 2. Install Korean version locally to Claude Code directory
-$ skill-forge install ultra-grill-me --lang ko --agent claude
+# Install one skill for Codex or Gemini
+npx @bhoon716/skill-forge install bugfix --lang en --agent codex
 
-# 3. Install English version locally to Cursor directory
-$ skill-forge install ultra-grill-me --lang en --agent cursor
-
-# 4. Install to all supported local agent directories explicitly
-$ skill-forge install ultra-grill-me --lang en --agent global
-
-# 5. Install the feature development TDD workflow
-$ skill-forge install feature-dev --lang en --agent codex
-
-# 6. Install the architecture decision and review workflow
-$ skill-forge install architecture --lang en --agent codex
-
-# 7. Install the deep code review workflow
-$ skill-forge install deep-code-review --lang en --agent codex
-
-# 8. Install the regression-test-driven bug fixing workflow
-$ skill-forge install bugfix --lang en --agent codex
-
-# 9. Install the behavior-preserving refactoring workflow
-$ skill-forge install refactoring --lang en --agent codex
-
-# 10. Install all skills to all supported local agent directories at once in Korean
-$ skill-forge install all --lang ko
+# Install every skill in Korean to all supported local agent directories
+npx @bhoon716/skill-forge install all --lang ko
 ```
 
-### ⚙️ Options List
-- `-l, --lang <en|ko|zh>`: Set target language translation (Default: `en`)
-- `-a, --agent <codex|gemini|claude|cursor|copilot|global>`: Map destination tool path (Default: `global`)
-  - `codex`, `gemini`: `./.agents/skills`
-  - `claude`: `./.claude/skills`
-  - `cursor`: `./.cursor/skills`
-  - `copilot`: `./.copilot/skills`
-  - `global`: installs to all supported local agent directories above
-- `--dry-run`: Simulate mappings and file copy plans without modification
+Or install the CLI globally:
 
----
+```bash
+npm install -g @bhoon716/skill-forge
+skill-forge
+```
 
-## ✍️ 4. Contributing Rules
+Running `skill-forge` without arguments opens the interactive installer.
 
-> [!IMPORTANT]
-> **Keep these three core principles when contributing to this repository:**
->
-> 1. 🎯 **Single Responsibility Principle**:
->    Each skill must address exactly one repeatable bottleneck described in `docs/authoring-guide.md`.
-> 2. 🌐 **Translation Suffixes**:
->    Always keep suffix pairs (e.g., `SKILL.ko.md` and `SKILL.md`) intact to support the installer parser.
-> 3. 🧪 **Regression Verification**:
->    Run `evals/check_evals.py` to assert F1 precision and process adherence metrics before merging changes.
+## Included skills
 
----
+| Skill | What it does |
+| --- | --- |
+| [`architecture`](./skills/architecture/) | Compares architecture alternatives, records tradeoffs, and produces ADRs, reviews, system views, and migration plans. |
+| [`bugfix`](./skills/bugfix/) | Reproduces or establishes evidence for broken behavior, identifies the root cause, applies the smallest safe fix, and chooses proportionate verification. |
+| [`deep-code-review`](./skills/deep-code-review/) | Coordinates independent review lenses, verifies candidate findings, removes root-cause duplicates, and reports confirmed issues. |
+| [`feature-dev`](./skills/feature-dev/) | Implements new behavior through a strict Red → Green → Refactor workflow. |
+| [`performance-testing`](./skills/performance-testing/) | Measures baseline and candidate performance under controlled conditions, investigates regressions and tradeoffs, and records evidence-backed conclusions. |
+| [`refactoring`](./skills/refactoring/) | Improves internal structure through Baseline → Transform → Same Tests while preserving observable behavior. |
+| [`ultra-grill-me`](./skills/ultra-grill-me/) | Pressure-tests plans, designs, strategies, research questions, and decisions through one-question-at-a-time Socratic interrogation. |
 
-## 📄 License
+## Installation targets
 
-MIT License. Feel free to adopt this workspace schema for your team's custom AI skills hub.
+| `--agent` | Destination |
+| --- | --- |
+| `codex`, `gemini` | `./.agents/skills` |
+| `claude` | `./.claude/skills` |
+| `cursor` | `./.cursor/skills` |
+| `copilot` | `./.copilot/skills` |
+| `global` | All destinations above |
+
+Supported language codes are `en`, `ko`, and `zh`. English is the default. Use `--dry-run` to inspect source-to-destination mappings without changing files.
+
+```bash
+skill-forge install architecture --lang zh --agent claude --dry-run
+```
+
+## Repository layout
+
+```text
+skill-forge/
+├── bin/                     # Installer CLI
+├── docs/                    # Authoring, compatibility, naming, and testing guides
+│   └── assets/              # Documentation and branding assets
+├── skills/                  # Published multilingual skill packages
+│   └── <skill-name>/
+│       ├── SKILL.md         # English default
+│       ├── SKILL.ko.md      # Korean
+│       ├── SKILL.zh.md      # Simplified Chinese
+│       ├── README*.md       # Human-facing documentation
+│       └── references/      # Optional supporting material
+├── templates/               # Starting points for new skills
+└── tests/                   # CLI smoke tests
+```
+
+Some skills also include `agents/`, `examples/`, `evals/`, `logs/`, or `scripts/` when the workflow requires them.
+
+## Authoring a skill
+
+1. Define one narrow, repeatable job and its trigger boundary.
+2. Put routing criteria in the frontmatter `description`.
+3. Keep `SKILL.md` focused on non-obvious procedure and decision rules.
+4. Move detailed material into `references/` and reusable validation cases into `examples/` or `evals/`.
+5. Keep localized suffix pairs intact so the installer can map them correctly.
+6. Validate the skill and run the repository tests before publishing.
+
+See the [authoring guide](./docs/authoring-guide.md), [naming rules](./docs/naming.md), [compatibility guide](./docs/compatibility.md), and [testing guide](./docs/testing.md).
+
+## Validation
+
+```bash
+# Verify CLI behavior
+npm test
+
+# Preview a complete localized installation
+node bin/cli.js install all --lang en --agent codex --dry-run
+
+# Run the bundled Ultra Grill evaluator
+python3 skills/ultra-grill-me/evals/check_evals.py --run-mock
+```
+
+## License
+
+[MIT](./LICENSE)
