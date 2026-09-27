@@ -28,12 +28,13 @@ The core loop is **Red → Green → Refactor**.
 
 1. Convert the request into testable acceptance criteria.
 2. Find existing conventions, tests, and helper utilities.
-3. Write or update tests first.
-4. Run the targeted test and confirm the expected red failure.
-5. Implement the smallest production change.
-6. Re-run the same test and confirm green.
-7. Refactor only after green.
-8. Run broader verification and report what was actually validated.
+3. For cross-cutting work, trace the closest existing flow and compare materially different approaches.
+4. Write or update tests first.
+5. Run the targeted test and confirm the expected red failure.
+6. Implement the smallest production change.
+7. Re-run the same test and confirm green.
+8. Refactor only after green.
+9. Review the diff for unnecessary concepts or duplicate paths, then report what was actually validated.
 
 ## Install
 

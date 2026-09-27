@@ -1,6 +1,6 @@
 ---
 name: refactoring
-description: 当用户要求在保持外部可观察行为不变的前提下进行 refactor、cleanup、simplify、extract、rename、去重、提高可读性、拆分文件、改善 separation of concerns 或提高 testability 时使用。本 Skill 通过 Baseline → Transform → Same Tests 引导保守、测试保护的重构：先定义必须保持不变的行为边界，编辑前运行 baseline tests，一次只做一个小而安全的转换，重新运行同一批测试；若无法验证行为保持，则停止、回滚或缩小范围。不要用于功能开发、bug 修复、故意行为变更、推测性重写、架构重设计、依赖升级或大范围 cleanup。
+description: 当用户要求在保持外部可观察行为不变的前提下进行 refactor、cleanup、simplify、extract、rename、去重、提高可读性、拆分文件、改善 separation of concerns 或提高 testability 时使用。本 Skill 通过 Baseline → Transform → Same Tests 引导保守、测试保护的重构：先定义必须保持不变的行为边界，编辑前运行 baseline tests，一次只做一个小而安全的转换，重新运行同一批测试；若无法验证行为保持，则停止、回滚或缩小范围。不要用于功能开发、bug 修复、故意行为变更、推测性重写、架构重设计、依赖升级、大范围 cleanup，或审计整个代码库的理解风险；后者使用 `cognitive-debt`。
 ---
 
 # refactoring
@@ -45,6 +45,7 @@ description: 当用户要求在保持外部可观察行为不变的前提下进�
 - 修复坏掉的行为。使用 `bugfix`。
 - 仅调查。
 - 仅依赖升级。
+- 审计代码库或子系统以发现并排序理解风险。使用 `cognitive-debt`。
 - 有意架构改变。
 - 有意产品行为改变。
 - 从零重写。
@@ -92,6 +93,10 @@ description: 当用户要求在保持外部可观察行为不变的前提下进�
 - 规范化现有模式
 
 编辑前用一两句话说明目标。类似“让它更好”这种模糊目标不足以支撑大范围变更。
+
+把简化建议视为需要验证的假设。仅凭文件长度、AI 编写与否或复杂度指标，不能证明代码需要修改。合并看似相似的行为前先追踪它们；它们可能保护不同的领域规则或 contract。
+
+作为判断辅助，依次考虑能否安全删除行为、与现有实现合并，或是否需要新增内容；这只是调查顺序，并不意味着自动偏好删除。只有在不掩盖重要不变量或边界、且能减少已证实的复杂性来源时才添加 abstraction。
 
 ### 2. 行为边界
 

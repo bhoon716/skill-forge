@@ -59,6 +59,7 @@ skill-forge
 | --- | --- |
 | [`architecture`](./skills/architecture/) | 比较架构方案，记录 tradeoff，并产出 ADR、架构审查、系统视图和 migration 计划。 |
 | [`bugfix`](./skills/bugfix/) | 复现失败或建立证据，定位 root cause，应用最小安全修复，并按风险选择相称的验证。 |
+| [`cognitive-debt`](./skills/cognitive-debt/) | 审查重复规则、隐藏耦合、意图不清和不必要的间接调用等代码库理解风险，并根据证据排序后续措施。 |
 | [`deep-code-review`](./skills/deep-code-review/) | 协调独立 review lens，验证 candidate finding，按 root cause 去重，并只报告已确认的问题。 |
 | [`feature-dev`](./skills/feature-dev/) | 通过严格的 Red → Green → Refactor 流程实现新行为。 |
 | [`performance-testing`](./skills/performance-testing/) | 在受控条件下测量基线与候选性能，分析回归和权衡的原因，并记录有证据的结论。 |

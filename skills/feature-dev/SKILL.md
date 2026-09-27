@@ -110,6 +110,29 @@ Inspect:
 
 Prefer existing project conventions over inventing new patterns.
 
+## Keep the change understandable
+
+Before implementation, find the existing owner and canonical path for the behavior. Reuse its vocabulary, tests, and extension points where they fit. Do not duplicate an existing rule or source of truth.
+
+Treat every new concept—such as an abstraction, dependency, service, configuration source, or infrastructure component—as something future maintainers must understand. Add it only when the requested behavior or concrete repository evidence justifies the extra concept. Do not unify distinct domain concepts merely because their code looks similar.
+
+After the targeted tests pass, inspect the diff for duplicate paths, unnecessary scaffolding, or obsolete code introduced by the feature. Passing tests establish behavior coverage; they do not by themselves explain why a new boundary or dependency is needed. Record any material assumption or tradeoff in the final report.
+
+## Design checkpoint for cross-cutting features
+
+Use this checkpoint when a feature crosses multiple components, changes an ownership boundary, or introduces a service, dependency, state store, or configuration source. For a small local feature with an established pattern, do not manufacture a design phase.
+
+Before implementation:
+
+- Trace the closest existing behavior through its entry point, owners, data flow, and tests.
+- Summarize the relevant files and constraints, separating confirmed facts from assumptions.
+- When materially different approaches are viable, compare the smallest fit that reuses the existing system with one alternative. Explain complexity and migration costs; do not produce options for their own sake.
+- If the tradeoff is primarily an architecture decision or requires migration across boundaries, use `architecture` to examine it rather than compressing it into the feature plan.
+- Ask a focused question only if an unresolved user-owned decision materially affects product behavior, public contracts, security, privacy, data loss, billing, or permissions. Otherwise state a low-risk assumption and continue.
+- For multi-step work, identify the affected files and a sequence of independently verifiable slices. A separate plan artifact is optional unless requested.
+
+Do not add a separate approval gate to a fully specified, low-risk task. Involve the user when their decision changes the design, not between routine implementation stages.
+
 ## Workflow
 
 ### 1. Feature framing

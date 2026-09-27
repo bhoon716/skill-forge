@@ -1,6 +1,6 @@
 ---
 name: refactoring
-description: Use when the user asks to refactor, clean up, simplify, extract, rename, remove duplication, improve readability, split files, improve separation of concerns, or make code easier to test while preserving externally observable behavior. This skill guides conservative, test-protected refactoring through Baseline → Transform → Same Tests by defining the behavior boundary, running baseline tests before editing, applying one small safe transformation at a time, re-running the same tests, and stopping if behavior preservation cannot be verified. Do not use for feature development, bug fixing, intentional behavior changes, speculative rewrites, architectural redesigns, dependency upgrades, or broad cleanup.
+description: Use when the user asks to refactor, clean up, simplify, extract, rename, remove duplication, improve readability, split files, improve separation of concerns, or make code easier to test while preserving externally observable behavior. This skill guides conservative, test-protected refactoring through Baseline → Transform → Same Tests by defining the behavior boundary, running baseline tests before editing, applying one small safe transformation at a time, re-running the same tests, and stopping if behavior preservation cannot be verified. Do not use for feature development, bug fixing, intentional behavior changes, speculative rewrites, architectural redesigns, dependency upgrades, or broad cleanup or repository-wide audits for comprehension risks; use `cognitive-debt` for the latter.
 ---
 
 # refactoring
@@ -46,6 +46,7 @@ Do not use this skill when the request is primarily:
 - Investigating an issue only.
 - Updating dependencies only.
 - Changing architecture intentionally.
+- Auditing a codebase or subsystem to find and prioritize comprehension risks. Use `cognitive-debt`.
 - Changing product behavior intentionally.
 - Rewriting from scratch.
 
@@ -98,6 +99,10 @@ Possible objectives:
 - Normalize existing patterns.
 
 State the objective in one or two sentences before editing. Vague objectives like "make it better" are not sufficient for broad changes.
+
+Treat a proposed simplification as a hypothesis to verify. File length, AI authorship, or a complexity metric alone is not evidence that code should change. Trace similar-looking behavior before consolidating it; it may protect different domain rules or contracts.
+
+As a decision aid, consider whether behavior can be safely removed, consolidated with an existing implementation, or needs something new—in that order of inquiry, not as an automatic preference for deletion. Add an abstraction only when it reduces a demonstrated source of complexity without obscuring important invariants or boundaries.
 
 ### 2. Behavior boundary
 

@@ -59,6 +59,7 @@ skill-forge
 | --- | --- |
 | [`architecture`](./skills/architecture/) | 아키텍처 대안을 비교하고 tradeoff를 기록해 ADR, 리뷰, 시스템 뷰, migration 계획을 만듭니다. |
 | [`bugfix`](./skills/bugfix/) | 실패를 재현하거나 증거를 확보하고 root cause를 찾아 최소 안전 수정 후 위험에 비례해 검증합니다. |
+| [`cognitive-debt`](./skills/cognitive-debt/) | 중복 규칙, 숨은 결합, 불명확한 의도, 불필요한 간접 호출 같은 저장소 전반의 이해 위험을 조사하고 근거에 따라 다음 조치의 우선순위를 정합니다. |
 | [`deep-code-review`](./skills/deep-code-review/) | 독립적인 review lens를 조율하고 candidate finding을 검증하고 root cause 중복을 제거해 확인된 문제만 보고합니다. |
 | [`feature-dev`](./skills/feature-dev/) | 엄격한 Red → Green → Refactor 절차로 새로운 동작을 구현합니다. |
 | [`performance-testing`](./skills/performance-testing/) | 통제된 조건에서 baseline과 candidate 성능을 측정하고 회귀와 tradeoff의 원인을 분석해 증거 기반 로그와 결론을 남깁니다. |

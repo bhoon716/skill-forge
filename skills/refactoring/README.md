@@ -8,6 +8,8 @@
 
 The core loop is **Baseline → Transform → Same Tests**.
 
+Treat simplification as a hypothesis: file length, AI authorship, or a complexity metric alone does not justify a change. Trace similar behavior before consolidating it, then consider safe removal, reuse, or a justified addition.
+
 ## Use this skill for
 
 - Simplifying code without behavior changes

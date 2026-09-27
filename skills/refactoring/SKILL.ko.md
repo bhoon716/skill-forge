@@ -1,6 +1,6 @@
 ---
 name: refactoring
-description: 사용자가 외부에서 관찰 가능한 동작을 보존하면서 refactor, cleanup, simplify, extract, rename, duplication 제거, readability 개선, file 분리, separation of concerns 개선, testability 개선을 요청할 때 사용한다. 이 스킬은 Baseline → Transform → Same Tests 루프로 보수적이고 테스트 보호된 리팩토링을 수행하게 한다. 먼저 보존해야 할 동작 경계를 정의하고, 편집 전 baseline test 를 실행하고, 한 번에 하나의 작은 안전한 변환만 적용하고, 같은 테스트를 다시 실행하며, 동작 보존을 검증할 수 없으면 중단한다. 기능 개발, 버그 수정, 의도적 동작 변경, 추측성 재작성, 아키텍처 재설계, 의존성 업그레이드, 광범위한 cleanup 에는 사용하지 않는다.
+description: 사용자가 외부에서 관찰 가능한 동작을 보존하면서 refactor, cleanup, simplify, extract, rename, duplication 제거, readability 개선, file 분리, separation of concerns 개선, testability 개선을 요청할 때 사용한다. 이 스킬은 Baseline → Transform → Same Tests 루프로 보수적이고 테스트 보호된 리팩토링을 수행하게 한다. 먼저 보존해야 할 동작 경계를 정의하고, 편집 전 baseline test 를 실행하고, 한 번에 하나의 작은 안전한 변환만 적용하고, 같은 테스트를 다시 실행하며, 동작 보존을 검증할 수 없으면 중단한다. 기능 개발, 버그 수정, 의도적 동작 변경, 추측성 재작성, 아키텍처 재설계, 의존성 업그레이드, 광범위한 cleanup, 저장소 전반의 이해 위험 감사에는 사용하지 않는다. 후자는 `cognitive-debt`를 사용한다.
 ---
 
 # refactoring
@@ -45,6 +45,7 @@ description: 사용자가 외부에서 관찰 가능한 동작을 보존하면�
 - 깨진 동작 수정. `bugfix`를 사용한다.
 - 조사만 하는 작업.
 - 의존성 업그레이드만 하는 작업.
+- 저장소 또는 하위 시스템의 이해 위험을 찾아 우선순위화하는 감사. `cognitive-debt`를 사용한다.
 - 의도적 아키텍처 변경.
 - 의도적 제품 동작 변경.
 - 처음부터 재작성.
@@ -92,6 +93,10 @@ description: 사용자가 외부에서 관찰 가능한 동작을 보존하면�
 - 기존 패턴 정규화
 
 편집 전 목적을 한두 문장으로 밝힌다. “더 좋게 만들기” 같은 모호한 목적은 broad change 의 근거가 될 수 없다.
+
+단순화 제안은 검증할 가설로 취급한다. 파일 길이, AI 작성 여부, 복잡도 수치만으로 변경 필요성을 판단하지 않는다. 비슷해 보이는 동작을 합치기 전에 추적한다. 서로 다른 도메인 규칙이나 contract 를 지키는 코드일 수 있다.
+
+판단 보조로 동작을 안전하게 삭제할 수 있는지, 기존 구현과 통합할 수 있는지, 새로운 것이 필요한지를 이 순서로 검토하되 자동으로 삭제를 우선하지 않는다. 중요한 불변조건이나 경계를 가리지 않고 입증된 복잡성 원인을 줄일 때만 abstraction 을 추가한다.
 
 ### 2. 동작 경계
 

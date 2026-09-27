@@ -59,6 +59,7 @@ Running `skill-forge` without arguments opens the interactive installer.
 | --- | --- |
 | [`architecture`](./skills/architecture/) | Compares architecture alternatives, records tradeoffs, and produces ADRs, reviews, system views, and migration plans. |
 | [`bugfix`](./skills/bugfix/) | Reproduces or establishes evidence for broken behavior, identifies the root cause, applies the smallest safe fix, and chooses proportionate verification. |
+| [`cognitive-debt`](./skills/cognitive-debt/) | Audits codebase-wide comprehension risks such as duplicated rules, hidden coupling, unclear intent, and unnecessary indirection; ranks evidence-backed next steps. |
 | [`deep-code-review`](./skills/deep-code-review/) | Coordinates independent review lenses, verifies candidate findings, removes root-cause duplicates, and reports confirmed issues. |
 | [`feature-dev`](./skills/feature-dev/) | Implements new behavior through a strict Red → Green → Refactor workflow. |
 | [`performance-testing`](./skills/performance-testing/) | Measures baseline and candidate performance under controlled conditions, investigates regressions and tradeoffs, and records evidence-backed conclusions. |
